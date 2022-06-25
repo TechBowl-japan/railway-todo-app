@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { Header } from "../components/Header";
 import "./signin.css";
+import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "../authSlice";
 
 const url = process.env.REACT_APP_API_URL;
 
 export const SignIn = () => {
+  const auth = useSelector((state) => state.auth.isSignIn)
+  const dispatch = useDispatch();
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,12 +23,15 @@ export const SignIn = () => {
     axios.post(`${url}/signin`, {email: email, password: password})
       .then((res) => {
         setCookie("token", res.data.token);
+        dispatch(signIn());
         history.push("/");
       })
       .catch((err) => {
         setErrorMessage(`ログインに失敗しました。${err}`);
       })
   }
+
+  if(auth) return <Redirect to="/" />
 
   return (
     <div>
