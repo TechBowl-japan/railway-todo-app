@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 
 
 export const TaskList = () => {
-  const [lists, setLists] = useState([])
-  const [tasks, setTasks] = useState([])
-  const [cookies] = useCookies()
+  const [lists, setLists] = useState([]);
+  const [selectListId, setSelectListId] = useState();
+  const [tasks, setTasks] = useState([]);
+  const [cookies] = useCookies();
   useEffect(() => {
     axios.get(`${url}/lists`, {
       headers: {
@@ -22,11 +23,12 @@ export const TaskList = () => {
     .catch((err) => {
       console.log(err);
     })
-  }, [])
+  }, []);
 
   useEffect(() => {
     const listId = lists[0]?.id
     if(typeof listId !== "undefined"){
+      setSelectListId(listId)
       axios.get(`${url}/lists/${listId}/tasks`, {
         headers: {
           authorization: `Bearer ${cookies.token}`
@@ -39,9 +41,10 @@ export const TaskList = () => {
         console.log(err);
       })
     }
-  }, [lists])
+  }, [lists]);
 
   const handleSelectList = (id) => {
+    setSelectListId(id);
     axios.get(`${url}/lists/${id}/tasks`, {
       headers: {
         authorization: `Bearer ${cookies.token}`
@@ -74,7 +77,7 @@ return (
         <ul>
           {tasks.map((task, key) => (
             <li key={key} className="task-item">
-              <Link to={`/tasks/${task.id}`} className="task-item-link">
+              <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
                 {task.title}<br />
                 {task.done ? "完了" : "未完了"}
               </Link>
