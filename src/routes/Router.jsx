@@ -5,6 +5,7 @@ import { Home } from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
 import { SignIn } from "../pages/SignIn";
 import { NewTask } from "../pages/NewTask";
+import { NewList } from "../pages/NewList";
 
 export const Router = () => {
   const auth = useSelector((state) => state.auth.isSignIn)
@@ -17,6 +18,7 @@ export const Router = () => {
           <>
             <Route exact path="/" component={Home} />
             <Route exact path="/task/new" component={NewTask} />
+            <Route exact path="/list/new" component={NewList} />
           </>
         ) : (
           <Redirect to="/signin" />

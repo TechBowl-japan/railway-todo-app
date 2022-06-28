@@ -64,7 +64,7 @@ return (
             <option key={key} className="list-item" value={list.id}>{list.title}</option>
           ))}
         </select>
-        <Link to="/lists/new">リスト新規作成</Link>
+        <Link to="/list/new">リスト新規作成</Link>
       </div>
       <div className="tasks">
         <div className="tasks-header">
