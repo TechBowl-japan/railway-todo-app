@@ -6,8 +6,8 @@ import { Header } from "../components/Header";
 import "./signin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../authSlice";
+import { url } from "../const";
 
-const url = process.env.REACT_APP_API_URL;
 
 export const SignIn = () => {
   const auth = useSelector((state) => state.auth.isSignIn)
@@ -27,7 +27,7 @@ export const SignIn = () => {
         history.push("/");
       })
       .catch((err) => {
-        setErrorMessage(`ログインに失敗しました。${err}`);
+        setErrorMessage(`サインインに失敗しました。${err}`);
       })
   }
 

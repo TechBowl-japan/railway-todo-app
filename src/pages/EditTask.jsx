@@ -13,6 +13,7 @@ export const EditTask = () => {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
   const [isDone, setIsDone] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
@@ -32,7 +33,7 @@ export const EditTask = () => {
       history.push("/");
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMessage(`更新に失敗しました。${err}`);
     })
   }
 
@@ -46,7 +47,7 @@ export const EditTask = () => {
       history.push("/");
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMessage(`削除に失敗しました。${err}`);
     })
   }
 
@@ -63,7 +64,7 @@ export const EditTask = () => {
       setIsDone(task.done)
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
     })
   }, [])
 
@@ -72,6 +73,7 @@ export const EditTask = () => {
       <Header />
       <main className="edit-task">
         <h2>タスク編集</h2>
+        <p>{errorMessage}</p>
         <form className="edit-task-form">
           <label>タイトル</label><br />
           <input type="text" onChange={handleTitleChange} className="edit-task-title" value={title} /><br />
@@ -81,7 +83,7 @@ export const EditTask = () => {
             <input type="radio" id="todo" name="status" value="todo" onChange={handleIsDoneChange} checked={isDone === false ? "checked" : ""} />未完了
             <input type="radio" id="done" name="status" value="done" onChange={handleIsDoneChange} checked={isDone === true ? "checked" : ""} />完了
           </div>
-          <button type="button" className="task-delete-button" onClick={onDeleteTask}>削除</button>
+          <button type="button" className="delete-task-button" onClick={onDeleteTask}>削除</button>
           <button type="button" className="edit-task-button" onClick={onUpdateTask}>更新</button>
         </form>
       </main>

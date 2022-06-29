@@ -10,6 +10,7 @@ export const EditList = () => {
   const history = useHistory();
   const { listId } = useParams();
   const [title, setTitle] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [ cookies ] = useCookies();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const onUpdateList = () => {
@@ -26,7 +27,7 @@ export const EditList = () => {
       history.push("/");
     })
     .catch((err) => {
-      console.log(err);
+    setErrorMessage(`更新に失敗しました。 ${err}`);
     })
   }
 
@@ -40,7 +41,7 @@ export const EditList = () => {
       history.push("/");
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMessage(`削除に失敗しました。${err}`);
     })
   }
 
@@ -55,7 +56,7 @@ export const EditList = () => {
       setTitle(list.title);
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMessage(`リスト情報の取得に失敗しました。${err}`);
     })
   }, [])
 
@@ -64,6 +65,7 @@ export const EditList = () => {
       <Header />
       <main className="edit-list">
         <h2>リスト編集</h2>
+        <p>{errorMessage}</p>
         <form className="edit-list-form">
           <label>タイトル</label><br />
           <input type="text" className="edit-list-title" value={title} onChange={handleTitleChange} /><br />

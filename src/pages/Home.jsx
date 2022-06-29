@@ -11,6 +11,7 @@ export const Home = () => {
   const [lists, setLists] = useState([]);
   const [selectListId, setSelectListId] = useState();
   const [tasks, setTasks] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   useEffect(() => {
     axios.get(`${url}/lists`, {
@@ -22,7 +23,7 @@ export const Home = () => {
       setLists(res.data)
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMessage(`リストの取得に失敗しました。${err}`);
     })
   }, []);
 
@@ -39,7 +40,7 @@ export const Home = () => {
         setTasks(res.data.tasks)
       })
       .catch((err) => {
-        console.log(err);
+        setErrorMessage(`タスクの取得に失敗しました。${err}`);
       })
     }
   }, [lists]);
@@ -55,13 +56,14 @@ export const Home = () => {
       setTasks(res.data.tasks)
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMessage(`タスクの取得に失敗しました。${err}`);
     })
   }
   return (
     <div>
       <Header />
       <main className="taskList">
+        <p>{errorMessage}</p>
         <div>
           <div className="list-menu">
             <p><Link to="/list/new">リスト新規作成</Link></p>
@@ -72,8 +74,8 @@ export const Home = () => {
               const isActive = list.id === selectListId;
               return (
                 <li 
-                  key={key} 
-                  className={`list-tab-item ${isActive ? "active" : ""}`} 
+                  key={key}
+                  className={`list-tab-item ${isActive ? "active" : ""}`}
                   onClick={() => handleSelectList(list.id)}
                 >
                   {list.title}
