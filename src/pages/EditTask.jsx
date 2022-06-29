@@ -73,7 +73,7 @@ export const EditTask = () => {
       <Header />
       <main className="edit-task">
         <h2>タスク編集</h2>
-        <p>{errorMessage}</p>
+        <p className="error-message">{errorMessage}</p>
         <form className="edit-task-form">
           <label>タイトル</label><br />
           <input type="text" onChange={handleTitleChange} className="edit-task-title" value={title} /><br />

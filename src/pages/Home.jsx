@@ -63,7 +63,7 @@ export const Home = () => {
     <div>
       <Header />
       <main className="taskList">
-        <p>{errorMessage}</p>
+        <p className="error-message">{errorMessage}</p>
         <div>
           <div className="list-menu">
             <p><Link to="/list/new">リスト新規作成</Link></p>
@@ -88,19 +88,28 @@ export const Home = () => {
               <h2>タスク一覧</h2>
               <Link to="/task/new">タスク新規作成</Link>
             </div>
-            <ul>
-              {tasks.map((task, key) => (
-                <li key={key} className="task-item">
-                  <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
-                    {task.title}<br />
-                    {task.done ? "完了" : "未完了"}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <Tasks tasks={tasks} selectListId={selectListId} />
           </div>
         </div>
       </main>
     </div>
+  )
+}
+
+const Tasks = (props) => {
+  const { tasks, selectListId } = props;
+  if (tasks === null) return <></>
+
+  return (
+    <ul>
+      {tasks.map((task, key) => (
+        <li key={key} className="task-item">
+          <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
+            {task.title}<br />
+            {task.done ? "完了" : "未完了"}
+          </Link>
+        </li>
+      ))}
+    </ul>
   )
 }

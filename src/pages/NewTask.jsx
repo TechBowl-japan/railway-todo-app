@@ -11,6 +11,7 @@ export const NewTask = () => {
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const history = useHistory();
   const handleTitleChange = (e) => setTitle(e.target.value);
@@ -32,7 +33,7 @@ export const NewTask = () => {
       history.push("/");
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMessage(`タスクの作成に失敗しました。${err}`);
     })
   }
 
@@ -46,7 +47,7 @@ export const NewTask = () => {
       setLists(res.data)
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMessage(`リストの取得に失敗しました。${err}`);
     })
   }, [])
 
@@ -55,6 +56,7 @@ export const NewTask = () => {
       <Header />
       <main className="new-task">
         <h2>タスク新規作成</h2>
+        <p className="error-message">{errorMessage}</p>
         <form className="new-task-form">
           <label>リスト</label><br />
           <select onChange={(e) => handleSelectList(e.target.value)} className="new-task-select-list">

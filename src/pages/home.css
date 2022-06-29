@@ -56,3 +56,7 @@
   text-decoration: none;
   color: #000000;
 }
+
+.error-message {
+  color: #ff3333;
+}

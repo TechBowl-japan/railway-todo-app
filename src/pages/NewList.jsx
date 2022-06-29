@@ -10,6 +10,7 @@ export const NewList = () => {
   const [cookies] = useCookies();
   const history = useHistory();
   const [title, setTitle] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const onCreateList = () => {
     const data = {
@@ -25,7 +26,7 @@ export const NewList = () => {
       history.push("/");
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMessage(`リストの作成に失敗しました。${err}`);
     })
   }
 
@@ -34,6 +35,7 @@ export const NewList = () => {
       <Header />
       <main className="new-list">
         <h2>リスト新規作成</h2>
+        <p className="error-message">{errorMessage}</p>
         <form className="new-list-form">
           <label>タイトル</label><br />
           <input type="text" onChange={handleTitleChange} className="new-list-title" /><br />

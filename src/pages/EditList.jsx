@@ -65,7 +65,7 @@ export const EditList = () => {
       <Header />
       <main className="edit-list">
         <h2>リスト編集</h2>
-        <p>{errorMessage}</p>
+        <p className="error-message">{errorMessage}</p>
         <form className="edit-list-form">
           <label>タイトル</label><br />
           <input type="text" className="edit-list-title" value={title} onChange={handleTitleChange} /><br />
