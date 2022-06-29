@@ -4,9 +4,30 @@
   width: 1000px;
 }
 
-.list {
+.list-menu {
+  text-align: right;
+}
+
+.list-tab {
+  list-style: none;
   display: flex;
-  justify-content: space-between;
+  overflow-x: auto;
+}
+
+.list-tab-item {
+  flex-shrink: 0;
+  width: 100px;
+  padding: 0 25px;
+  text-overflow: normal;
+  margin-right: 5px;
+  border: solid 1px #242F9B;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  background-color: #242F9B;
+  color: #ffffff;
 }
 
 .tasks {

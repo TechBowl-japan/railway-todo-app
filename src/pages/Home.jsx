@@ -1,14 +1,104 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 import { Header } from "../components/Header";
-import { TaskList } from "../components/TaskList";
+import { url } from "../const";
+import "./home.css";
 
 
 export const Home = () => {
+  const [lists, setLists] = useState([]);
+  const [selectListId, setSelectListId] = useState();
+  const [tasks, setTasks] = useState([]);
+  const [cookies] = useCookies();
+  useEffect(() => {
+    axios.get(`${url}/lists`, {
+      headers: {
+        authorization: `Bearer ${cookies.token}`
+      }
+    })
+    .then((res) => {
+      setLists(res.data)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }, []);
 
+  useEffect(() => {
+    const listId = lists[0]?.id
+    if(typeof listId !== "undefined"){
+      setSelectListId(listId)
+      axios.get(`${url}/lists/${listId}/tasks`, {
+        headers: {
+          authorization: `Bearer ${cookies.token}`
+        }
+      })
+      .then((res) => {
+        setTasks(res.data.tasks)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+  }, [lists]);
+
+  const handleSelectList = (id) => {
+    setSelectListId(id);
+    axios.get(`${url}/lists/${id}/tasks`, {
+      headers: {
+        authorization: `Bearer ${cookies.token}`
+      }
+    })
+    .then((res) => {
+      setTasks(res.data.tasks)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
   return (
     <div>
       <Header />
-        <TaskList />
+      <main className="taskList">
+        <div>
+          <div className="list-menu">
+            <p><Link to="/list/new">リスト新規作成</Link></p>
+            <p><Link to={`/lists/${selectListId}/edit`}>選択中のリストを編集</Link></p>
+          </div>
+          <ul className="list-tab">
+            {lists.map((list, key) => {
+              const isActive = list.id === selectListId;
+              return (
+                <li 
+                  key={key} 
+                  className={`list-tab-item ${isActive ? "active" : ""}`} 
+                  onClick={() => handleSelectList(list.id)}
+                >
+                  {list.title}
+                </li>
+              )
+            })}
+          </ul>
+          <div className="tasks">
+            <div className="tasks-header">
+              <h2>タスク一覧</h2>
+              <Link to="/task/new">タスク新規作成</Link>
+            </div>
+            <ul>
+              {tasks.map((task, key) => (
+                <li key={key} className="task-item">
+                  <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
+                    {task.title}<br />
+                    {task.done ? "完了" : "未完了"}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </main>
     </div>
   )
 }
