@@ -4,6 +4,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { url } from "../const";
 import { useHistory, useParams } from "react-router-dom";
+import "./editTask.css"
 
 export const EditTask = () => {
   const history = useHistory();
@@ -49,7 +50,6 @@ export const EditTask = () => {
     })
   }
 
-
   useEffect(() => {
     axios.get(`${url}/lists/${listId}/tasks/${taskId}`, {
       headers: {
@@ -70,19 +70,19 @@ export const EditTask = () => {
   return (
     <div>
       <Header />
-      <main>
+      <main className="edit-task">
         <h2>タスク編集</h2>
-        <form className="new-task-form">
+        <form className="edit-task-form">
           <label>タイトル</label><br />
-          <input type="text" onChange={handleTitleChange} className="new-task-title" value={title} /><br />
+          <input type="text" onChange={handleTitleChange} className="edit-task-title" value={title} /><br />
           <label>詳細</label><br />
-          <textarea type="text" onChange={handleDetailChange} className="new-task-detail" value={detail} /><br />
+          <textarea type="text" onChange={handleDetailChange} className="edit-task-detail" value={detail} /><br />
           <div>
             <input type="radio" id="todo" name="status" value="todo" onChange={handleIsDoneChange} checked={isDone === false ? "checked" : ""} />未完了
             <input type="radio" id="done" name="status" value="done" onChange={handleIsDoneChange} checked={isDone === true ? "checked" : ""} />完了
           </div>
           <button type="button" className="task-delete-button" onClick={onDeleteTask}>削除</button>
-          <button type="button" className="new-task-button" onClick={onUpdateTask}>更新</button>
+          <button type="button" className="edit-task-button" onClick={onUpdateTask}>更新</button>
         </form>
       </main>
     </div>
