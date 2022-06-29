@@ -4,6 +4,11 @@
   width: 1000px;
 }
 
+.list-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .list-menu {
   text-align: right;
 }
@@ -59,4 +64,13 @@
 
 .error-message {
   color: #ff3333;
+}
+
+.display-select-wrapper {
+  width: 100px;
+  margin: 0 0 25px auto;
+}
+
+.display-select {
+  width: 100%;
 }
