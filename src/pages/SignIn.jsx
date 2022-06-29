@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory, Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import "./signin.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,6 +37,7 @@ export const SignIn = () => {
     <div>
       <Header/>
       <main className="signin">
+        <h2>サインイン</h2>
         <p className="error-message">{errorMessage}</p>
         <form className="signin-form">
           <label className="email-label">メールアドレス</label><br />
@@ -45,6 +46,7 @@ export const SignIn = () => {
           <input type="password" className="password-input" onChange={handlePasswordChange} /><br />
           <button type="button" className="signin-button" onClick={onSignIn}>サインイン</button>
         </form>
+        <Link to="/signup">新規作成</Link>
       </main>
     </div>
   )
