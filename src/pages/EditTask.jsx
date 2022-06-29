@@ -18,6 +18,7 @@ export const EditTask = () => {
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
   const onUpdateTask = () => {
+    console.log(isDone)
     const data = {
       title: title,
       detail: detail,
@@ -29,7 +30,8 @@ export const EditTask = () => {
         authorization: `Bearer ${cookies.token}`
       }
     })
-    .then(() => {
+    .then((res) => {
+      console.log(res.data)
       history.push("/");
     })
     .catch((err) => {

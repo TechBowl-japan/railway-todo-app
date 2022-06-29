@@ -45,6 +45,7 @@ export const NewTask = () => {
     })
     .then((res) => {
       setLists(res.data)
+      setSelectListId(res.data[0]?.id)
     })
     .catch((err) => {
       setErrorMessage(`リストの取得に失敗しました。${err}`);
