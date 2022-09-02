@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
 import { SignIn } from "../pages/SignIn";
@@ -11,7 +11,7 @@ import { SignUp } from "../pages/SignUp";
 import { EditList } from "../pages/EditList";
 
 export const Router = () => {
-  const auth = useSelector((state) => state.auth.isSignIn)
+  const auth = useSelector((state) => state.auth.isSignIn);
 
   return (
     <BrowserRouter>
@@ -27,10 +27,10 @@ export const Router = () => {
             <Route path="/lists/:listId/edit" element={<EditList />} />
           </>
         ) : (
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="*" element={<Navigate to="/signin" />} />
         )}
         <Route element={<NotFound />} />
       </Routes>
     </BrowserRouter>
-  )
-}
+  );
+};
