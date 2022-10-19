@@ -8,12 +8,17 @@ import { NewList } from "../pages/NewList";
 import { EditTask } from "../pages/EditTask";
 import { SignUp } from "../pages/SignUp";
 import { EditList } from "../pages/EditList";
+import { Layout } from "../components/Layout";
 
 export const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Home />,
+		element: <Layout />,
 		children: [
+			{
+				path: "/",
+				element: <Home />
+			},
 			{
 				path: "/signin",
 				element: <SignIn />,
