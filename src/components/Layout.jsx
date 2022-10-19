@@ -1,20 +1,23 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux"
-import { Outlet, redirect } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 
 export const Layout = () => {
     const auth = useSelector((state) => state.auth.isSignIn);
+    const navigate = useNavigate();
 
     // redirection
     useEffect(() => {
         const loader = async () => {
-            const auth = await useSelector((state) => state.auth.isSignIn);
+            console.log(auth);
             // authに何も無ければsignInにリダイレクトする
             if (!auth) {
-                return redirect("/signin");
+                console.log("No auth information. Redirect to signin...");
+                navigate("/signin");
             }
         }
         loader();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
