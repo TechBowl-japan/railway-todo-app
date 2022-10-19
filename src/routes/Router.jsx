@@ -1,6 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { DataBrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
 import { SignIn } from "../pages/SignIn";
@@ -10,27 +9,36 @@ import { EditTask } from "../pages/EditTask";
 import { SignUp } from "../pages/SignUp";
 import { EditList } from "../pages/EditList";
 
-export const Router = () => {
-	const auth = useSelector((state) => state.auth.isSignIn)
-
-	return (
-		<Routes>
-			<Route path="/signin" element={<SignIn />} />
-			<Route path="/signup" element={<SignUp />} />
-			{auth ? (
-				<>
-					<Route path="/" element={<Home />} />
-					<Route path="/task/new" element={<NewTask />} />
-					<Route path="/list/new" element={<NewList />} />
-					<Route path="/lists/:listId/tasks/:taskId" element={<EditTask />} />
-					<Route path="/lists/:listId/edit" element={<EditList />} />
-				</>
-			) : (
-				<Route path="*" element={
-					<Navigate to="/signin" />
-				} />
-			)}
-			<Route element={NotFound} />
-		</Routes>
-	)
-}
+export const router = createBrowserRouter([
+	{
+		path: "/",
+		element: <Home />,
+		children: [
+			{
+				path: "/signin",
+				element: <SignIn />,
+			},
+			{
+				path: "/signup",
+				element: <SignUp />,
+			},
+			{
+				path: "/task/new",
+				element: <NewTask />,
+			},
+			{
+				path: "/list/new",
+				element: <NewList />,
+			},
+			{
+				path: "/lists/:listId/tasks/:taskId",
+				element: <EditTask />,
+			},
+			{
+				path: "/lists/:listId/edit",
+				element: <EditList />,
+			},
+		],
+		errorElement: <NotFound />		
+	}
+]);
