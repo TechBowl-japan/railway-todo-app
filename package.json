@@ -16,9 +16,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
-    "eslint": ">=5.16.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-react": "^7.31.10",
+    "eslint": "^8.25.0",
     "react-scripts": "5.0.1"
   },
   "scripts": {
