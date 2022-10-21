@@ -44,6 +44,6 @@ export const router = createBrowserRouter([
 				element: <EditList />,
 			},
 		],
-		errorElement: <NotFound />		
+		errorElement: <NotFound />
 	}
 ]);
