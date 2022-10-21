@@ -1,34 +1,34 @@
-import React, {useState} from 'react';
-import {useCookies} from 'react-cookie';
-import axios from 'axios';
-import {Header} from '../components/Header';
-import {useNavigation} from 'react-router-dom';
-import {url} from '../const';
-import './newList.css';
+import React, { useState } from "react";
+import { useCookies } from "react-cookie";
+import axios from "axios";
+import { Header } from "../components/Header";
+import { useNavigation } from "react-router-dom";
+import { url } from "../const";
+import "./newList.css";
 
 export const NewList = () => {
   const [cookies] = useCookies();
   const navigation = useNavigation();
-  const [title, setTitle] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [title, setTitle] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const onCreateList = () => {
     const data = {
-      title: title,
-    };
+      title: title
+    }
 
     axios.post(`${url}/lists`, data, {
       headers: {
-        authorization: `Bearer ${cookies.token}`,
-      },
+        authorization: `Bearer ${cookies.token}`
+      }
     })
-        .then(() => {
-          navigation('/');
-        })
-        .catch((err) => {
-          setErrorMessage(`リストの作成に失敗しました。${err}`);
-        });
-  };
+    .then(() => {
+      navigation("/");
+    })
+    .catch((err) => {
+      setErrorMessage(`リストの作成に失敗しました。${err}`);
+    })
+  }
 
   return (
     <div>
@@ -43,5 +43,5 @@ export const NewList = () => {
         </form>
       </main>
     </div>
-  );
-};
+  )
+}
