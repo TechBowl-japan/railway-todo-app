@@ -4,7 +4,7 @@ import axios from "axios";
 import { Header } from "../components/Header";
 import { useNavigation } from "react-router-dom";
 import { url } from "../const";
-import "./newList.css";
+import "./newList.scss";
 
 export const NewList = () => {
   const [cookies] = useCookies();
