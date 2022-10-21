@@ -25,8 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:check": "echo `do some lint.`",
-    "lint:fix": "echo `do some lint.`",
+    "lint:check": "eslint --ext .js,.jsx ./src",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx}'",
     "format:check": "echo `do some lint.`",
     "fotmat:fix": "echo `do some lint.`"
   },
