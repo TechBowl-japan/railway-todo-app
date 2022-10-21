@@ -5,6 +5,7 @@ module.exports = {
     },
     "extends": [
         "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
         "standard",
         "prettier"
     ],
@@ -18,5 +19,11 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "object-shorthand": "off",
+        "react/react-in-jsx-scope": "off",
+        "no-unused-vars": "warn",
+        "react/prop-types": "warn",
+        "no-undef": "warn",
+        "react-hooks/exhaustive-deps": "off",
     }
 }
