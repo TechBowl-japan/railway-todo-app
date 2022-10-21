@@ -16,6 +16,14 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.7.1",
     "react-scripts": "5.0.1"
   },
   "scripts": {
@@ -23,7 +31,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:check": "eslint --ext .js,.jsx ./src",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx}'",
+    "format:check": "echo `do some lint.`",
+    "fotmat:fix": "echo `do some lint.`"
   },
   "eslintConfig": {
     "extends": [

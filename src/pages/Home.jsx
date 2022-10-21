@@ -112,7 +112,7 @@ const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
   if (tasks === null) return <></>
 
-  if(isDoneDisplay == "done"){
+  if(isDoneDisplay === "done"){
     return (
       <ul>
         {tasks.filter((task) => {
