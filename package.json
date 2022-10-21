@@ -16,6 +16,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "eslint": "^8.25.0",
     "react-scripts": "5.0.1"
   },
   "scripts": {
@@ -23,7 +24,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:check": "echo `do some lint.`",
+    "lint:fix": "echo `do some lint.`",
+    "format:check": "echo `do some lint.`",
+    "fotmat:fix": "echo `do some lint.`"
   },
   "eslintConfig": {
     "extends": [
