@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Navigate } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
 import { SignIn } from "../pages/SignIn";
@@ -27,7 +27,7 @@ export const Router = () => {
             <Route exact path="/lists/:listId/edit" component={EditList} />
           </>
         ) : (
-          <Redirect to="/signin" />
+          <Navigate to="/signin" />
         )}
         <Route component={NotFound} />
       </Switch>
