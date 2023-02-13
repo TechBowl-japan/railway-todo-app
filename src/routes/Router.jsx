@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { BrowserRouter, Route, Switch, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
 import { SignIn } from "../pages/SignIn";
@@ -15,7 +15,7 @@ export const Router = () => {
 
   return (
     <BrowserRouter>
-      <Switch>
+      <Routes>
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
         {auth ? (
@@ -30,7 +30,7 @@ export const Router = () => {
           <Navigate to="/signin" />
         )}
         <Route component={NotFound} />
-      </Switch>
+      </Routes>
     </BrowserRouter>
   )
 }
