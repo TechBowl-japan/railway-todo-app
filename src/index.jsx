@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React, { StrictMode } from 'react'
+import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 import { Provider } from 'react-redux'
@@ -15,9 +15,12 @@ axios.interceptors.request.use(config => {
   return config
 })
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root'),
+const root = document.getElementById('root')
+const reactRoot = ReactDOM.createRoot(root)
+reactRoot.render(
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StrictMode>,
 )
