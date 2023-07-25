@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../components/Header";
-import axios from "axios";
+import axios from "~/vendor/axios";
 import { useCookies } from "react-cookie";
 import { url } from "../const";
 import { useNavigate, useParams } from "react-router-dom";

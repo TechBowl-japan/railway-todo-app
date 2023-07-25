@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from "~/vendor/axios";
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
-import { signIn } from "../authSlice";
+import { signIn } from "../store/auth/index";
 import { Header } from "../components/Header";
 import { url } from "../const";
 import "./signUp.css";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import axios from "axios";
+import axios from "~/vendor/axios";
 import { url } from "../const";
 import { Header } from "../components/Header";
 import "./newTask.css"

@@ -1,7 +1,7 @@
 import { useCookies } from 'react-cookie'
 import { useSelector, useDispatch } from 'react-redux/es/exports'
 import { useNavigate } from 'react-router-dom'
-import { signOut } from '../authSlice'
+import { signOut } from '../store/auth/index'
 import styles from './Header.module.css'
 
 export const Header = () => {

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "~/vendor/axios";
 import { useCookies } from "react-cookie";
 import { Navigate, useNavigate, Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import "./signin.css";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../authSlice";
+import { signIn } from "../store/auth/index";
 import { url } from "../const";
 
 
