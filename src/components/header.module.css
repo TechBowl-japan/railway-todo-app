@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 40px;
+  background-color: #242f9b;
+  color: #ffffff;
+}
+
+.header__logout_button {
+  color: #ffffff;
+  margin: auto 25px auto auto;
+  text-decoration: underline;
+}
+
+.header__logout_button:hover {
+  text-decoration: none;
+}
