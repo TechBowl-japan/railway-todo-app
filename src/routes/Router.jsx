@@ -11,7 +11,7 @@ import { SignUp } from '../pages/SignUp'
 import { EditList } from '../pages/EditList'
 
 export const Router = () => {
-  const auth = useSelector((state) => state.auth.isSignIn)
+  const auth = useSelector(state => state.auth.token !== null)
 
   return (
     <BrowserRouter>

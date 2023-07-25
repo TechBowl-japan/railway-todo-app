@@ -21,9 +21,24 @@ export const login = createAsyncThunk(
   'auth/login',
   async (payload, thunkApi) => {
     const { email, password } = payload
-    const response = await axios.post(`${url}/signin`, {
-      email: email,
-      password: password,
+    const response = await axios.post(`/signin`, {
+      email,
+      password,
+    })
+
+    localStorage.setItem('railway-todo-app__token', response.data.token)
+    thunkApi.dispatch(setToken(response.data.token))
+  },
+)
+
+export const signup = createAsyncThunk(
+  'auth/signup',
+  async (payload, thunkApi) => {
+    const { email, password, name } = payload
+    const response = await axios.post(`/user`, {
+      email,
+      password,
+      name,
     })
     thunkApi.dispatch(setToken(response.data.token))
   },
