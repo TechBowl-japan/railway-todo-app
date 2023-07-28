@@ -1,6 +1,6 @@
 import { ListIcon } from '~/icons/ListIcon'
 import styles from './Sidebar.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { PlusIcon } from '~/icons/PlusIcon'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLogout } from '~/hooks/useLogout'
@@ -9,11 +9,15 @@ import { fetchLists } from '~/store/list/index'
 
 export const Sidebar = () => {
   const dispatch = useDispatch()
+  const { pathname } = useLocation()
 
   const lists = useSelector(state => state.list.lists)
   const activeId = useSelector(state => state.list.current)
   const isLoggedIn = useSelector(state => state.auth.token !== null)
   const userName = useSelector(state => state.auth.user?.name)
+
+  // リスト新規作成ページではリストをハイライトしない
+  const shouldHighlight = !pathname.startsWith('/list/new')
 
   const { logout } = useLogout()
 
@@ -35,7 +39,7 @@ export const Sidebar = () => {
                 {lists.map(listItem => (
                   <li key={listItem.id}>
                     <Link
-                      data-active={listItem.id === activeId}
+                      data-active={shouldHighlight && listItem.id === activeId}
                       to={`/lists/${listItem.id}`}
                       className={styles.sidebar__lists_item}
                     >

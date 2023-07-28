@@ -12,6 +12,11 @@ export const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
+    resetTodo: (state, _action) => {
+      state.todos = null
+      state.listId = null
+      state.isLoading = false
+    },
     setTodos: (state, action) => {
       state.todos = action.payload
     },
@@ -47,13 +52,14 @@ export const todoSlice = createSlice({
 })
 
 export const {
+  resetTodo,
   setTodos,
   setListId,
   setTodoIsLoading,
   addTodo,
   mutateTodo,
   removeTodo,
-} = listSlice.actions
+} = todoSlice.actions
 
 export const fetchTodos = createAsyncThunk(
   'todo/fetchTodos',

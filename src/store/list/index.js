@@ -12,6 +12,11 @@ export const listSlice = createSlice({
   name: 'list',
   initialState,
   reducers: {
+    resetList: (state, _action) => {
+      state.lists = null
+      state.current = null
+      state.isLoading = false
+    },
     setList: (state, action) => {
       state.lists = action.payload
 
@@ -42,6 +47,7 @@ export const listSlice = createSlice({
 })
 
 export const {
+  resetList,
   setList,
   setCurrentList,
   setListIsLoading,

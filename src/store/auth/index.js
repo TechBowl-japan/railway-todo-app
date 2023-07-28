@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '~/vendor/axios'
 import { handleThunkError } from '~/utils/handleThunkError'
+import { resetTodo } from '~/store/todo'
+import { resetList } from '~/store/list'
 
 const initialState = {
   token: localStorage.getItem('railway-todo-app__token') || null,
@@ -82,5 +84,9 @@ export const logout = createAsyncThunk(
     localStorage.removeItem('railway-todo-app__token')
     thunkApi.dispatch(setToken(null))
     thunkApi.dispatch(setUser(null))
+
+    // 他のステートをリセット
+    thunkApi.dispatch(resetTodo())
+    thunkApi.dispatch(resetList())
   },
 )
