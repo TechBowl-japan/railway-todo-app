@@ -10,6 +10,7 @@ import NewList from '~/pages/list/new/index.page'
 import EditTask from '~/pages/lists/[listId]/tasks/[taskId]/index.page'
 import SignUp from '~/pages/signup/index.page'
 import EditList from '~/pages/lists/[listId]/edit/index.page'
+import ListIndex from '~/pages/lists/[listId]/index.page'
 
 export const Router = () => {
   const auth = useSelector(state => state.auth.token !== null)
@@ -32,6 +33,7 @@ export const Router = () => {
                 element={<EditTask />}
               />
               <Route exact path="/lists/:listId/edit" element={<EditList />} />
+              <Route exact path="/lists/:listId" element={<ListIndex />} />
             </>
           ) : (
             <Route path="/" element={<Navigate to="/signin" />} />
