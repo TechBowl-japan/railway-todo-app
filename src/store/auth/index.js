@@ -7,12 +7,16 @@ import { resetList } from '~/store/list'
 const initialState = {
   token: localStorage.getItem('railway-todo-app__token') || null,
   user: null,
+  isLoading: false,
 }
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    setUserIsLoading: (state, action) => {
+      state.isLoading = action.payload
+    },
     setToken: (state, action) => {
       state.token = action.payload
     },
@@ -22,20 +26,31 @@ export const authSlice = createSlice({
   },
 })
 
-export const { setToken, setUser } = authSlice.actions
+export const { setToken, setUserIsLoading, setUser } = authSlice.actions
 
 export const fetchUser = createAsyncThunk(
   'auth/fetchUser',
-  async (_payload, thunkApi) => {
+  async ({ force = false } = {}, thunkApi) => {
+    const isLoading = thunkApi.getState().auth.isLoading
+    const hasUser = thunkApi.getState().auth.user !== null
+
+    if (!force && (isLoading || hasUser)) {
+      return
+    }
+
     if (thunkApi.getState().auth.token === null) {
       return
     }
+
+    thunkApi.dispatch(setUserIsLoading(true))
 
     try {
       const response = await axios.get(`/users`)
       thunkApi.dispatch(setUser(response.data))
     } catch (e) {
       return handleThunkError(e, thunkApi)
+    } finally {
+      thunkApi.dispatch(setUserIsLoading(false))
     }
   },
 )

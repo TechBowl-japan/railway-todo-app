@@ -10,7 +10,7 @@ const ListIndex = () => {
 
   useEffect(() => {
     dispatch(setCurrentList(listId))
-    dispatch(fetchTodos(listId))
+    dispatch(fetchTodos()).unwrap()
   }, [listId])
 
   return <div>TODO</div>

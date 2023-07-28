@@ -58,7 +58,9 @@ export const {
 export const fetchLists = createAsyncThunk(
   'list/fetchLists',
   async ({ force = false } = {}, thunkApi) => {
-    if (!force && thunkApi.getState().list.lists) {
+    const isLoading = thunkApi.getState().list.isLoading
+
+    if (!force && (thunkApi.getState().list.lists || isLoading)) {
       return
     }
 

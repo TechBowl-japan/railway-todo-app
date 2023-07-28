@@ -66,8 +66,9 @@ export const fetchTodos = createAsyncThunk(
   async ({ force = false } = {}, thunkApi) => {
     const listId = thunkApi.getState().list.current
     const currentListId = thunkApi.getState().todo.listId
+    const isLoading = thunkApi.getState().todo.isLoading
 
-    if (!force && currentListId === listId) {
+    if (!force && (currentListId === listId || isLoading)) {
       return
     }
 
@@ -76,6 +77,7 @@ export const fetchTodos = createAsyncThunk(
     try {
       const res = await axios.get(`/lists/${listId}/tasks`)
       thunkApi.dispatch(setTodos(res.data.tasks))
+      thunkApi.dispatch(setListId(listId))
     } catch (e) {
       handleThunkError(e, thunkApi)
     } finally {
