@@ -5,8 +5,10 @@ import { resetTodo } from '~/store/todo'
 import { resetList } from '~/store/list'
 
 const initialState = {
+  // NOTE: localStorageから直接取得している。SSR時にはこのままでは動かないので注意
   token: localStorage.getItem('railway-todo-app__token') || null,
   user: null,
+  // NOTE: 2重ロードの回避用
   isLoading: false,
 }
 
