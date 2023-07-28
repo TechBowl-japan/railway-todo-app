@@ -64,7 +64,7 @@
 }
 
 .app_button:not([data-variant='secondary']) {
-  background-color: var(--indigo-600);
+  background-color: var(--app-button-accent-color, var(--indigo-600));
   color: #ffffff;
 }
 
@@ -74,7 +74,7 @@
 
 .app_button[data-variant='secondary'] {
   border: 1px solid currentColor;
-  color: var(--indigo-600);
+  color: var(--app-button-accent-color, var(--indigo-600));
 }
 
 .app_button[data-variant='secondary']:disabled {
