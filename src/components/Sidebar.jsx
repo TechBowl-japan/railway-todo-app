@@ -30,7 +30,9 @@ export const Sidebar = () => {
 
   return (
     <div className={styles.sidebar}>
-      <h1 className={styles.sidebar__title}>Todos</h1>
+      <Link to="/">
+        <h1 className={styles.sidebar__title}>Todos</h1>
+      </Link>
       {isLoggedIn ? (
         <>
           {lists && (
