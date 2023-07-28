@@ -13,6 +13,9 @@
   --slate-800: #1e293b;
   --slate-900: #0f172a;
   --slate-950: #020617;
+
+  font-size: 16px;
+  line-height: 1.5rem;
 }
 
 .app_button {
@@ -53,4 +56,8 @@
 
 .app_button[data-variant='secondary']:disabled {
   color: var(--slate-300);
+}
+
+.main_content {
+  padding-left: 320px;
 }
