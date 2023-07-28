@@ -83,12 +83,20 @@
   border-radius: 0.375rem;
 }
 
-.sidebar__lists_button:hover {
+.sidebar__lists_button:hover,
+.sidebar__login:hover {
   opacity: 0.8;
 }
 
-.sidebar__lists_button:active {
+.sidebar__lists_button:active,
+.sidebar__login:active {
   opacity: 0.6;
+}
+
+.sidebar__lists_button:focus,
+.sidebar__login:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
 }
 
 .sidebar__lists_plus_icon {
