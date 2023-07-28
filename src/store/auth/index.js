@@ -21,6 +21,19 @@ export const authSlice = createSlice({
 
 export const { setToken, setUser } = authSlice.actions
 
+const handleThunkError = (e, thunkApi) => {
+  let errorMessage = 'Something went wrong'
+  if (e && e.response && e.response.data && e.response.data.ErrorMessageEN) {
+    errorMessage = e.response.data.ErrorMessageEN
+  } else if (e && e.message) {
+    errorMessage = e.message
+  }
+
+  return thunkApi.rejectWithValue({
+    message: errorMessage,
+  })
+}
+
 export const fetchUser = createAsyncThunk(
   'auth/fetchUser',
   async (_payload, thunkApi) => {
@@ -28,37 +41,49 @@ export const fetchUser = createAsyncThunk(
       return
     }
 
-    const response = await axios.get(`/users`)
-    thunkApi.dispatch(setUser(response.data))
+    try {
+      const response = await axios.get(`/users`)
+      thunkApi.dispatch(setUser(response.data))
+    } catch (e) {
+      return handleThunkError(e, thunkApi)
+    }
   },
 )
 
 export const login = createAsyncThunk(
   'auth/login',
   async (payload, thunkApi) => {
-    const { email, password } = payload
-    const response = await axios.post(`/signin`, {
-      email,
-      password,
-    })
+    try {
+      const { email, password } = payload
+      const response = await axios.post(`/signin`, {
+        email,
+        password,
+      })
 
-    localStorage.setItem('railway-todo-app__token', response.data.token)
-    thunkApi.dispatch(setToken(response.data.token))
-    void thunkApi.dispatch(fetchUser())
+      localStorage.setItem('railway-todo-app__token', response.data.token)
+      thunkApi.dispatch(setToken(response.data.token))
+      void thunkApi.dispatch(fetchUser())
+    } catch (e) {
+      return handleThunkError(e, thunkApi)
+    }
   },
 )
 
 export const signup = createAsyncThunk(
   'auth/signup',
   async (payload, thunkApi) => {
-    const { email, password, name } = payload
-    const response = await axios.post(`/user`, {
-      email,
-      password,
-      name,
-    })
-    thunkApi.dispatch(setToken(response.data.token))
-    void thunkApi.dispatch(fetchUser())
+    try {
+      const { email, password, name } = payload
+      const response = await axios.post(`/users`, {
+        email,
+        password,
+        name,
+      })
+      thunkApi.dispatch(setToken(response.data.token))
+      void thunkApi.dispatch(fetchUser())
+    } catch (e) {
+      return handleThunkError(e, thunkApi)
+    }
   },
 )
 

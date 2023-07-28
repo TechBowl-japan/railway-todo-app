@@ -8,14 +8,14 @@ export const useSignup = () => {
   const navigate = useNavigate()
 
   const handleSignup = useCallback(
-    ({ email, password, name }) => {
-      dispatch(
+    async ({ email, password, name }) => {
+      await dispatch(
         signup({
           email,
           password,
           name,
         }),
-      )
+      ).unwrap()
       navigate('/')
     },
     [useDispatch],

@@ -1,78 +1,77 @@
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, Navigate } from 'react-router-dom'
-import { Header } from '~/components/Header'
-import './signUp.css'
+import React, { useCallback, useId, useState } from 'react'
+import { Navigate, Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import './signup.css'
 import { useSignup } from '~/hooks/useSignup'
 
 export const SignUp = () => {
-  const navigate = useNavigate()
   const auth = useSelector(state => state.auth.token !== null)
-
   const dispatch = useDispatch()
+
+  const id = useId()
+  const [errorMessage, setErrorMessage] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const { signup } = useSignup()
 
-  const [email, setEmail] = useState('')
-  const [name, setName] = useState('')
-  const [password, setPassword] = useState('')
-  const [errorMessage, setErrorMessge] = useState()
+  const onSubmit = useCallback(
+    event => {
+      event.preventDefault()
 
-  const handleEmailChange = e => setEmail(e.target.value)
-  const handleNameChange = e => setName(e.target.value)
-  const handlePasswordChange = e => setPassword(e.target.value)
+      setIsSubmitting(true)
 
-  const onSignUp = () => {
-    const data = {
-      email: email,
-      name: name,
-      password: password,
-    }
+      const email = event.target.elements[`${id}-email`].value
+      const password = event.target.elements[`${id}-password`].value
+      const name = event.target.elements[`${id}-name`].value
 
-    dispatch(signup(data)).catch(err => {
-      setErrorMessge(`サインアップに失敗しました。 ${err}`)
-    })
-  }
+      signup({ email, name, password })
+        .catch(err => {
+          setErrorMessage(`サインインに失敗しました: ${err.message}`)
+        })
+        .finally(() => {
+          setIsSubmitting(false)
+        })
+    },
+    [id],
+  )
 
   if (auth) {
     return <Navigate to="/" />
   }
 
   return (
-    <div>
-      <Header />
-      <main className="signup">
-        <h2>新規作成</h2>
-        <p className="error-message">{errorMessage}</p>
-        <form className="signup-form">
-          <label>メールアドレス</label>
-          <br />
-          <input
-            type="email"
-            onChange={handleEmailChange}
-            className="email-input"
-          />
-          <br />
-          <label>ユーザ名</label>
-          <br />
-          <input
-            type="text"
-            onChange={handleNameChange}
-            className="name-input"
-          />
-          <br />
-          <label>パスワード</label>
-          <br />
-          <input
-            type="password"
-            onChange={handlePasswordChange}
-            className="password-input"
-          />
-          <br />
-          <button type="button" onClick={onSignUp} className="signup-button">
-            作成
+    <main className="signup">
+      <h2 className="signup__title">Register</h2>
+      <p className="signup__error">{errorMessage}</p>
+      <form className="signup__form" onSubmit={onSubmit}>
+        <fieldset className="signup__form_field">
+          <label htmlFor={`${id}-email`} className="signup__form_label">
+            E-mail Address
+          </label>
+          <input id={`${id}-email`} className="app_input" />
+        </fieldset>
+        <fieldset className="signup__form_field">
+          <label htmlFor={`${id}-name`} className="signup__form_label">
+            Username
+          </label>
+          <input id={`${id}-name`} type="text" className="app_input" />
+        </fieldset>
+        <fieldset className="signup__form_field">
+          <label htmlFor={`${id}-password`} className="signup__form_label">
+            Password
+          </label>
+          <input id={`${id}-password`} type="password" className="app_input" />
+        </fieldset>
+        <div className="signup__form_actions">
+          <Link className="app_button" data-variant="secondary" to="/signin">
+            Login
+          </Link>
+          <div className="signup__form_actions_spacer"></div>
+          <button type="submit" className="app_button" disabled={isSubmitting}>
+            Register
           </button>
-        </form>
-      </main>
-    </div>
+        </div>
+      </form>
+    </main>
   )
 }

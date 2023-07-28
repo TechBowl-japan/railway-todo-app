@@ -7,8 +7,8 @@ export const useLogout = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handleLogout = useCallback(() => {
-    dispatch(logout())
+  const handleLogout = useCallback(async () => {
+    await dispatch(logout()).unwrap()
     navigate('/signin')
   }, [useDispatch])
 

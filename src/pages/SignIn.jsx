@@ -1,61 +1,68 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useId, useState } from 'react'
 import { Navigate, Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { Header } from '~/components/Header'
-import { login } from '~/store/auth/index'
-import { useSignup } from '~/hooks/useSignup'
+import { useSelector } from 'react-redux'
+import { useLogin } from '~/hooks/useLogin'
 import './signin.css'
 
 export const SignIn = () => {
   const auth = useSelector(state => state.auth.token !== null)
-  const dispatch = useDispatch()
-  const { signup } = useSignup()
+  const { login } = useLogin()
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState()
-  const handleEmailChange = e => setEmail(e.target.value)
-  const handlePasswordChange = e => setPassword(e.target.value)
+  const id = useId()
+  const [errorMessage, setErrorMessage] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const onSignIn = useCallback(() => {
-    dispatch(login({ email, password })).catch(err => {
-      setErrorMessage(`サインインに失敗しました: ${err.message}`)
-    })
-  }, [email, password, signup])
+  const onSubmit = useCallback(
+    event => {
+      event.preventDefault()
+
+      setIsSubmitting(true)
+
+      const email = event.target.elements[`${id}-email`].value
+      const password = event.target.elements[`${id}-password`].value
+
+      login({ email, password })
+        .catch(err => {
+          setErrorMessage(err.message)
+        })
+        .finally(() => {
+          setIsSubmitting(false)
+        })
+    },
+    [id],
+  )
 
   if (auth) {
     return <Navigate to="/" />
   }
 
   return (
-    <div>
-      <Header />
-      <main className="signin">
-        <h2>サインイン</h2>
-        <p className="error-message">{errorMessage}</p>
-        <form className="signin-form">
-          <label className="email-label">メールアドレス</label>
-          <br />
-          <input
-            type="email"
-            className="email-input"
-            onChange={handleEmailChange}
-          />
-          <br />
-          <label className="password-label">パスワード</label>
-          <br />
-          <input
-            type="password"
-            className="password-input"
-            onChange={handlePasswordChange}
-          />
-          <br />
-          <button type="button" className="signin-button" onClick={onSignIn}>
-            サインイン
+    <main className="signin">
+      <h2 className="signin__title">Login</h2>
+      <p className="signin__error">{errorMessage}</p>
+      <form className="signin__form" onSubmit={onSubmit}>
+        <fieldset className="signin__form_field">
+          <label htmlFor={`${id}-email`} className="signin__form_label">
+            E-mail Address
+          </label>
+          <input id={`${id}-email`} type="email" className="app_input" />
+        </fieldset>
+        <fieldset className="signin__form_field">
+          <label htmlFor={`${id}-password`} className="signin__form_label">
+            Password
+          </label>
+          <input id={`${id}-password`} type="password" className="app_input" />
+        </fieldset>
+        <div className="signin__form_actions">
+          <Link className="app_button" data-variant="secondary" to="/signup">
+            Register
+          </Link>
+          <div className="signin__form_actions_spacer"></div>
+          <button type="submit" className="app_button" disabled={isSubmitting}>
+            Login
           </button>
-        </form>
-        <Link to="/signup">新規作成</Link>
-      </main>
-    </div>
+        </div>
+      </form>
+    </main>
   )
 }

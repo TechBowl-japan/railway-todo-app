@@ -8,13 +8,14 @@ export const useLogin = () => {
   const navigate = useNavigate()
 
   const handleLogin = useCallback(
-    (email, password) => {
-      dispatch(
+    async ({ email, password }) => {
+      await dispatch(
         login({
           email,
           password,
         }),
-      )
+      ).unwrap()
+
       navigate('/')
     },
     [useDispatch],

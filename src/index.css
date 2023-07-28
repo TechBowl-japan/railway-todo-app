@@ -5,6 +5,9 @@
 
 :root {
   --indigo-600: #4f46e5;
+
+  --red-500: #ef4444;
+
   --slate-50: #f8fafc;
   --slate-100: #f1f5f9;
   --slate-200: #e2e8f0;
@@ -78,7 +81,7 @@
   color: var(--slate-300);
 }
 
-.app-input {
+.app_input {
   background-color: #ffffff;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -88,12 +91,12 @@
   color: var(--slate-800);
 }
 
-.app-input:focus {
+.app_input:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
 }
 
-.app-input::placeholder {
+.app_input::placeholder {
   color: var(--slate-500);
 }
 
@@ -101,9 +104,4 @@
   padding: 80px 40px;
   padding-left: 360px;
   min-height: 100vh;
-}
-
-.main_content__container {
-  margin: 0 auto;
-  max-width: var(--width-main-content);
 }
