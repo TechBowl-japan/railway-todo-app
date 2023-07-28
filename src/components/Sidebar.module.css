@@ -21,6 +21,9 @@
 
 .sidebar__lists {
   margin-top: 2.5rem;
+}
+
+.sidebar__spacer {
   flex-grow: 1;
 }
 
@@ -65,7 +68,8 @@
   fill: currentColor;
 }
 
-.sidebar__lists_button {
+.sidebar__lists_button,
+.sidebar__login {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,4 +113,8 @@
 
 .sidebar__account_logout:hover {
   text-decoration: none;
+}
+
+.sidebar__login {
+  margin-top: 1.5rem;
 }
