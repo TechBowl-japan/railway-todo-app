@@ -1,4 +1,7 @@
 @import '@unocss/reset/tailwind.css';
+@import '@fontsource/inter/400';
+@import '@fontsource/inter/500';
+@import '@fontsource/inter/700';
 
 :root {
   --indigo-600: #4f46e5;
@@ -14,6 +17,7 @@
   --slate-900: #0f172a;
   --slate-950: #020617;
 
+  font-family: Inter, sans-serif;
   font-size: 16px;
   line-height: 1.5rem;
 }
