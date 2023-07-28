@@ -1,15 +1,15 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { BrowserRouter, Route, Navigate, Routes } from 'react-router-dom'
-import { Home } from '../pages/Home'
-import { NotFound } from '../pages/NotFound'
-import { SignIn } from '../pages/SignIn'
-import { NewTask } from '../pages/NewTask'
-import { NewList } from '../pages/NewList'
-import { EditTask } from '../pages/EditTask'
-import { SignUp } from '../pages/SignUp'
-import { EditList } from '../pages/EditList'
 import { Sidebar } from '~/components/Sidebar'
+import Home from '~/pages/index.page'
+import NotFound from '~/pages/404'
+import SignIn from '~/pages/signin/index.page'
+import NewTask from '~/pages/task/new/index.page'
+import NewList from '~/pages/list/new/index.page'
+import EditTask from '~/pages/lists/[listId]/tasks/[taskId]/index.page'
+import SignUp from '~/pages/signup/index.page'
+import EditList from '~/pages/lists/[listId]/edit/index.page'
 
 export const Router = () => {
   const auth = useSelector(state => state.auth.token !== null)

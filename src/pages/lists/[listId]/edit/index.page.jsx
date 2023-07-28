@@ -1,9 +1,9 @@
 import axios from '~/vendor/axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import './editList.css'
+import './index.css'
 
-export const EditList = () => {
+const EditList = () => {
   const navigate = useNavigate()
   const { listId } = useParams()
   const [title, setTitle] = useState('')
@@ -81,3 +81,5 @@ export const EditList = () => {
     </div>
   )
 }
+
+export default EditList

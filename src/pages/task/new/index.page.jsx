@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from '~/vendor/axios'
-import './newTask.css'
+import './index.css'
 import { useNavigate } from 'react-router-dom'
 
-export const NewTask = () => {
+const NewTask = () => {
   const [selectListId, setSelectListId] = useState()
   const [lists, setLists] = useState([])
   const [title, setTitle] = useState('')
@@ -89,3 +89,5 @@ export const NewTask = () => {
     </div>
   )
 }
+
+export default NewTask

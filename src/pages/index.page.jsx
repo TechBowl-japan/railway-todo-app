@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import './home.css'
+import './index.css'
 import { fetchLists } from '~/store/list/index'
 
-export const Home = () => {
+const Home = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -22,3 +22,5 @@ export const Home = () => {
 
   return <div></div>
 }
+
+export default Home

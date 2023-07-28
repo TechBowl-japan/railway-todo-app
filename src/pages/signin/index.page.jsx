@@ -2,9 +2,9 @@ import React, { useCallback, useId, useState } from 'react'
 import { Navigate, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useLogin } from '~/hooks/useLogin'
-import './signin.css'
+import './index.css'
 
-export const SignIn = () => {
+const SignIn = () => {
   const auth = useSelector(state => state.auth.token !== null)
   const { login } = useLogin()
 
@@ -66,3 +66,5 @@ export const SignIn = () => {
     </main>
   )
 }
+
+export default SignIn

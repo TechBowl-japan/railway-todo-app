@@ -1,12 +1,11 @@
 import React, { useCallback, useId, useState } from 'react'
 import { Navigate, Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import './signup.css'
+import { useSelector } from 'react-redux'
+import './index.css'
 import { useSignup } from '~/hooks/useSignup'
 
-export const SignUp = () => {
+const SignUp = () => {
   const auth = useSelector(state => state.auth.token !== null)
-  const dispatch = useDispatch()
 
   const id = useId()
   const [errorMessage, setErrorMessage] = useState('')
@@ -75,3 +74,5 @@ export const SignUp = () => {
     </main>
   )
 }
+
+export default SignUp
