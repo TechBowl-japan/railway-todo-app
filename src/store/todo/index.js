@@ -84,7 +84,7 @@ export const createTodo = createAsyncThunk(
     thunkApi.dispatch(setTodoIsLoading(true))
 
     try {
-      const res = await axios.post(`/lists/${payload.listId}/tasks`, payload)
+      await axios.post(`/lists/${payload.listId}/tasks`, payload)
       thunkApi.dispatch(addTodo(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
@@ -100,10 +100,7 @@ export const updateTodo = createAsyncThunk(
     thunkApi.dispatch(setTodoIsLoading(true))
 
     try {
-      const res = await axios.put(
-        `/lists/${payload.listId}/tasks/${payload.id}`,
-        payload,
-      )
+      await axios.put(`/lists/${payload.listId}/tasks/${payload.id}`, payload)
       thunkApi.dispatch(mutateTodo(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
@@ -119,9 +116,7 @@ export const deleteTodo = createAsyncThunk(
     thunkApi.dispatch(setTodoIsLoading(true))
 
     try {
-      const res = await axios.delete(
-        `/lists/${payload.listId}/tasks/${payload.id}`,
-      )
+      await axios.delete(`/lists/${payload.listId}/tasks/${payload.id}`)
       thunkApi.dispatch(removeTodo(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
