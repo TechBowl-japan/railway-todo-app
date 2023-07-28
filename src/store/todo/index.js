@@ -76,7 +76,7 @@ export const fetchTodos = createAsyncThunk(
 
     try {
       const res = await axios.get(`/lists/${listId}/tasks`)
-      thunkApi.dispatch(setTodos(res.data.tasks))
+      thunkApi.dispatch(setTodos(res.data.tasks || []))
       thunkApi.dispatch(setListId(listId))
     } catch (e) {
       handleThunkError(e, thunkApi)
