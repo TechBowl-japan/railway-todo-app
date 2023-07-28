@@ -53,13 +53,10 @@ export const Sidebar = () => {
                   </li>
                 ))}
                 <li>
-                  <button
-                    type="button"
-                    className={styles.sidebar__lists_button}
-                  >
+                  <Link to="/list/new" className={styles.sidebar__lists_button}>
                     <PlusIcon className={styles.sidebar__lists_plus_icon} />
                     New List...
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </div>
