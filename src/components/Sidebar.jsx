@@ -2,31 +2,24 @@ import { ListIcon } from '~/icons/ListIcon'
 import styles from './Sidebar.module.css'
 import { Link } from 'react-router-dom'
 import { PlusIcon } from '~/icons/PlusIcon'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useLogout } from '~/hooks/useLogout'
+import { useEffect } from 'react'
+import { fetchLists } from '~/store/list/index'
 
 export const Sidebar = () => {
-  const lists = [
-    {
-      id: '1',
-      name: 'List 1',
-    },
-    {
-      id: '2',
-      name: 'List 2',
-    },
-    {
-      id: '3',
-      name: 'List 3',
-    },
-  ]
+  const dispatch = useDispatch()
 
-  const activeId = '1'
-
+  const lists = useSelector(state => state.list.lists)
+  const activeId = useSelector(state => state.list.current)
   const isLoggedIn = useSelector(state => state.auth.token !== null)
   const userName = useSelector(state => state.auth.user?.name)
 
   const { logout } = useLogout()
+
+  useEffect(() => {
+    void dispatch(fetchLists())
+  }, [])
 
   return (
     <div className={styles.sidebar}>
@@ -50,7 +43,7 @@ export const Sidebar = () => {
                         aria-hidden
                         className={styles.sidebar__lists_icon}
                       />
-                      {listItem.name}
+                      {listItem.title}
                     </Link>
                   </li>
                 ))}

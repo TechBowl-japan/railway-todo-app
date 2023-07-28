@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '~/vendor/axios'
+import { handleThunkError } from '~/utils/handleThunkError'
 
 const initialState = {
   token: localStorage.getItem('railway-todo-app__token') || null,
@@ -20,19 +21,6 @@ export const authSlice = createSlice({
 })
 
 export const { setToken, setUser } = authSlice.actions
-
-const handleThunkError = (e, thunkApi) => {
-  let errorMessage = 'Something went wrong'
-  if (e && e.response && e.response.data && e.response.data.ErrorMessageEN) {
-    errorMessage = e.response.data.ErrorMessageEN
-  } else if (e && e.message) {
-    errorMessage = e.message
-  }
-
-  return thunkApi.rejectWithValue({
-    message: errorMessage,
-  })
-}
 
 export const fetchUser = createAsyncThunk(
   'auth/fetchUser',
