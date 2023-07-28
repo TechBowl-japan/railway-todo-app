@@ -12,32 +12,38 @@ import { EditList } from '../pages/EditList'
 import { Sidebar } from '~/components/Sidebar'
 
 export const Router = () => {
-  const auth = useSelector((state) => state.auth.token !== null)
+  const auth = useSelector(state => state.auth.token !== null)
 
   return (
     <BrowserRouter>
       <Sidebar />
       <div className="main_content">
-        <Routes>
-          <Route exact path="/signin" element={<SignIn />} />
-          <Route exact path="/signup" element={<SignUp />} />
-          {auth ? (
-            <>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/task/new" element={<NewTask />} />
-              <Route exact path="/list/new" element={<NewList />} />
-              <Route
-                exact
-                path="/lists/:listId/tasks/:taskId"
-                element={<EditTask />}
-              />
-              <Route exact path="/lists/:listId/edit" element={<EditList />} />
-            </>
-          ) : (
-            <Route path="/" element={<Navigate to="/signin" />} />
-          )}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="main_content__container">
+          <Routes>
+            <Route exact path="/signin" element={<SignIn />} />
+            <Route exact path="/signup" element={<SignUp />} />
+            {auth ? (
+              <>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/task/new" element={<NewTask />} />
+                <Route exact path="/list/new" element={<NewList />} />
+                <Route
+                  exact
+                  path="/lists/:listId/tasks/:taskId"
+                  element={<EditTask />}
+                />
+                <Route
+                  exact
+                  path="/lists/:listId/edit"
+                  element={<EditList />}
+                />
+              </>
+            ) : (
+              <Route path="/" element={<Navigate to="/signin" />} />
+            )}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
   )

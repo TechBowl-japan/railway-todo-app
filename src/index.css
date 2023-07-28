@@ -17,6 +17,10 @@
   --slate-900: #0f172a;
   --slate-950: #020617;
 
+  --width-login-form: 420px;
+  --width-edit-form: 600px;
+  --width-main-content: 800px;
+
   font-family:
     Inter,
     system-ui,
@@ -74,6 +78,32 @@
   color: var(--slate-300);
 }
 
+.app-input {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--slate-200);
+  color: var(--slate-800);
+}
+
+.app-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
+}
+
+.app-input::placeholder {
+  color: var(--slate-500);
+}
+
 .main_content {
-  padding-left: 320px;
+  padding: 80px 40px;
+  padding-left: 360px;
+  min-height: 100vh;
+}
+
+.main_content__container {
+  margin: 0 auto;
+  max-width: var(--width-main-content);
 }
