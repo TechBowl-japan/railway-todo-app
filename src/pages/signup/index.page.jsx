@@ -5,7 +5,7 @@ import './index.css'
 import { useSignup } from '~/hooks/useSignup'
 
 const SignUp = () => {
-  const auth = useSelector(state => state.auth.token !== null)
+  const auth = useSelector((state) => state.auth.token !== null)
 
   const id = useId()
   const [errorMessage, setErrorMessage] = useState('')
@@ -14,7 +14,7 @@ const SignUp = () => {
   const { signup } = useSignup()
 
   const onSubmit = useCallback(
-    event => {
+    (event) => {
       event.preventDefault()
 
       setIsSubmitting(true)
@@ -24,14 +24,14 @@ const SignUp = () => {
       const name = event.target.elements[`${id}-name`].value
 
       signup({ email, name, password })
-        .catch(err => {
+        .catch((err) => {
           setErrorMessage(`サインインに失敗しました: ${err.message}`)
         })
         .finally(() => {
           setIsSubmitting(false)
         })
     },
-    [id],
+    [id]
   )
 
   if (auth) {
@@ -47,16 +47,28 @@ const SignUp = () => {
           <label htmlFor={`${id}-email`} className="signup__form_label">
             E-mail Address
           </label>
-          <input id={`${id}-email`} className="app_input" />
+          <input
+            id={`${id}-email`}
+            autoComplete="email"
+            className="app_input"
+          />
         </fieldset>
         <fieldset className="signup__form_field">
-          <label htmlFor={`${id}-name`} className="signup__form_label">
-            Username
+          <label
+            htmlFor={`${id}-name`}
+            autoComplete="name"
+            className="signup__form_label"
+          >
+            Name
           </label>
           <input id={`${id}-name`} type="text" className="app_input" />
         </fieldset>
         <fieldset className="signup__form_field">
-          <label htmlFor={`${id}-password`} className="signup__form_label">
+          <label
+            htmlFor={`${id}-password`}
+            autoComplete="new-password"
+            className="signup__form_label"
+          >
             Password
           </label>
           <input id={`${id}-password`} type="password" className="app_input" />

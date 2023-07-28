@@ -5,7 +5,7 @@ import { useLogin } from '~/hooks/useLogin'
 import './index.css'
 
 const SignIn = () => {
-  const auth = useSelector(state => state.auth.token !== null)
+  const auth = useSelector((state) => state.auth.token !== null)
   const { login } = useLogin()
 
   const id = useId()
@@ -13,7 +13,7 @@ const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const onSubmit = useCallback(
-    event => {
+    (event) => {
       event.preventDefault()
 
       setIsSubmitting(true)
@@ -22,14 +22,14 @@ const SignIn = () => {
       const password = event.target.elements[`${id}-password`].value
 
       login({ email, password })
-        .catch(err => {
+        .catch((err) => {
           setErrorMessage(err.message)
         })
         .finally(() => {
           setIsSubmitting(false)
         })
     },
-    [id],
+    [id]
   )
 
   if (auth) {
@@ -45,13 +45,23 @@ const SignIn = () => {
           <label htmlFor={`${id}-email`} className="signin__form_label">
             E-mail Address
           </label>
-          <input id={`${id}-email`} type="email" className="app_input" />
+          <input
+            id={`${id}-email`}
+            type="email"
+            autoComplete="email"
+            className="app_input"
+          />
         </fieldset>
         <fieldset className="signin__form_field">
           <label htmlFor={`${id}-password`} className="signin__form_label">
             Password
           </label>
-          <input id={`${id}-password`} type="password" className="app_input" />
+          <input
+            id={`${id}-password`}
+            type="password"
+            autoComplete="current-password"
+            className="app_input"
+          />
         </fieldset>
         <div className="signin__form_actions">
           <Link className="app_button" data-variant="secondary" to="/signup">
