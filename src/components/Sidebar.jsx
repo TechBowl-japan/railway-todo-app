@@ -2,6 +2,8 @@ import { ListIcon } from '~/icons/ListIcon'
 import styles from './Sidebar.module.css'
 import { Link } from 'react-router-dom'
 import { PlusIcon } from '~/icons/PlusIcon'
+import { useSelector } from 'react-redux'
+import { useLogout } from '~/hooks/useLogout'
 
 export const Sidebar = () => {
   const lists = [
@@ -20,7 +22,11 @@ export const Sidebar = () => {
   ]
 
   const activeId = '1'
-  const isLoggedIn = true
+
+  const isLoggedIn = useSelector(state => state.auth.token !== null)
+  const userName = useSelector(state => state.auth.user?.name)
+
+  const { logout } = useLogout()
 
   return (
     <div className={styles.sidebar}>
@@ -31,7 +37,7 @@ export const Sidebar = () => {
             <div className={styles.sidebar__lists}>
               <h2 className={styles.sidebar__lists_title}>Lists</h2>
               <ul className={styles.sidebar__lists_items}>
-                {lists.map((listItem) => (
+                {lists.map(listItem => (
                   <li key={listItem.id}>
                     <Link
                       data-active={listItem.id === activeId}
@@ -60,15 +66,19 @@ export const Sidebar = () => {
           )}
           <div className={styles.sidebar__spacer} aria-hidden />
           <div className={styles.sidebar__account}>
-            <p className={styles.sidebar__account_name}>John Doe</p>
-            <button type="button" className={styles.sidebar__account_logout}>
+            <p className={styles.sidebar__account_name}>{userName}</p>
+            <button
+              type="button"
+              className={styles.sidebar__account_logout}
+              onClick={logout}
+            >
               Logout
             </button>
           </div>
         </>
       ) : (
         <>
-          <Link to="/login" className={styles.sidebar__login}>
+          <Link to="/signin" className={styles.sidebar__login}>
             Login
           </Link>
         </>
