@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@unocss/reset": "^0.53.6",
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
