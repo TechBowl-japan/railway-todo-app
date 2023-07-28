@@ -1,7 +1,6 @@
 import axios from '~/vendor/axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Header } from '../components/Header'
 import './editList.css'
 
 export const EditList = () => {
@@ -50,7 +49,6 @@ export const EditList = () => {
 
   return (
     <div>
-      <Header />
       <main className="edit-list">
         <h2>リスト編集</h2>
         <p className="error-message">{errorMessage}</p>

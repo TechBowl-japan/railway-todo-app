@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from '~/vendor/axios'
-import { Header } from '../components/Header'
 import { useNavigate } from 'react-router-dom'
 import './newList.css'
 
@@ -26,7 +25,6 @@ export const NewList = () => {
 
   return (
     <div>
-      <Header />
       <main className="new-list">
         <h2>リスト新規作成</h2>
         <p className="error-message">{errorMessage}</p>

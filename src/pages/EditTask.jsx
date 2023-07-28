@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Header } from '../components/Header'
 import axios from '~/vendor/axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import './editTask.css'
@@ -60,7 +59,6 @@ export const EditTask = () => {
 
   return (
     <div>
-      <Header />
       <main className="edit-task">
         <h2>タスク編集</h2>
         <p className="error-message">{errorMessage}</p>

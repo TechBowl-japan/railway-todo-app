@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from '~/vendor/axios'
-import { Header } from '../components/Header'
 import './newTask.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -45,7 +44,6 @@ export const NewTask = () => {
 
   return (
     <div>
-      <Header />
       <main className="new-task">
         <h2>タスク新規作成</h2>
         <p className="error-message">{errorMessage}</p>

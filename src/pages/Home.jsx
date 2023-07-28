@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from '~/vendor/axios'
-import { Header } from '../components/Header'
 import './home.css'
 
 export const Home = () => {
@@ -50,7 +49,6 @@ export const Home = () => {
   }
   return (
     <div>
-      <Header />
       <main className="taskList">
         <p className="error-message">{errorMessage}</p>
         <div>
