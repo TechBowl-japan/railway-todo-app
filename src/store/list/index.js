@@ -62,7 +62,7 @@ export const fetchLists = createAsyncThunk(
       const res = await axios.get('/lists')
       thunkApi.dispatch(setList(res.data))
     } catch (e) {
-      handleThunkError(e, thunkApi)
+      return handleThunkError(e, thunkApi)
     } finally {
       thunkApi.dispatch(setListIsLoading(false))
     }
@@ -75,8 +75,10 @@ export const createList = createAsyncThunk(
     try {
       const res = await axios.post('/lists', { title })
       thunkApi.dispatch(addList(res.data))
+
+      return res.data.id
     } catch (e) {
-      handleThunkError(e, thunkApi)
+      return handleThunkError(e, thunkApi)
     } finally {
       thunkApi.dispatch(setListIsLoading(false))
     }
@@ -90,7 +92,7 @@ export const deleteList = createAsyncThunk(
       await axios.delete(`/lists/${id}`)
       thunkApi.dispatch(removeList({ id }))
     } catch (e) {
-      handleThunkError(e, thunkApi)
+      return handleThunkError(e, thunkApi)
     } finally {
       thunkApi.dispatch(setListIsLoading(false))
     }

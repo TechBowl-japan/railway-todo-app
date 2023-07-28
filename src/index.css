@@ -93,6 +93,7 @@
 
 .app_input:focus {
   outline: none;
+  border-color: var(--indigo-600);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
 }
 
