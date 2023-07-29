@@ -98,8 +98,15 @@ export const createTodo = createAsyncThunk(
     }
 
     try {
-      await axios.post(`/lists/${listId}/tasks`, payload)
-      thunkApi.dispatch(addTodo(payload))
+      const res = await axios.post(`/lists/${listId}/tasks`, payload)
+      const id = res.data.id
+
+      thunkApi.dispatch(
+        addTodo({
+          ...payload,
+          id,
+        }),
+      )
     } catch (e) {
       handleThunkError(e, thunkApi)
     }
