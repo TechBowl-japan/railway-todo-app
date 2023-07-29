@@ -5,7 +5,6 @@ import { Sidebar } from '~/components/Sidebar'
 import Home from '~/pages/index.page'
 import NotFound from '~/pages/404'
 import SignIn from '~/pages/signin/index.page'
-import NewTask from '~/pages/task/new/index.page'
 import NewList from '~/pages/list/new/index.page'
 import EditTask from '~/pages/lists/[listId]/tasks/[taskId]/index.page'
 import SignUp from '~/pages/signup/index.page'
@@ -25,7 +24,6 @@ export const Router = () => {
           {auth ? (
             <>
               <Route exact path="/" element={<Home />} />
-              <Route exact path="/task/new" element={<NewTask />} />
               <Route exact path="/list/new" element={<NewList />} />
               <Route
                 exact
