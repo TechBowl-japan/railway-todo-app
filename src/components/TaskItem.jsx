@@ -1,14 +1,25 @@
+import { useState, useCallback } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import styles from './TaskItem.module.css'
+import { useDispatch } from 'react-redux'
 import { PencilIcon } from '~/icons/PencilIcon'
 import { CheckIcon } from '~/icons/CheckIcon'
-import { useCallback } from 'react'
+import { updateTodo } from '~/store/todo'
+import styles from './TaskItem.module.css'
 
 export const TaskItem = ({ task }) => {
+  const dispatch = useDispatch()
+
   const { listId } = useParams()
   const { id, title, detail, done } = task
 
-  const handleToggle = useCallback(() => {}, [])
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleToggle = useCallback(() => {
+    setIsSubmitting(true)
+    void dispatch(updateTodo({ id, done: !done })).finally(() => {
+      setIsSubmitting(false)
+    })
+  }, [id, done])
 
   return (
     <div className={styles.task_item}>
@@ -16,6 +27,7 @@ export const TaskItem = ({ task }) => {
         <button
           type="button"
           onClick={handleToggle}
+          disabled={isSubmitting}
           className={styles.task__item__mark_button}
         >
           {done ? (

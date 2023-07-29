@@ -35,13 +35,16 @@ export const todoSlice = createSlice({
       state.todos.push({ title, id, detail, done })
     },
     mutateTodo: (state, action) => {
-      const title = action.payload.title
       const id = action.payload.id
-      const detail = action.payload.detail
-      const done = action.payload.done
+      const idx = state.todos.findIndex(list => list.id === id)
+      if (idx === -1) {
+        return
+      }
 
-      const idx = state.lists.findIndex(list => list.id === id)
-      state.todos[idx] = { title, id, detail, done }
+      state.todos[idx] = {
+        ...state.todos[idx],
+        ...action.payload,
+      }
     },
     removeTodo: (state, action) => {
       const id = action.payload.id
@@ -111,8 +114,19 @@ export const updateTodo = createAsyncThunk(
       return
     }
 
+    const oldValue = thunkApi
+      .getState()
+      .todo.todos.find(todo => todo.id === payload.id)
+
+    if (!oldValue) {
+      return
+    }
+
     try {
-      await axios.put(`/lists/${listId}/tasks/${payload.id}`, payload)
+      await axios.put(`/lists/${listId}/tasks/${payload.id}`, {
+        ...oldValue,
+        ...payload,
+      })
       thunkApi.dispatch(mutateTodo(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
