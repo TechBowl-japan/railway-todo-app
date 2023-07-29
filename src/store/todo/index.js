@@ -89,15 +89,11 @@ export const fetchTodos = createAsyncThunk(
 export const createTodo = createAsyncThunk(
   'todo/createTodo',
   async (payload, thunkApi) => {
-    thunkApi.dispatch(setTodoIsLoading(true))
-
     try {
       await axios.post(`/lists/${payload.listId}/tasks`, payload)
       thunkApi.dispatch(addTodo(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
-    } finally {
-      thunkApi.dispatch(setTodoIsLoading(false))
     }
   },
 )
@@ -105,15 +101,11 @@ export const createTodo = createAsyncThunk(
 export const updateTodo = createAsyncThunk(
   'todo/updateTodo',
   async (payload, thunkApi) => {
-    thunkApi.dispatch(setTodoIsLoading(true))
-
     try {
       await axios.put(`/lists/${payload.listId}/tasks/${payload.id}`, payload)
       thunkApi.dispatch(mutateTodo(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
-    } finally {
-      thunkApi.dispatch(setTodoIsLoading(false))
     }
   },
 )
@@ -121,15 +113,11 @@ export const updateTodo = createAsyncThunk(
 export const deleteTodo = createAsyncThunk(
   'todo/deleteTodo',
   async (payload, thunkApi) => {
-    thunkApi.dispatch(setTodoIsLoading(true))
-
     try {
       await axios.delete(`/lists/${payload.listId}/tasks/${payload.id}`)
       thunkApi.dispatch(removeTodo(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
-    } finally {
-      thunkApi.dispatch(setTodoIsLoading(false))
     }
   },
 )

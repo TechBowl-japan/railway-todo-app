@@ -87,8 +87,6 @@ export const createList = createAsyncThunk(
       return res.data.id
     } catch (e) {
       return handleThunkError(e, thunkApi)
-    } finally {
-      thunkApi.dispatch(setListIsLoading(false))
     }
   },
 )
@@ -101,8 +99,6 @@ export const deleteList = createAsyncThunk(
       thunkApi.dispatch(removeList({ id }))
     } catch (e) {
       return handleThunkError(e, thunkApi)
-    } finally {
-      thunkApi.dispatch(setListIsLoading(false))
     }
   },
 )
