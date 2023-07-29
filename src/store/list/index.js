@@ -42,6 +42,22 @@ export const listSlice = createSlice({
       const id = action.payload.id
 
       state.lists = state.lists.filter(list => list.id !== id)
+
+      if (state.current === id) {
+        state.current = state.lists[0]?.id || null
+      }
+    },
+    mutateList: (state, action) => {
+      const id = action.payload.id
+      const title = action.payload.title
+
+      state.lists = state.lists.map(list => {
+        if (list.id === id) {
+          list.title = title
+        }
+
+        return list
+      })
     },
   },
 })
@@ -53,6 +69,7 @@ export const {
   setListIsLoading,
   addList,
   removeList,
+  mutateList,
 } = listSlice.actions
 
 export const fetchLists = createAsyncThunk(
@@ -97,6 +114,18 @@ export const deleteList = createAsyncThunk(
     try {
       await axios.delete(`/lists/${id}`)
       thunkApi.dispatch(removeList({ id }))
+    } catch (e) {
+      return handleThunkError(e, thunkApi)
+    }
+  },
+)
+
+export const updateList = createAsyncThunk(
+  'list/updateList',
+  async ({ id, title }, thunkApi) => {
+    try {
+      await axios.put(`/lists/${id}`, { title })
+      thunkApi.dispatch(mutateList({ id, title }))
     } catch (e) {
       return handleThunkError(e, thunkApi)
     }
