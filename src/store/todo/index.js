@@ -32,7 +32,7 @@ export const todoSlice = createSlice({
       const detail = action.payload.detail
       const done = action.payload.done
 
-      state.lists.push({ title, id, detail, done })
+      state.todos.push({ title, id, detail, done })
     },
     mutateTodo: (state, action) => {
       const title = action.payload.title
@@ -41,12 +41,12 @@ export const todoSlice = createSlice({
       const done = action.payload.done
 
       const idx = state.lists.findIndex(list => list.id === id)
-      state.lists[idx] = { title, id, detail, done }
+      state.todos[idx] = { title, id, detail, done }
     },
     removeTodo: (state, action) => {
       const id = action.payload.id
 
-      state.lists = state.lists.filter(list => list.id !== id)
+      state.todos = state.todos.filter(list => list.id !== id)
     },
   },
 })
@@ -89,8 +89,13 @@ export const fetchTodos = createAsyncThunk(
 export const createTodo = createAsyncThunk(
   'todo/createTodo',
   async (payload, thunkApi) => {
+    const listId = thunkApi.getState().list.current
+    if (!listId) {
+      return
+    }
+
     try {
-      await axios.post(`/lists/${payload.listId}/tasks`, payload)
+      await axios.post(`/lists/${listId}/tasks`, payload)
       thunkApi.dispatch(addTodo(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
@@ -101,8 +106,13 @@ export const createTodo = createAsyncThunk(
 export const updateTodo = createAsyncThunk(
   'todo/updateTodo',
   async (payload, thunkApi) => {
+    const listId = thunkApi.getState().list.current
+    if (!listId) {
+      return
+    }
+
     try {
-      await axios.put(`/lists/${payload.listId}/tasks/${payload.id}`, payload)
+      await axios.put(`/lists/${listId}/tasks/${payload.id}`, payload)
       thunkApi.dispatch(mutateTodo(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
@@ -114,7 +124,12 @@ export const deleteTodo = createAsyncThunk(
   'todo/deleteTodo',
   async (payload, thunkApi) => {
     try {
-      await axios.delete(`/lists/${payload.listId}/tasks/${payload.id}`)
+      const listId = thunkApi.getState().list.current
+      if (!listId) {
+        return
+      }
+
+      await axios.delete(`/lists/${listId}/tasks/${payload.id}`)
       thunkApi.dispatch(removeTodo(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)

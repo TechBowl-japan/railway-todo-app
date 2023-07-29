@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { TaskItem } from '~/components/TaskItem'
+import { TaskCreateForm } from '~/components/TaskCreateForm'
 import { setCurrentList } from '~/store/list'
 import { fetchTodos } from '~/store/todo'
 import './index.css'
@@ -11,17 +12,17 @@ const ListIndex = () => {
   const { listId } = useParams()
 
   const isLoading = useSelector(
-    (state) => state.todo.isLoading || state.list.isLoading
+    state => state.todo.isLoading || state.list.isLoading,
   )
 
-  const todos = useSelector((state) => state.todo.todos)
-  const listName = useSelector((state) => {
+  const todos = useSelector(state => state.todo.todos)
+  const listName = useSelector(state => {
     const currentId = state.list.current
-    const list = state.list.lists?.find((list) => list.id === currentId)
+    const list = state.list.lists?.find(list => list.id === currentId)
     return list?.title
   })
-  const incompleteTodosCount = useSelector((state) => {
-    return state.todo.todos?.filter((todo) => !todo.done).length
+  const incompleteTodosCount = useSelector(state => {
+    return state.todo.todos?.filter(todo => !todo.done).length
   })
 
   useEffect(() => {
@@ -48,7 +49,8 @@ const ListIndex = () => {
         </Link>
       </div>
       <div className="tasks_list__items">
-        {todos?.map((todo) => {
+        <TaskCreateForm />
+        {todos?.map(todo => {
           return <TaskItem key={todo.id} task={todo} />
         })}
         {todos?.length === 0 && (
