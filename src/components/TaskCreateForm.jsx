@@ -86,7 +86,12 @@ export const TaskCreateForm = () => {
   }, [elemTextarea])
 
   return (
-    <form ref={refForm} className={styles.task_create_form} onSubmit={onSubmit}>
+    <form
+      ref={refForm}
+      className={styles.task_create_form}
+      onSubmit={onSubmit}
+      data-state={formState}
+    >
       <div className={styles.task_create_form__title_container}>
         <button
           type="button"
