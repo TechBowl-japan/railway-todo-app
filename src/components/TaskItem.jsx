@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import styles from './TaskItem.module.css'
 import { PencilIcon } from '~/icons/PencilIcon'
-import { TrashIcon } from '~/icons/TrashIcon'
 import { CheckIcon } from '~/icons/CheckIcon'
 import { useCallback } from 'react'
 
@@ -10,7 +9,6 @@ export const TaskItem = ({ task }) => {
   const { id, title, detail, done } = task
 
   const handleToggle = useCallback(() => {}, [])
-  const handleDelete = useCallback(() => {}, [])
 
   return (
     <div className={styles.task_item}>
@@ -42,13 +40,6 @@ export const TaskItem = ({ task }) => {
         >
           <PencilIcon aria-label="Edit" />
         </Link>
-        <button
-          onClick={handleDelete}
-          type="button"
-          className={styles.task_item__title_action}
-        >
-          <TrashIcon aria-label="Delete" />
-        </button>
       </div>
       <div className={styles.task_item__detail}>{detail}</div>
     </div>
