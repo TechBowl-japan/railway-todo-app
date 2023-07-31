@@ -1,36 +1,51 @@
-@charset "utf-8";
+.edit_task {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 
-.edit-task {
-  width: 1000px;
+  max-width: var(--width-edit-form);
   margin: 0 auto;
 }
 
-.edit-task-form {
-  color: #555555;
+.edit_task__error {
+  color: var(--red-500);
 }
 
-.edit-task-title, .edit-task-detail {
-  width: 300px;
-  margin-bottom: 25px;
+.edit_task__title {
+  color: var(--slate-700);
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
 }
 
-.delete-task-button {
-  color: #ff3333;
-  border: solid 1px #ff3333;
-  width: 80px;
-  height: 40px;
-  margin: 25px 5px;
-  border-radius: 5px;
+.edit_task__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.edit-task-button {
-  background-color: #242F9B;
-  color: #ffffff;
-  width: 80px;
-  height: 40px;
-  border-radius: 5px;
+.edit_task__form_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.error-message {
-  color: #ff3333;
+.edit_task__form_label {
+  color: var(--slate-600);
+  font-weight: 500;
+}
+
+.edit_task__form_actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.edit_task__form_actions_spacer {
+  flex: 1;
+}
+
+.edit_task__form_actions_delete {
+  --app-button-accent-color: var(--red-500);
 }
