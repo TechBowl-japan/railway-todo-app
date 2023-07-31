@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '~/vendor/axios'
 import { handleThunkError } from '~/utils/handleThunkError'
-import { resetTodo } from '~/store/todo'
+import { resetTask } from '~/store/task'
 import { resetList } from '~/store/list'
 
 const initialState = {
@@ -103,7 +103,7 @@ export const logout = createAsyncThunk(
     thunkApi.dispatch(setUser(null))
 
     // 他のステートをリセット
-    thunkApi.dispatch(resetTodo())
+    thunkApi.dispatch(resetTask())
     thunkApi.dispatch(resetList())
   },
 )

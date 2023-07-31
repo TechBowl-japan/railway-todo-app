@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { PencilIcon } from '~/icons/PencilIcon'
 import { CheckIcon } from '~/icons/CheckIcon'
-import { updateTodo } from '~/store/todo'
+import { updateTask } from '~/store/task'
 import styles from './TaskItem.module.css'
 
 export const TaskItem = ({ task }) => {
@@ -16,7 +16,7 @@ export const TaskItem = ({ task }) => {
 
   const handleToggle = useCallback(() => {
     setIsSubmitting(true)
-    void dispatch(updateTodo({ id, done: !done })).finally(() => {
+    void dispatch(updateTask({ id, done: !done })).finally(() => {
       setIsSubmitting(false)
     })
   }, [id, done])

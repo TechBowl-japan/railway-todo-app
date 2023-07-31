@@ -3,94 +3,94 @@ import { handleThunkError } from '~/utils/handleThunkError'
 import axios from '~/vendor/axios'
 
 const initialState = {
-  todos: null,
+  tasks: null,
   listId: null,
   isLoading: false,
 }
 
-export const todoSlice = createSlice({
-  name: 'todo',
+export const taskSlice = createSlice({
+  name: 'task',
   initialState,
   reducers: {
-    resetTodo: (state, _action) => {
-      state.todos = null
+    resetTask: (state, _action) => {
+      state.tasks = null
       state.listId = null
       state.isLoading = false
     },
-    setTodos: (state, action) => {
-      state.todos = action.payload
+    setTasks: (state, action) => {
+      state.tasks = action.payload
     },
     setListId: (state, action) => {
       state.listId = action.payload
     },
-    setTodoIsLoading: (state, action) => {
+    setTaskIsLoading: (state, action) => {
       state.isLoading = action.payload
     },
-    addTodo: (state, action) => {
+    addTask: (state, action) => {
       const title = action.payload.title
       const id = action.payload.id
       const detail = action.payload.detail
       const done = action.payload.done
 
-      state.todos.push({ title, id, detail, done })
+      state.tasks.push({ title, id, detail, done })
     },
-    mutateTodo: (state, action) => {
+    mutateTask: (state, action) => {
       const id = action.payload.id
-      const idx = state.todos.findIndex(list => list.id === id)
+      const idx = state.tasks.findIndex(list => list.id === id)
       if (idx === -1) {
         return
       }
 
-      state.todos[idx] = {
-        ...state.todos[idx],
+      state.tasks[idx] = {
+        ...state.tasks[idx],
         ...action.payload,
       }
     },
-    removeTodo: (state, action) => {
+    removeTask: (state, action) => {
       const id = action.payload.id
 
-      state.todos = state.todos.filter(list => list.id !== id)
+      state.tasks = state.tasks.filter(list => list.id !== id)
     },
   },
 })
 
 export const {
-  resetTodo,
-  setTodos,
+  resetTask,
+  setTasks,
   setListId,
-  setTodoIsLoading,
-  addTodo,
-  mutateTodo,
-  removeTodo,
-} = todoSlice.actions
+  setTaskIsLoading,
+  addTask,
+  mutateTask,
+  removeTask,
+} = taskSlice.actions
 
-export const fetchTodos = createAsyncThunk(
-  'todo/fetchTodos',
+export const fetchTasks = createAsyncThunk(
+  'task/fetchTasks',
   async ({ force = false } = {}, thunkApi) => {
     const listId = thunkApi.getState().list.current
-    const currentListId = thunkApi.getState().todo.listId
-    const isLoading = thunkApi.getState().todo.isLoading
+    const currentListId = thunkApi.getState().task.listId
+    const isLoading = thunkApi.getState().task.isLoading
 
     if (!force && (currentListId === listId || isLoading)) {
       return
     }
 
-    thunkApi.dispatch(setTodoIsLoading(true))
+    thunkApi.dispatch(setTaskIsLoading(true))
 
     try {
       const res = await axios.get(`/lists/${listId}/tasks`)
-      thunkApi.dispatch(setTodos(res.data.tasks || []))
+      thunkApi.dispatch(setTasks(res.data.tasks || []))
       thunkApi.dispatch(setListId(listId))
     } catch (e) {
       handleThunkError(e, thunkApi)
     } finally {
-      thunkApi.dispatch(setTodoIsLoading(false))
+      thunkApi.dispatch(setTaskIsLoading(false))
     }
   },
 )
 
-export const createTodo = createAsyncThunk(
-  'todo/createTodo',
+export const createTask = createAsyncThunk(
+  'task/createTask',
   async (payload, thunkApi) => {
     const listId = thunkApi.getState().list.current
     if (!listId) {
@@ -102,7 +102,7 @@ export const createTodo = createAsyncThunk(
       const id = res.data.id
 
       thunkApi.dispatch(
-        addTodo({
+        addTask({
           ...payload,
           id,
         }),
@@ -113,8 +113,8 @@ export const createTodo = createAsyncThunk(
   },
 )
 
-export const updateTodo = createAsyncThunk(
-  'todo/updateTodo',
+export const updateTask = createAsyncThunk(
+  'task/updateTask',
   async (payload, thunkApi) => {
     const listId = thunkApi.getState().list.current
     if (!listId) {
@@ -123,7 +123,7 @@ export const updateTodo = createAsyncThunk(
 
     const oldValue = thunkApi
       .getState()
-      .todo.todos.find(todo => todo.id === payload.id)
+      .task.tasks.find(task => task.id === payload.id)
 
     if (!oldValue) {
       return
@@ -134,15 +134,15 @@ export const updateTodo = createAsyncThunk(
         ...oldValue,
         ...payload,
       })
-      thunkApi.dispatch(mutateTodo(payload))
+      thunkApi.dispatch(mutateTask(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
     }
   },
 )
 
-export const deleteTodo = createAsyncThunk(
-  'todo/deleteTodo',
+export const deleteTask = createAsyncThunk(
+  'task/deleteTask',
   async (payload, thunkApi) => {
     try {
       const listId = thunkApi.getState().list.current
@@ -151,7 +151,7 @@ export const deleteTodo = createAsyncThunk(
       }
 
       await axios.delete(`/lists/${listId}/tasks/${payload.id}`)
-      thunkApi.dispatch(removeTodo(payload))
+      thunkApi.dispatch(removeTask(payload))
     } catch (e) {
       handleThunkError(e, thunkApi)
     }

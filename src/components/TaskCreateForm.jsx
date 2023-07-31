@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import styles from './TaskCreateForm.module.css'
 import { CheckIcon } from '~/icons/CheckIcon'
-import { createTodo } from '~/store/todo'
+import { createTask } from '~/store/task'
 
 export const TaskCreateForm = () => {
   const dispatch = useDispatch()
@@ -54,7 +54,7 @@ export const TaskCreateForm = () => {
 
       setFormState('submitting')
 
-      void dispatch(createTodo({ title, detail: description, done }))
+      void dispatch(createTask({ title, detail: description, done }))
         .unwrap()
         .then(() => {
           handleDiscard()

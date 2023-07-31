@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { BackButton } from '~/components/BackButton'
 import './index.css'
 import { setCurrentList } from '~/store/list'
-import { fetchTodos, updateTodo, deleteTodo } from '~/store/todo'
+import { fetchTasks, updateTask, deleteTask } from '~/store/task'
 
 const EditTask = () => {
   const id = useId()
@@ -20,21 +20,21 @@ const EditTask = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const todo = useSelector(state =>
-    state.todo.todos?.find(todo => todo.id === taskId),
+  const task = useSelector(state =>
+    state.task.tasks?.find(task => task.id === taskId),
   )
 
   useEffect(() => {
-    if (todo) {
-      setTitle(todo.title)
-      setDetail(todo.detail)
-      setDone(todo.done)
+    if (task) {
+      setTitle(task.title)
+      setDetail(task.detail)
+      setDone(task.done)
     }
-  }, [todo])
+  }, [task])
 
   useEffect(() => {
     void dispatch(setCurrentList(listId))
-    void dispatch(fetchTodos())
+    void dispatch(fetchTasks())
   }, [listId])
 
   const onSubmit = useCallback(
@@ -43,7 +43,7 @@ const EditTask = () => {
 
       setIsSubmitting(true)
 
-      void dispatch(updateTodo({ id: taskId, title, detail, done }))
+      void dispatch(updateTask({ id: taskId, title, detail, done }))
         .unwrap()
         .then(() => {
           navigate(`/lists/${listId}`)
@@ -65,7 +65,7 @@ const EditTask = () => {
 
     setIsSubmitting(true)
 
-    void dispatch(deleteTodo({ id: taskId }))
+    void dispatch(deleteTask({ id: taskId }))
       .unwrap()
       .then(() => {
         navigate(`/`)

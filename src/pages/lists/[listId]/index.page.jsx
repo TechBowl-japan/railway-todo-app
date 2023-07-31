@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { TaskItem } from '~/components/TaskItem'
 import { TaskCreateForm } from '~/components/TaskCreateForm'
 import { setCurrentList } from '~/store/list'
-import { fetchTodos } from '~/store/todo'
+import { fetchTasks } from '~/store/task'
 import './index.css'
 
 const ListIndex = () => {
@@ -12,22 +12,22 @@ const ListIndex = () => {
   const { listId } = useParams()
 
   const isLoading = useSelector(
-    state => state.todo.isLoading || state.list.isLoading,
+    state => state.task.isLoading || state.list.isLoading,
   )
 
-  const todos = useSelector(state => state.todo.todos)
+  const tasks = useSelector(state => state.task.tasks)
   const listName = useSelector(state => {
     const currentId = state.list.current
     const list = state.list.lists?.find(list => list.id === currentId)
     return list?.title
   })
-  const incompleteTodosCount = useSelector(state => {
-    return state.todo.todos?.filter(todo => !todo.done).length
+  const incompleteTasksCount = useSelector(state => {
+    return state.task.tasks?.filter(task => !task.done).length
   })
 
   useEffect(() => {
     dispatch(setCurrentList(listId))
-    dispatch(fetchTodos()).unwrap()
+    dispatch(fetchTasks()).unwrap()
   }, [listId])
 
   if (isLoading) {
@@ -38,9 +38,9 @@ const ListIndex = () => {
     <div className="tasks_list">
       <div className="tasks_list__title">
         {listName}
-        {incompleteTodosCount > 0 && (
+        {incompleteTasksCount > 0 && (
           <span className="tasks_list__title__count">
-            {incompleteTodosCount}
+            {incompleteTasksCount}
           </span>
         )}
         <div className="tasks_list__title_spacer"></div>
@@ -50,10 +50,10 @@ const ListIndex = () => {
       </div>
       <div className="tasks_list__items">
         <TaskCreateForm />
-        {todos?.map(todo => {
-          return <TaskItem key={todo.id} task={todo} />
+        {tasks?.map(task => {
+          return <TaskItem key={task.id} task={task} />
         })}
-        {todos?.length === 0 && (
+        {tasks?.length === 0 && (
           <div className="tasks_list__items__empty">No tasks yet!</div>
         )}
       </div>
