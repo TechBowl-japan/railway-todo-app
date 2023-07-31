@@ -43,7 +43,7 @@ export const TaskCreateForm = () => {
 
   const handleDiscard = useCallback(() => {
     setTitle('')
-    setdetail('')
+    setDetail('')
     setFormState('initial')
     setDone(false)
   }, [])
@@ -133,9 +133,9 @@ export const TaskCreateForm = () => {
             ref={setElemTextarea}
             rows={1}
             className={styles.task_create_form__detail}
-            placeholder="Add a detail here..."
+            placeholder="Add a description here..."
             value={detail}
-            onChange={e => setdetail(e.target.value)}
+            onChange={e => setDetail(e.target.value)}
             onBlur={handleBlur}
             disabled={formState === 'submitting'}
           />
