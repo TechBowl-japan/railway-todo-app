@@ -97,14 +97,11 @@ const EditTask = () => {
           />
         </fieldset>
         <fieldset className="edit_list__form_field">
-          <label
-            htmlFor={`${id}-description`}
-            className="edit_list__form_label"
-          >
+          <label htmlFor={`${id}-detail`} className="edit_list__form_label">
             Description
           </label>
           <textarea
-            id={`${id}-description`}
+            id={`${id}-detail`}
             className="app_input"
             placeholder="Blah blah blah"
             value={detail}

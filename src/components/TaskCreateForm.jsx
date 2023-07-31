@@ -13,7 +13,7 @@ export const TaskCreateForm = () => {
   const [formState, setFormState] = useState('initial')
 
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const [detail, setDetail] = useState('')
   const [done, setDone] = useState(false)
 
   const handleToggle = useCallback(() => {
@@ -25,7 +25,7 @@ export const TaskCreateForm = () => {
   }, [])
 
   const handleBlur = useCallback(() => {
-    if (title || description) {
+    if (title || detail) {
       return
     }
 
@@ -39,11 +39,11 @@ export const TaskCreateForm = () => {
       setFormState('initial')
       setDone(false)
     }, 100)
-  }, [title, description])
+  }, [title, detail])
 
   const handleDiscard = useCallback(() => {
     setTitle('')
-    setDescription('')
+    setdetail('')
     setFormState('initial')
     setDone(false)
   }, [])
@@ -54,7 +54,7 @@ export const TaskCreateForm = () => {
 
       setFormState('submitting')
 
-      void dispatch(createTask({ title, detail: description, done }))
+      void dispatch(createTask({ title, detail, done }))
         .unwrap()
         .then(() => {
           handleDiscard()
@@ -64,7 +64,7 @@ export const TaskCreateForm = () => {
           setFormState('focused')
         })
     },
-    [title, description, done],
+    [title, detail, done],
   )
 
   useEffect(() => {
@@ -133,9 +133,9 @@ export const TaskCreateForm = () => {
             ref={setElemTextarea}
             rows={1}
             className={styles.task_create_form__detail}
-            placeholder="Add a description here..."
-            value={description}
-            onChange={e => setDescription(e.target.value)}
+            placeholder="Add a detail here..."
+            value={detail}
+            onChange={e => setdetail(e.target.value)}
             onBlur={handleBlur}
             disabled={formState === 'submitting'}
           />
@@ -146,7 +146,7 @@ export const TaskCreateForm = () => {
               data-variant="secondary"
               onBlur={handleBlur}
               onClick={handleDiscard}
-              disabled={(!title && !description) || formState === 'submitting'}
+              disabled={(!title && !detail) || formState === 'submitting'}
             >
               Discard
             </button>
@@ -155,7 +155,7 @@ export const TaskCreateForm = () => {
               type="submit"
               className="app_button"
               onBlur={handleBlur}
-              disabled={!title || !description || formState === 'submitting'}
+              disabled={!title || !detail || formState === 'submitting'}
             >
               Add
             </button>
