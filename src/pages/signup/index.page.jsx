@@ -5,33 +5,33 @@ import './index.css'
 import { useSignup } from '~/hooks/useSignup'
 
 const SignUp = () => {
-  const auth = useSelector((state) => state.auth.token !== null)
+  const auth = useSelector(state => state.auth.token !== null)
 
   const id = useId()
   const [errorMessage, setErrorMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+
   const { signup } = useSignup()
 
   const onSubmit = useCallback(
-    (event) => {
+    event => {
       event.preventDefault()
 
       setIsSubmitting(true)
 
-      const email = event.target.elements[`${id}-email`].value
-      const password = event.target.elements[`${id}-password`].value
-      const name = event.target.elements[`${id}-name`].value
-
       signup({ email, name, password })
-        .catch((err) => {
+        .catch(err => {
           setErrorMessage(`サインインに失敗しました: ${err.message}`)
         })
         .finally(() => {
           setIsSubmitting(false)
         })
     },
-    [id]
+    [email, name, password],
   )
 
   if (auth) {
@@ -51,6 +51,8 @@ const SignUp = () => {
             id={`${id}-email`}
             autoComplete="email"
             className="app_input"
+            value={email}
+            onChange={event => setEmail(event.target.value)}
           />
         </fieldset>
         <fieldset className="signup__form_field">
@@ -58,6 +60,8 @@ const SignUp = () => {
             htmlFor={`${id}-name`}
             autoComplete="name"
             className="signup__form_label"
+            value={name}
+            onChange={event => setName(event.target.value)}
           >
             Name
           </label>
@@ -68,6 +72,8 @@ const SignUp = () => {
             htmlFor={`${id}-password`}
             autoComplete="new-password"
             className="signup__form_label"
+            value={password}
+            onChange={event => setPassword(event.target.value)}
           >
             Password
           </label>

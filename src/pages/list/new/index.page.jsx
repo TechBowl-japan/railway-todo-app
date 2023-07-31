@@ -10,29 +10,32 @@ const NewList = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const [title, setTitle] = useState('')
+
   const [errorMessage, setErrorMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const onSubmit = useCallback(event => {
-    event.preventDefault()
+  const onSubmit = useCallback(
+    event => {
+      event.preventDefault()
 
-    const title = event.target.elements[`${id}-title`].value
+      setIsSubmitting(true)
 
-    setIsSubmitting(true)
-
-    void dispatch(createList({ title }))
-      .unwrap()
-      .then(listId => {
-        dispatch(setCurrentList(listId))
-        navigate(`/`)
-      })
-      .catch(err => {
-        setErrorMessage(err.message)
-      })
-      .finally(() => {
-        setIsSubmitting(false)
-      })
-  }, [])
+      void dispatch(createList({ title }))
+        .unwrap()
+        .then(listId => {
+          dispatch(setCurrentList(listId))
+          navigate(`/`)
+        })
+        .catch(err => {
+          setErrorMessage(err.message)
+        })
+        .finally(() => {
+          setIsSubmitting(false)
+        })
+    },
+    [title],
+  )
 
   return (
     <main className="new_list">
@@ -48,6 +51,8 @@ const NewList = () => {
             id={`${id}-title`}
             className="app_input"
             placeholder="Family"
+            value={title}
+            onChange={event => setTitle(event.target.value)}
           />
         </fieldset>
         <div className="new_list__form_actions">

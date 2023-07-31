@@ -5,31 +5,31 @@ import { useLogin } from '~/hooks/useLogin'
 import './index.css'
 
 const SignIn = () => {
-  const auth = useSelector((state) => state.auth.token !== null)
+  const auth = useSelector(state => state.auth.token !== null)
   const { login } = useLogin()
 
   const id = useId()
   const [errorMessage, setErrorMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   const onSubmit = useCallback(
-    (event) => {
+    event => {
       event.preventDefault()
 
       setIsSubmitting(true)
 
-      const email = event.target.elements[`${id}-email`].value
-      const password = event.target.elements[`${id}-password`].value
-
       login({ email, password })
-        .catch((err) => {
+        .catch(err => {
           setErrorMessage(err.message)
         })
         .finally(() => {
           setIsSubmitting(false)
         })
     },
-    [id]
+    [email, password],
   )
 
   if (auth) {
@@ -50,6 +50,8 @@ const SignIn = () => {
             type="email"
             autoComplete="email"
             className="app_input"
+            value={email}
+            onChange={event => setEmail(event.target.value)}
           />
         </fieldset>
         <fieldset className="signin__form_field">
@@ -61,6 +63,8 @@ const SignIn = () => {
             type="password"
             autoComplete="current-password"
             className="app_input"
+            value={password}
+            onChange={event => setPassword(event.target.value)}
           />
         </fieldset>
         <div className="signin__form_actions">
