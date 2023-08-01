@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import styles from './TaskCreateForm.module.css'
+import './TaskCreateForm.css'
 import { CheckIcon } from '~/icons/CheckIcon'
 import { createTask } from '~/store/task'
 
@@ -88,37 +88,37 @@ export const TaskCreateForm = () => {
   return (
     <form
       ref={refForm}
-      className={styles.task_create_form}
+      className="task_create_form"
       onSubmit={onSubmit}
       data-state={formState}
     >
-      <div className={styles.task_create_form__title_container}>
+      <div className="task_create_form__title_container">
         <button
           type="button"
           onClick={handleToggle}
-          className={styles.task_create_form__mark_button}
+          className="task_create_form__mark_button"
           onFocus={handleFocus}
           onBlur={handleBlur}
         >
           {done ? (
             <div
-              className={styles.task_create_form__mark____complete}
+              className="task_create_form__mark____complete"
               aria-label="Completed"
             >
               <CheckIcon
-                className={styles.task_create_form__mark____complete_check}
+                className="task_create_form__mark____complete_check"
               />
             </div>
           ) : (
             <div
-              className={styles.task_create_form__mark____incomplete}
+              className="task_create_form__mark____incomplete"
               aria-label="Incomplete"
             ></div>
           )}
         </button>
         <input
           type="text"
-          className={styles.task_create_form__title}
+          className="task_create_form__title"
           placeholder="Add a new task..."
           value={title}
           onChange={e => setTitle(e.target.value)}
@@ -132,14 +132,14 @@ export const TaskCreateForm = () => {
           <textarea
             ref={setElemTextarea}
             rows={1}
-            className={styles.task_create_form__detail}
+            className="task_create_form__detail"
             placeholder="Add a description here..."
             value={detail}
             onChange={e => setDetail(e.target.value)}
             onBlur={handleBlur}
             disabled={formState === 'submitting'}
           />
-          <div className={styles.task_create_form__actions}>
+          <div className="task_create_form__actions">
             <button
               type="button"
               className="app_button"
@@ -150,7 +150,7 @@ export const TaskCreateForm = () => {
             >
               Discard
             </button>
-            <div className={styles.task_create_form__spacer}></div>
+            <div className="task_create_form__spacer"></div>
             <button
               type="submit"
               className="app_button"

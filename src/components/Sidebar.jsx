@@ -1,5 +1,5 @@
 import { ListIcon } from '~/icons/ListIcon'
-import styles from './Sidebar.module.css'
+import './Sidebar.css'
 import { Link, useLocation } from 'react-router-dom'
 import { PlusIcon } from '~/icons/PlusIcon'
 import { useSelector, useDispatch } from 'react-redux'
@@ -26,46 +26,46 @@ export const Sidebar = () => {
   }, [])
 
   return (
-    <div className={styles.sidebar}>
+    <div className="sidebar">
       <Link to="/">
-        <h1 className={styles.sidebar__title}>Todos</h1>
+        <h1 className="sidebar__title">Todos</h1>
       </Link>
       {isLoggedIn ? (
         <>
           {lists && (
-            <div className={styles.sidebar__lists}>
-              <h2 className={styles.sidebar__lists_title}>Lists</h2>
-              <ul className={styles.sidebar__lists_items}>
+            <div className="sidebar__lists">
+              <h2 className="sidebar__lists_title">Lists</h2>
+              <ul className="sidebar__lists_items">
                 {lists.map(listItem => (
                   <li key={listItem.id}>
                     <Link
                       data-active={shouldHighlight && listItem.id === activeId}
                       to={`/lists/${listItem.id}`}
-                      className={styles.sidebar__lists_item}
+                      className="sidebar__lists_item"
                     >
                       <ListIcon
                         aria-hidden
-                        className={styles.sidebar__lists_icon}
+                        className="sidebar__lists_icon"
                       />
                       {listItem.title}
                     </Link>
                   </li>
                 ))}
                 <li>
-                  <Link to="/list/new" className={styles.sidebar__lists_button}>
-                    <PlusIcon className={styles.sidebar__lists_plus_icon} />
+                  <Link to="/list/new" className="sidebar__lists_button">
+                    <PlusIcon className="sidebar__lists_plus_icon" />
                     New List...
                   </Link>
                 </li>
               </ul>
             </div>
           )}
-          <div className={styles.sidebar__spacer} aria-hidden />
-          <div className={styles.sidebar__account}>
-            <p className={styles.sidebar__account_name}>{userName}</p>
+          <div className="sidebar__spacer" aria-hidden />
+          <div className="sidebar__account">
+            <p className="sidebar__account_name">{userName}</p>
             <button
               type="button"
-              className={styles.sidebar__account_logout}
+              className="sidebar__account_logout"
               onClick={logout}
             >
               Logout
@@ -74,7 +74,7 @@ export const Sidebar = () => {
         </>
       ) : (
         <>
-          <Link to="/signin" className={styles.sidebar__login}>
+          <Link to="/signin" className="sidebar__login">
             Login
           </Link>
         </>

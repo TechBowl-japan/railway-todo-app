@@ -19,6 +19,10 @@
   color: var(--slate-800);
 }
 
+.task_item__title[data-done='true'] {
+  text-decoration: line-through;
+}
+
 .task_item__title_spacer {
   flex: 1;
 }
