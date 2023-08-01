@@ -81,6 +81,10 @@ export const fetchLists = createAsyncThunk(
       return
     }
 
+    if (thunkApi.getState().auth.token === null) {
+      return
+    }
+
     thunkApi.dispatch(setListIsLoading(true))
 
     try {

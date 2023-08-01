@@ -75,6 +75,10 @@ export const fetchTasks = createAsyncThunk(
       return
     }
 
+    if (thunkApi.getState().auth.token === null) {
+      return
+    }
+
     thunkApi.dispatch(setTaskIsLoading(true))
 
     try {
