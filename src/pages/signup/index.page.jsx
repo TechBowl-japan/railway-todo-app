@@ -1,8 +1,9 @@
-import React, { useCallback, useId, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Navigate, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './index.css'
 import { useSignup } from '~/hooks/useSignup'
+import { useId } from '~/hooks/useId'
 
 const SignUp = () => {
   const auth = useSelector(state => state.auth.token !== null)

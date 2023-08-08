@@ -81,7 +81,7 @@ export const TaskCreateForm = () => {
     recalcHeight()
 
     return () => {
-      elemTextarea.removeEventListener('keydown', recalcHeight)
+      elemTextarea.removeEventListener('input', recalcHeight)
     }
   }, [elemTextarea])
 
