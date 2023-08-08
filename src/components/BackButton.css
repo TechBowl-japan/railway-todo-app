@@ -1,0 +1,16 @@
+.back_button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--indigo-600);
+  width: fit-content;
+}
+
+.back_button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.back_button__icon {
+  fill: currentColor;
+}
