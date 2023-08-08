@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { BackButton } from '~/components/BackButton'
 import './index.css'
@@ -8,7 +8,7 @@ import { useId } from '~/hooks/useId'
 
 const NewList = () => {
   const id = useId()
-  const navigate = useNavigate()
+  const history = useHistory()
   const dispatch = useDispatch()
 
   const [title, setTitle] = useState('')
@@ -26,7 +26,7 @@ const NewList = () => {
         .unwrap()
         .then(listId => {
           dispatch(setCurrentList(listId))
-          navigate(`/`)
+          history.push(`/`)
         })
         .catch(err => {
           setErrorMessage(err.message)

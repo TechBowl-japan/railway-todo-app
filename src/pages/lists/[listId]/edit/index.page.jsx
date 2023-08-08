@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { BackButton } from '~/components/BackButton'
 import './index.css'
@@ -10,7 +10,7 @@ const EditList = () => {
   const id = useId()
 
   const { listId } = useParams()
-  const navigate = useNavigate()
+  const history = useHistory()
   const dispatch = useDispatch()
 
   const [title, setTitle] = useState('')
@@ -41,7 +41,7 @@ const EditList = () => {
       void dispatch(updateList({ id: listId, title }))
         .unwrap()
         .then(() => {
-          navigate(`/lists/${listId}`)
+          history.push(`/lists/${listId}`)
         })
         .catch(err => {
           setErrorMessage(err.message)
@@ -63,7 +63,7 @@ const EditList = () => {
     void dispatch(deleteList({ id: listId }))
       .unwrap()
       .then(() => {
-        navigate(`/`)
+        history.push(`/`)
       })
       .catch(err => {
         setErrorMessage(err.message)

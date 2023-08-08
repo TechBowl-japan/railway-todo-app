@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux'
 import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { signup } from '~/store/auth'
 
 export const useSignup = () => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const history = useHistory()
 
   const handleSignup = useCallback(
     async ({ email, password, name }) => {
@@ -16,7 +16,7 @@ export const useSignup = () => {
           name,
         }),
       ).unwrap()
-      navigate('/')
+      history.push('/')
     },
     [useDispatch],
   )

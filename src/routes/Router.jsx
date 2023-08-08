@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { BrowserRouter, Route, Navigate, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import { Sidebar } from '~/components/Sidebar'
 import Home from '~/pages/index.page'
 import NotFound from '~/pages/404'
@@ -12,32 +12,46 @@ import EditList from '~/pages/lists/[listId]/edit/index.page'
 import ListIndex from '~/pages/lists/[listId]/index.page'
 
 export const Router = () => {
-  const auth = useSelector(state => state.auth.token !== null)
+  const auth = useSelector((state) => state.auth.token !== null)
 
   return (
     <BrowserRouter>
       <Sidebar />
       <div className="main_content">
-        <Routes>
-          <Route exact path="/signin" element={<SignIn />} />
-          <Route exact path="/signup" element={<SignUp />} />
+        <Switch>
+          <Route exact path="/signin">
+            <SignIn />
+          </Route>
+          <Route exact path="/signup">
+            <SignUp />
+          </Route>
           {auth ? (
             <>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/list/new" element={<NewList />} />
-              <Route
-                exact
-                path="/lists/:listId/tasks/:taskId"
-                element={<EditTask />}
-              />
-              <Route exact path="/lists/:listId/edit" element={<EditList />} />
-              <Route exact path="/lists/:listId" element={<ListIndex />} />
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/lists/:listId">
+                <ListIndex />
+              </Route>
+              <Route exact path="/list/new">
+                <NewList />
+              </Route>
+              <Route exact path="/lists/:listId/tasks/:taskId">
+                <EditTask />
+              </Route>
+              <Route exact path="/lists/:listId/edit">
+                <EditList />
+              </Route>
             </>
           ) : (
-            <Route path="/" element={<Navigate to="/signin" />} />
+            <Route path="/">
+              <Redirect to="/signin" />
+            </Route>
           )}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
       </div>
     </BrowserRouter>
   )

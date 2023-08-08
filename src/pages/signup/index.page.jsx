@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Navigate, Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './index.css'
 import { useSignup } from '~/hooks/useSignup'
@@ -36,7 +36,7 @@ const SignUp = () => {
   )
 
   if (auth) {
-    return <Navigate to="/" />
+    return <Redirect to="/" />
   }
 
   return (
