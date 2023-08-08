@@ -3,11 +3,11 @@ import axios from 'axios'
 /*
  * axiosに対してbaseURLおよびトークン無効時のリダイレクト処理を追加
  */
-const axiosInstnace = axios.create({
+const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 })
 
-axiosInstnace.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   response => response,
   err => {
     // 401を返す場合はトークンを飛ばしてログイン画面に遷移
@@ -27,4 +27,4 @@ axiosInstnace.interceptors.response.use(
 /*
  * axiosからのexportではなく、こちらを使用する
  */
-export default axiosInstnace
+export default axiosInstance
