@@ -2,14 +2,14 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { signIn } from "../authSlice";
 import { Header } from "../components/Header";
 import { url } from "../const";
 import "./signUp.css";
 
 export const SignUp = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -32,13 +32,13 @@ export const SignUp = () => {
         const token = res.data.token;
         dispatch(signIn());
         setCookie("token", token);
-        history.push("/");
+        navigate("/");
       })
       .catch((err) => {
         setErrorMessge(`サインアップに失敗しました。 ${err}`);
       })
 
-      if(auth) return <Redirect to="/" />
+      if(auth) return <Navigate to="/" />
   }
   return (
     <div>
