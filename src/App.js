@@ -1,12 +1,19 @@
 import './App.css';
-import { Router } from './routes/Router';
+import React from 'react';
+import { render } from 'react-dom';
+import { SignIn } from './pages/SignIn';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-        <Router />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignIn />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
+
+// render(<App />, document.getElementById('root'));
 
 export default App;
