@@ -1,11 +1,11 @@
 import './App.css';
 import React from 'react';
-import { render } from 'react-dom';
-import { SignIn } from './pages/SignIn';
+// import { render } from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Router } from './routes/Router';
+import { SignIn } from './pages/SignIn';
+// import { Router } from './routes/Router';
 
-const App = () => {
+function App() {
   return (
     <BrowserRouter>
       <Routes>
@@ -13,6 +13,6 @@ const App = () => {
       </Routes>
     </BrowserRouter>
   );
-};
+}
 
 export default App;
