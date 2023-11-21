@@ -1,36 +1,54 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Home } from "../pages/Home";
-import { NotFound } from "../pages/NotFound";
-import { SignIn } from "../pages/SignIn";
-import { NewTask } from "../pages/NewTask";
-import { NewList } from "../pages/NewList";
-import { EditTask } from "../pages/EditTask";
-import { SignUp } from "../pages/SignUp";
-import { EditList } from "../pages/EditList";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { Home } from '../pages/Home';
+import { NotFound } from '../pages/NotFound';
+import { SignIn } from '../pages/SignIn';
+import { NewTask } from '../pages/NewTask';
+import { NewList } from '../pages/NewList';
+import { EditTask } from '../pages/EditTask';
+import { SignUp } from '../pages/SignUp';
+import { EditList } from '../pages/EditList';
 
+// アプリケーションのルーティングを定義する Router コンポーネント
 export const Router = () => {
-  const auth = useSelector((state) => state.auth.isSignIn)
+  // Redux ストアから認証情報を取得
+  const auth = useSelector((state) => state.auth.isSignIn);
 
+  // JSXを返す
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/signin" component={SignIn} />
-        <Route exact path="/signup" component={SignUp} />
-        {auth ? (
+      <Routes>
+        {/* サインインページのルート */}
+        <Route path="/signin" element={<SignIn />} />
+        {/* サインアップページのルート */}
+        <Route path="/signup" element={<SignUp />} />
+        {auth ? ( // 認証済みの場合
           <>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/task/new" component={NewTask} />
-            <Route exact path="/list/new" component={NewList} />
-            <Route exact path="/lists/:listId/tasks/:taskId" component={EditTask} />
-            <Route exact path="/lists/:listId/edit" component={EditList} />
+            {/* ホームページのルート */}
+            <Route path="/" element={<Home />} />
+            {/* タスク新規作成ページのルート */}
+            <Route path="/task/new" element={<NewTask />} />
+            {/* リスト新規作成ページのルート */}
+            <Route path="/list/new" element={<NewList />} />
+            {/* タスク編集ページのルート */}
+            <Route path="/lists/:listId/tasks/:taskId" element={<EditTask />} />
+            {/* リスト編集ページのルート */}
+            <Route path="/lists/:listId/edit" element={<EditList />} />
           </>
         ) : (
-          <Redirect to="/signin" />
+          // 未認証の場合
+          <>
+            {/* ユーザーが認証されていない場合のルート */}
+            <Route
+              path="/"
+              element={<Navigate to="/signin" />} // サインインページにリダイレクト
+            />
+          </>
         )}
-        <Route component={NotFound} />
-      </Switch>
+        {/* ルートが存在しない場合の NotFound ページ */}
+        <Route element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
-  )
-}
+  );
+};
