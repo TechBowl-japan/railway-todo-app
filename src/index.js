@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 
 ReactDOM.render(
-  <Provider store={store}>
+ <Provider store={store}>
     <CookiesProvider>
       <App />
     </CookiesProvider>
