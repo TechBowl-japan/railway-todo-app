@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useCookies } from 'react-cookie';
-import axios from 'axios';
-import { url } from '../const';
-import { Header } from '../components/Header';
-import './newTask.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useCookies } from 'react-cookie'
+import axios from 'axios'
+import { url } from '../const'
+import { Header } from '../components/Header'
+import './newTask.css'
+import { useNavigate } from 'react-router-dom'
 
 // NewTask コンポーネント
 export const NewTask = () => {
   // 状態の初期化
-  const [selectListId, setSelectListId] = useState();
-  const [lists, setLists] = useState([]);
-  const [title, setTitle] = useState('');
-  const [detail, setDetail] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [cookies] = useCookies();
-  const history = useNavigate();
+  const [selectListId, setSelectListId] = useState()
+  const [lists, setLists] = useState([])
+  const [title, setTitle] = useState('')
+  const [detail, setDetail] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [cookies] = useCookies()
+  const history = useNavigate()
 
   // イベントハンドラーの定義
-  const handleTitleChange = (e) => setTitle(e.target.value);
-  const handleDetailChange = (e) => setDetail(e.target.value);
-  const handleSelectList = (id) => setSelectListId(id);
+  const handleTitleChange = (e) => setTitle(e.target.value)
+  const handleDetailChange = (e) => setDetail(e.target.value)
+  const handleSelectList = (id) => setSelectListId(id)
 
   // タスク作成処理
   const onCreateTask = () => {
@@ -28,7 +28,7 @@ export const NewTask = () => {
       title: title,
       detail: detail,
       done: false,
-    };
+    }
 
     axios
       .post(`${url}/lists/${selectListId}/tasks`, data, {
@@ -37,12 +37,12 @@ export const NewTask = () => {
         },
       })
       .then(() => {
-        history.push('/');
+        history.push('/')
       })
       .catch((err) => {
-        setErrorMessage(`タスクの作成に失敗しました。${err}`);
-      });
-  };
+        setErrorMessage(`タスクの作成に失敗しました。${err}`)
+      })
+  }
 
   // ページロード時の処理
   useEffect(() => {
@@ -53,13 +53,13 @@ export const NewTask = () => {
         },
       })
       .then((res) => {
-        setLists(res.data);
-        setSelectListId(res.data[0]?.id);
+        setLists(res.data)
+        setSelectListId(res.data[0]?.id)
       })
       .catch((err) => {
-        setErrorMessage(`リストの取得に失敗しました。${err}`);
-      }); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+        setErrorMessage(`リストの取得に失敗しました。${err}`)
+      }) // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // JSXを返す
   return (
@@ -115,5 +115,5 @@ export const NewTask = () => {
         </form>
       </main>
     </div>
-  );
-};
+  )
+}
