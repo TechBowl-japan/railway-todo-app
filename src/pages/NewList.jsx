@@ -1,27 +1,27 @@
-import React, { useState } from 'react'
-import { useCookies } from 'react-cookie'
-import axios from 'axios'
-import { Header } from '../components/Header'
-import { useNavigate } from 'react-router-dom'
-import { url } from '../const'
-import './newList.css'
+import React, { useState } from 'react';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import { Header } from '../components/Header';
+import { useNavigate } from 'react-router-dom';
+import { url } from '../const';
+import './newList.css';
 
 // NewList コンポーネント
 export const NewList = () => {
   // Stateの初期化
-  const [cookies] = useCookies()
-  const navigate = useNavigate()
-  const [title, setTitle] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [cookies] = useCookies();
+  const navigate = useNavigate();
+  const [title, setTitle] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   // イベントハンドラーの定義
-  const handleTitleChange = (e) => setTitle(e.target.value)
+  const handleTitleChange = (e) => setTitle(e.target.value);
 
   // リストの作成
   const onCreateList = () => {
     const data = {
       title: title,
-    }
+    };
 
     // リストの作成APIへのリクエスト
     axios
@@ -32,13 +32,13 @@ export const NewList = () => {
       })
       .then(() => {
         // リストの作成が成功した場合、ホーム画面に遷移
-        navigate.push('/')
+        navigate.push('/');
       })
       .catch((err) => {
         // エラーが発生した場合、エラーメッセージを設定
-        setErrorMessage(`リストの作成に失敗しました。${err}`)
-      })
-  }
+        setErrorMessage(`リストの作成に失敗しました。${err}`);
+      });
+  };
 
   // JSXを返す
   return (
@@ -70,5 +70,5 @@ export const NewList = () => {
         </form>
       </main>
     </div>
-  )
-}
+  );
+};

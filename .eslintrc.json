@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "es2022": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "babel-eslint", // 追記
+    "prettier/react", // 追記
+    "prettier", // 追記
+    "prettier/@typescript-eslint" // 追記
+  ],
+  "parser": "babel-eslint", // 修正
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2022, // 修正
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {}
+}

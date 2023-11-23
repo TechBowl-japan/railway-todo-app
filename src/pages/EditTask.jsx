@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import { Header } from '../components/Header'
-import axios from 'axios'
-import { useCookies } from 'react-cookie'
-import { url } from '../const'
-import { useNavigate, useParams } from 'react-router-dom'
-import './editTask.css'
+import React, { useEffect, useState } from 'react';
+import { Header } from '../components/Header';
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import { url } from '../const';
+import { useNavigate, useParams } from 'react-router-dom';
+import './editTask.css';
 
 // EditTask コンポーネント
 export const EditTask = () => {
   // React RouterのナビゲーションフックとURLパラメータの取得
-  const navigate = useNavigate()
-  const { listId, taskId } = useParams()
+  const navigate = useNavigate();
+  const { listId, taskId } = useParams();
 
   // Cookieフックを使用してクッキーの取得
-  const [cookies] = useCookies()
+  const [cookies] = useCookies();
 
   // Stateの初期化
-  const [title, setTitle] = useState('')
-  const [detail, setDetail] = useState('')
-  const [isDone, setIsDone] = useState()
-  const [errorMessage, setErrorMessage] = useState('')
+  const [title, setTitle] = useState('');
+  const [detail, setDetail] = useState('');
+  const [isDone, setIsDone] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
 
   // イベントハンドラーの定義
-  const handleTitleChange = (e) => setTitle(e.target.value)
-  const handleDetailChange = (e) => setDetail(e.target.value)
-  const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done')
+  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done');
 
   // タスクの更新処理
   const onUpdateTask = () => {
-    console.log(isDone)
+    console.log(isDone);
     const data = {
       title: title,
       detail: detail,
       done: isDone,
-    }
+    };
 
     axios
       .put(`${url}/lists/${listId}/tasks/${taskId}`, data, {
@@ -42,13 +42,13 @@ export const EditTask = () => {
         },
       })
       .then((res) => {
-        console.log(res.data)
-        navigate.push('/')
+        console.log(res.data);
+        navigate.push('/');
       })
       .catch((err) => {
-        setErrorMessage(`更新に失敗しました。${err}`)
-      })
-  }
+        setErrorMessage(`更新に失敗しました。${err}`);
+      });
+  };
 
   // タスクの削除処理
   const onDeleteTask = () => {
@@ -59,12 +59,12 @@ export const EditTask = () => {
         },
       })
       .then(() => {
-        navigate.push('/')
+        navigate.push('/');
       })
       .catch((err) => {
-        setErrorMessage(`削除に失敗しました。${err}`)
-      })
-  }
+        setErrorMessage(`削除に失敗しました。${err}`);
+      });
+  };
 
   // タスク情報の取得処理
   useEffect(() => {
@@ -75,15 +75,15 @@ export const EditTask = () => {
         },
       })
       .then((res) => {
-        const task = res.data
-        setTitle(task.title)
-        setDetail(task.detail)
-        setIsDone(task.done)
+        const task = res.data;
+        setTitle(task.title);
+        setDetail(task.detail);
+        setIsDone(task.done);
       })
       .catch((err) => {
-        setErrorMessage(`タスク情報の取得に失敗しました。${err}`)
-      }) // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+        setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
+      }); // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // JSXを返す
   return (
@@ -156,5 +156,5 @@ export const EditTask = () => {
         </form>
       </main>
     </div>
-  )
-}
+  );
+};
