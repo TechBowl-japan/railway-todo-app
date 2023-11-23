@@ -59,20 +59,30 @@ export const SignIn = () => {
         <p className="error-message">{errorMessage}</p>
         {/* サインインフォーム */}
         <form className="signin-form">
-          <label className="email-label">メールアドレス</label>
+          <label className="email-label" htmlFor="userid">
+            メールアドレス
+          </label>
           <br />
           <input
             type="email"
+            id="userid"
+            name="email"
             className="email-input"
             onChange={handleEmailChange}
+            autoComplete="email" // ←ここを追加
           />
           <br />
-          <label className="password-label">パスワード</label>
+          <label className="password-label" htmlFor="passid">
+            パスワード
+          </label>
           <br />
           <input
             type="password"
+            id="passid"
+            name="password"
             className="password-input"
             onChange={handlePasswordChange}
+            autoComplete="current-password"
           />
           <br />
           <button type="button" className="signin-button" onClick={onSignIn}>

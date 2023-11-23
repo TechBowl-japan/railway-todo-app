@@ -70,7 +70,7 @@ export const NewTask = () => {
         <p className="error-message">{errorMessage}</p>
         <form className="new-task-form">
           {/* リストの選択 */}
-          <label>リスト</label>
+          <label htmlFor="list">リスト</label>
           <br />
           <select
             onChange={(e) => handleSelectList(e.target.value)}
@@ -85,7 +85,7 @@ export const NewTask = () => {
           <br />
 
           {/* タイトルの入力 */}
-          <label>タイトル</label>
+          <label htmlFor="title">タイトル</label>
           <br />
           <input
             type="text"
@@ -99,6 +99,8 @@ export const NewTask = () => {
           <br />
           <textarea
             type="text"
+            id="textid"
+            name="text"
             onChange={handleDetailChange}
             className="new-task-detail"
           />

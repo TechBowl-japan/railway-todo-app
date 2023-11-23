@@ -51,10 +51,12 @@ export const NewList = () => {
         <p className="error-message">{errorMessage}</p>
         <form className="new-list-form">
           {/* タイトルの入力フィールド */}
-          <label>タイトル</label>
+          <label htmlFor="title">タイトル</label>
           <br />
           <input
             type="text"
+            id="textid"
+            name="text"
             onChange={handleTitleChange}
             className="new-list-title"
           />

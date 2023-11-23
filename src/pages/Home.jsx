@@ -121,6 +121,8 @@ export const Home = () => {
             {/* タスクの表示フィルタリング */}
             <div className="display-select-wrapper">
               <select
+                id="displaySelect"
+                name="displaySelect"
                 onChange={handleIsDoneDisplayChange}
                 className="display-select"
               >

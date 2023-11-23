@@ -101,6 +101,8 @@ export const EditTask = () => {
           {/* タイトルの入力欄 */}
           <input
             type="text"
+            id="textid"
+            name="text"
             onChange={handleTitleChange}
             className="edit-task-title"
             value={title}
@@ -111,6 +113,8 @@ export const EditTask = () => {
           {/* 詳細の入力欄 */}
           <textarea
             type="text"
+            id="textid"
+            name="text"
             onChange={handleDetailChange}
             className="edit-task-detail"
             value={detail}
@@ -124,7 +128,7 @@ export const EditTask = () => {
               name="status"
               value="todo"
               onChange={handleIsDoneChange}
-              checked={isDone === false ? 'checked' : ''}
+              checked={isDone === false}
             />
             未完了
             <input
@@ -133,7 +137,7 @@ export const EditTask = () => {
               name="status"
               value="done"
               onChange={handleIsDoneChange}
-              checked={isDone === true ? 'checked' : ''}
+              checked={isDone === true}
             />
             完了
           </div>

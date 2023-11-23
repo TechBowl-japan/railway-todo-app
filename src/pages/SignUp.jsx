@@ -65,34 +65,39 @@ export const SignUp = () => {
         <p className="error-message">{errorMessage}</p>
         {/* サインアップフォーム */}
         <form className="signup-form">
-          <label>メールアドレス</label>
+          <label htmlFor="emailid">メールアドレス</label>
           <br />
-          {/* メールアドレスの入力欄 */}
           <input
             type="email"
+            id="emailid"
+            name="email"
             onChange={handleEmailChange}
             className="email-input"
+            autoComplete="email" // メールアドレスの入力欄なので email を指定
           />
           <br />
-          <label>ユーザ名</label>
+          <label htmlFor="textid">ユーザ名</label>
           <br />
-          {/* ユーザ名の入力欄 */}
           <input
             type="text"
+            id="textid"
+            name="text"
             onChange={handleNameChange}
             className="name-input"
+            autoComplete="username"
           />
           <br />
-          <label>パスワード</label>
+          <label htmlFor="passid">パスワード</label>
           <br />
-          {/* パスワードの入力欄 */}
           <input
             type="password"
+            id="passid"
+            name="password"
             onChange={handlePasswordChange}
             className="password-input"
+            autoComplete="new-password"
           />
           <br />
-          {/* サインアップボタン */}
           <button type="button" onClick={onSignUp} className="signup-button">
             作成
           </button>
