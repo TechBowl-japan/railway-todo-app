@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from '../authSlice';
-import './header.css';
+import './header.scss';
 
 // Header コンポーネント
 export const Header = () => {

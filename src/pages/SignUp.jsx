@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { signIn } from '../authSlice';
 import { Header } from '../components/Header';
 import { url } from '../const';
-import './signUp.css';
+import './signUp.scss';
 
 // SignUp コンポーネント
 export const SignUp = () => {
