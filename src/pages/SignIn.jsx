@@ -34,7 +34,7 @@ export const SignIn = () => {
         // サインイン成功時の処理
         setCookie('token', res.data.token);
         dispatch(signIn());
-        navigate.push('/');
+        navigate('/');
       })
       .catch((err) => {
         // サインイン失敗時のエラーメッセージ設定

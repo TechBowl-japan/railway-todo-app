@@ -37,7 +37,7 @@ export const NewTask = () => {
         },
       })
       .then(() => {
-        history.push('/');
+        history('/');
       })
       .catch((err) => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);

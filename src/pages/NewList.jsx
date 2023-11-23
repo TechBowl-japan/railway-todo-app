@@ -32,7 +32,7 @@ export const NewList = () => {
       })
       .then(() => {
         // リストの作成が成功した場合、ホーム画面に遷移
-        navigate.push('/');
+        navigate('/');
       })
       .catch((err) => {
         // エラーが発生した場合、エラーメッセージを設定

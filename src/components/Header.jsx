@@ -27,7 +27,7 @@ export const Header = () => {
     removeCookie('token');
 
     // サインインページにリダイレクト
-    navigate.push('/signin');
+    navigate('/signin');
   };
 
   // JSXを返す

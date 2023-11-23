@@ -29,7 +29,6 @@ export const SignUp = () => {
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
   // サインアップ処理
-  // eslint-disable-next-line no-unused-vars
   const onSignUp = () => {
     const data = {
       email: email,
@@ -44,7 +43,7 @@ export const SignUp = () => {
         const token = res.data.token;
         dispatch(signIn());
         setCookie('token', token);
-        navigate('/', { replace: true });
+        navigate('/');
       })
       .catch((err) => {
         // サインアップ失敗時のエラーメッセージ設定
@@ -52,55 +51,53 @@ export const SignUp = () => {
       });
 
     // 認証済みの場合はホームページにリダイレクト
-    if (auth) {
-      navigate('/', { replace: true });
-      return; // または何も返さないか、適切なコンポーネントを返す
-    }
-    // JSXを返す
-    return (
-      <div>
-        {/* ヘッダーコンポーネントの表示 */}
-        <Header />
-        <main className="signup">
-          <h2>新規作成</h2>
-          {/* エラーメッセージの表示 */}
-          <p className="error-message">{errorMessage}</p>
-          {/* サインアップフォーム */}
-          <form className="signup-form">
-            <label>メールアドレス</label>
-            <br />
-            {/* メールアドレスの入力欄 */}
-            <input
-              type="email"
-              onChange={handleEmailChange}
-              className="email-input"
-            />
-            <br />
-            <label>ユーザ名</label>
-            <br />
-            {/* ユーザ名の入力欄 */}
-            <input
-              type="text"
-              onChange={handleNameChange}
-              className="name-input"
-            />
-            <br />
-            <label>パスワード</label>
-            <br />
-            {/* パスワードの入力欄 */}
-            <input
-              type="password"
-              onChange={handlePasswordChange}
-              className="password-input"
-            />
-            <br />
-            {/* サインアップボタン */}
-            <button type="button" onClick={onSignUp} className="signup-button">
-              作成
-            </button>
-          </form>
-        </main>
-      </div>
-    );
+    if (auth) return <navigate to="/" />;
   };
+
+  // JSXを返す
+  return (
+    <div>
+      {/* ヘッダーコンポーネントの表示 */}
+      <Header />
+      <main className="signup">
+        <h2>新規作成</h2>
+        {/* エラーメッセージの表示 */}
+        <p className="error-message">{errorMessage}</p>
+        {/* サインアップフォーム */}
+        <form className="signup-form">
+          <label>メールアドレス</label>
+          <br />
+          {/* メールアドレスの入力欄 */}
+          <input
+            type="email"
+            onChange={handleEmailChange}
+            className="email-input"
+          />
+          <br />
+          <label>ユーザ名</label>
+          <br />
+          {/* ユーザ名の入力欄 */}
+          <input
+            type="text"
+            onChange={handleNameChange}
+            className="name-input"
+          />
+          <br />
+          <label>パスワード</label>
+          <br />
+          {/* パスワードの入力欄 */}
+          <input
+            type="password"
+            onChange={handlePasswordChange}
+            className="password-input"
+          />
+          <br />
+          {/* サインアップボタン */}
+          <button type="button" onClick={onSignUp} className="signup-button">
+            作成
+          </button>
+        </form>
+      </main>
+    </div>
+  );
 };
