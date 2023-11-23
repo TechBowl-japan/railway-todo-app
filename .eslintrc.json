@@ -21,5 +21,10 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": {}
+  "rules": {},
+  "settings": {
+    "react": {
+      "version": "18.0" // 使用しているReactのバージョンに合わせて変更
+    }
+  }
 }

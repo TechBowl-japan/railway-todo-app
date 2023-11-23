@@ -42,8 +42,11 @@ export const SignIn = () => {
       });
   };
 
-  // 認証済みの場合はホームページにリダイレクト
-  if (auth) return <navigate replace to="/" />;
+  //認証済みの場合はホームページにリダイレクト
+  if (auth) {
+    navigate('/', { replace: true });
+    return; // または適当なコンポーネントを返す
+  }
 
   // JSXを返す
   return (
