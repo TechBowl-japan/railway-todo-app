@@ -103,6 +103,7 @@ export const NewTask = () => {
           {/* 詳細の入力 */}
           <label>詳細</label>
           <p>期限：{deadline}</p>
+
           <br />
           <textarea
             type="text"
