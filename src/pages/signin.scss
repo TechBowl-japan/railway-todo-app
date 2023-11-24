@@ -3,10 +3,10 @@
 .signin {
   width: 500px;
   margin: 0 auto;
-}
 
-.signin-form {
-  margin: 25px 0;
+  &-form {
+    margin: 25px 0;
+  }
 }
 
 .email-label,

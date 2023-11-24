@@ -47,7 +47,7 @@ export const Router = () => {
           </>
         )}
         {/* ルートが存在しない場合の NotFound ページ */}
-        <Route element={<NotFound />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

@@ -2,21 +2,21 @@
   margin: 50px auto;
   list-style: none;
   width: 1000px;
-}
 
-.list-header {
-  display: flex;
-  justify-content: space-between;
-}
+  &-header {
+    display: flex;
+    justify-content: space-between;
 
-.list-menu {
-  text-align: right;
-}
+    &-menu {
+      text-align: right;
 
-.list-tab {
-  list-style: none;
-  display: flex;
-  overflow-x: auto;
+      &-tab {
+        list-style: none;
+        display: flex;
+        overflow-x: auto;
+      }
+    }
+  }
 }
 
 .list-tab-item {
@@ -37,29 +37,29 @@
 
 .tasks {
   margin-top: 25px;
-}
 
-.tasks-header {
-  display: flex;
-  justify-content: space-between;
-}
+  &-header {
+    display: flex;
+    justify-content: space-between;
+  }
 
-.task-item {
-  list-style-type: none;
-  height: 70px;
-  width: calc(100% - 25px);
-  background-color: #f5f5f5;
-  padding-left: 25px;
-  font-size: large;
-  border: solid 1px #ffffff;
-}
+  &-item {
+    list-style-type: none;
+    height: 70px;
+    width: calc(100% - 25px);
+    background-color: #f5f5f5;
+    padding-left: 25px;
+    font-size: large;
+    border: solid 1px #ffffff;
 
-.task-item-link {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: #000000;
+    &-link {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      color: #000000;
+    }
+  }
 }
 
 .error-message {
@@ -69,8 +69,8 @@
 .display-select-wrapper {
   width: 100px;
   margin: 0 0 25px auto;
-}
 
-.display-select {
-  width: 100%;
+  &-select {
+    width: 100%;
+  }
 }
