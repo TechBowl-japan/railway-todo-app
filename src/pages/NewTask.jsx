@@ -13,6 +13,8 @@ export const NewTask = () => {
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
+  // 期限
+  const [deadline, setDeadline] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
   const history = useNavigate();
@@ -21,6 +23,9 @@ export const NewTask = () => {
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
+  const handleDeadlineChange = (e) => {
+    setDeadline(e.target.value);
+  };
 
   // タスク作成処理
   const onCreateTask = () => {
@@ -28,6 +33,7 @@ export const NewTask = () => {
       title: title,
       detail: detail,
       done: false,
+      deadline: deadline,
     };
 
     axios
@@ -96,6 +102,7 @@ export const NewTask = () => {
 
           {/* 詳細の入力 */}
           <label>詳細</label>
+          <p>期限：{deadline}</p>
           <br />
           <textarea
             type="text"
@@ -105,6 +112,14 @@ export const NewTask = () => {
             className="new-task-detail"
           />
           <br />
+
+          <label htmlFor="deadline">期限：</label>
+          <input
+            type="datetime-local"
+            id="deadline"
+            name="deadline"
+            onChange={handleDeadlineChange}
+          />
 
           {/* タスク作成ボタン */}
           <button

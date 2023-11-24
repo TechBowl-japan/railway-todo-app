@@ -51,7 +51,7 @@ export const SignUp = () => {
       });
 
     // 認証済みの場合はホームページにリダイレクト
-    if (auth) return <navigate to="/" />;
+    if (auth) <navigate to="/" />;
   };
 
   // JSXを返す
