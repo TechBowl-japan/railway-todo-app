@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+.signup {
+  width: 500px;
+  margin: 0 auto;
+  &-form {
+    margin: 25px 0;
+    color: #555555;
+  }
+  &-button {
+    background-color: #242f9b;
+    color: #ffffff;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+  }
+}
+
+.email-input,
+.name-input,
+.password-input {
+  width: 100%;
+  font-size: large;
+  height: 30px;
+  margin-bottom: 25px;
+}
+
+.error-message {
+  color: #ff3333;
+}
