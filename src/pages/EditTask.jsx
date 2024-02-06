@@ -54,9 +54,9 @@ export const EditTask = () => {
   }
 
   useEffect(() => {
-    axios.get(`${url}/lists/${listId}/tasks/${taskId}`, {
+    axios.get(`${url}/lists/{}/tasks/{}`, {
       headers: {
-        authorization: `Bearer ${cookies.token}`
+        authorization: `Bearer`
       }
     })
     .then((res) => {

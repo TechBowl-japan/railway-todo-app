@@ -18,7 +18,7 @@ export const Home = () => {
   useEffect(() => {
     axios.get(`${url}/lists`, {
       headers: {
-        authorization: `Bearer ${cookies.token}`
+        authorization: `Bearer`
       }
     })
     .then((res) => {
@@ -35,7 +35,7 @@ export const Home = () => {
       setSelectListId(listId)
       axios.get(`${url}/lists/${listId}/tasks`, {
         headers: {
-          authorization: `Bearer ${cookies.token}`
+          authorization: `Bearer`
         }
       })
       .then((res) => {
@@ -112,7 +112,7 @@ const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
   if (tasks === null) return <></>
 
-  if(isDoneDisplay == "done"){
+  if(isDoneDisplay === "done"){
     return (
       <ul>
         {tasks.filter((task) => {

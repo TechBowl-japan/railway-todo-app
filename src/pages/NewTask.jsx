@@ -40,7 +40,7 @@ export const NewTask = () => {
   useEffect(() => {
     axios.get(`${url}/lists`, {
       headers: {
-        authorization: `Bearer ${cookies.token}`
+        authorization: `Bearer`
       }
     })
     .then((res) => {

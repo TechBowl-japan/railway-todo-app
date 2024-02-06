@@ -16,7 +16,7 @@ export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [setCookie] = useCookies();
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const onSignIn = () => {

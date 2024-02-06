@@ -46,10 +46,8 @@ export const EditList = () => {
   }
 
   useEffect(() => {
-    axios.get(`${url}/lists/${listId}`, {
-      headers: {
-        authorization: `Bearer ${cookies.token}`
-      }
+    axios.get(`${url}/lists/`, {
+      headers: {}
     })
     .then((res) => {
       const list = res.data;
