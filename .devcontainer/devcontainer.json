@@ -1,0 +1,42 @@
+{
+	"name": "react-railway",
+	"dockerFile": "Dockerfile",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"editor.formatOnSave": true
+			},
+			"extensions": [
+				"eamodio.gitlens",
+				"actboy168.tasks",
+				"ms-azuretools.vscode-docker",
+				"ms-vsliveshare.vsliveshare",
+				"shd101wyy.markdown-preview-enhanced",
+				"irongeek.vscode-env",
+				"rogalmic.bash-debug",
+				"hediet.vscode-drawio",
+				"esbenp.prettier-vscode",
+				"TechTrain.railway-vscode",
+				"oderwat.indent-rainbow",
+				"ritwickdey.LiveServer",
+				"ecmel.vscode-html-css",
+				"formulahendry.auto-rename-tag",
+				"dbaeumer.vscode-eslint",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"dsznajder.es7-react-js-snippets"
+			]
+		}
+	},
+	"runArgs": [
+		"--env-file",
+		".devcontainer/.env"
+	],
+	"mounts": [
+		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind,consistency=delegated", // Remote Container内でDockerを使うには、ホストOSのDocker daemonを使うように設定する。
+		"source=react-railway_vscode_extension,target=/root/.vscode-server/extensions,type=volume", // extensionをビルドのたびにインストールしないため。個人のextensionを保存するため。
+		"source=react-railway_bashhistory,target=/commandhistory,type=volume" // bashヒストリーが残る設定
+	],
+	"postCreateCommand": "bash .devcontainer/postCreateCommand.sh"
+}
