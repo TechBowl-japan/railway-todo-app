@@ -13,7 +13,7 @@ export const Header = () => {
   const handleSignOut = () => {
     dispatch(signOut());
     removeCookie("token");
-    history.push("/signin");
+    history("/signin");
   };
 
   return (
