@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
     "react-scripts": "^5.0.1"
   },
   "scripts": {
@@ -26,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*"
+    "lint": "eslint src/**/*",
+    "fmt": "yarn prettier --write 'src/**/*.js'"
   },
   "eslintConfig": {
     "extends": [
