@@ -1,5 +1,5 @@
 {
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true, // ペーストした文字の自動フォーマット有効
   "editor.formatOnType": true, // 文字入力行の自動フォーマット有効
@@ -12,21 +12,26 @@
   "typescript.tsdk": "./react-bbs/node_modules/typescript/lib",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 4
+    "editor.codeActionsOnSave": { //ESLintに対応しているファイルはESLintでフォーマット
+    "source.fixAll.eslint": "explicit"
+    }
   },
-    "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "[typescriptreact, typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": { //ESLintに対応しているファイルはESLintでフォーマット
+    "source.fixAll.eslint": "explicit"
+    }
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[javascriptreact, javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": { //ESLintに対応しているファイルはESLintでフォーマット
+    "source.fixAll.eslint": "explicit"
+    }
   },
   "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
   }
 }
