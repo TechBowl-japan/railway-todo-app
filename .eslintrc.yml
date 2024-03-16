@@ -4,8 +4,6 @@ env:
 extends:
     - eslint:recommended
     - plugin:react/recommended
-    # eslint-plugin-reactを入れないとダメかも
-    # eslint conf prittierを入れないとだめかも
     - prettier
 parserOptions:
     ecmaVersion: latest

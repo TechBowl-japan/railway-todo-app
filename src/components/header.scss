@@ -1,12 +1,17 @@
-.header {
-  width: 100%;
-  height: 80px;
-  background-color: #242f9b;
-  color: #ffffff;
-  display: flex;
-  justify-content: space-between;
+@charset "utf-8";
 
-  .sign-out-button {
-    margin: auto 25px auto auto;
-  }
+$header-background-color: #242f9b;
+$header-text-color: #ffffff;
+
+.header {
+	width: 100%;
+	height: 80px;
+	background-color: $header-background-color;
+	color: $header-text-color;
+	display: flex;
+	justify-content: space-between;
+
+	.sign-out-button {
+		margin: auto 25px auto auto;
+	}
 }
