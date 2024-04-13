@@ -27,7 +27,7 @@ export const Router = () => {
             <Route path="/lists/:listId/edit" element={<EditList />} />
           </>
         ) : (
-          <Route path="/signin" element={<Navigate replace to="/signin"  />} />
+          <Route path="/" element={<Navigate replace to="/signin"  />} />
         )}
         <Route path="*" element={<NotFound />} />
       </Routes>
