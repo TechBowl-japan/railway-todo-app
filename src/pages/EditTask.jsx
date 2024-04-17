@@ -8,21 +8,25 @@ import "./editTask.scss"
 
 export const EditTask = () => {
   const navigate = useNavigate();
+  const current_date = new Date();
   const { listId, taskId } = useParams();
   const [cookies] = useCookies();
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
   const [isDone, setIsDone] = useState();
+  const [limit,setLimit] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
+  const handleLimitChange = (e) => setLimit(e.target.value);
   const onUpdateTask = () => {
     console.log(isDone)
     const data = {
       title: title,
       detail: detail,
-      done: isDone
+      done: isDone,
+      limit: limit
     }
 
     axios.put(`${url}/lists/${listId}/tasks/${taskId}`, data, {
@@ -64,11 +68,25 @@ export const EditTask = () => {
       setTitle(task.title)
       setDetail(task.detail)
       setIsDone(task.done)
+      setLimit(task.limit)
     })
     .catch((err) => {
       setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
     })
   }, [cookies.token,listId,taskId])
+
+
+  const calculateTimeDifference = (date1, date2) => {
+    const difference = Math.abs(date1 - date2) / 1000; // ミリ秒から秒に変換
+    const years = Math.floor(difference / (365 * 24 * 60 * 60));
+    const months = Math.floor((difference % (365 * 24 * 60 * 60)) / (30 * 24 * 60 * 60));
+    const days = Math.floor((difference % (30 * 24 * 60 * 60)) / (24 * 60 * 60));
+    const hours = Math.floor((difference % (24 * 60 * 60)) / (60 * 60));
+    const minutes = Math.floor((difference % (60 * 60)) / 60);
+    const seconds = Math.floor(difference % 60);
+  
+    return { years, months, days, hours, minutes, seconds };
+  };
 
   return (
     <div>
@@ -79,6 +97,18 @@ export const EditTask = () => {
         <form className="edit-task-form">
           <label>タイトル</label><br />
           <input type="text" onChange={handleTitleChange} className="edit-task-title" value={title} /><br />
+          <label>期限日時</label><br />
+          <input type="text" onChange={handleLimitChange} className="edit-task-detail" value={limit} /><br />
+          <label>残り日時</label><br />
+          {/* <p className="edit-task-remain">{new Date(limit).getTime() - current_date.getTime() }</p> */}
+          <p className="edit-task-remain">
+            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).years}年
+            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).months}か月
+            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).days}日
+            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).hours}時間
+            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).minutes}分
+            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).seconds}秒
+          </p>
           <label>詳細</label><br />
           <textarea type="text" onChange={handleDetailChange} className="edit-task-detail" value={detail} /><br />
           <div>
