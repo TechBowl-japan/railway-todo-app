@@ -3,19 +3,19 @@
 .new-task {
   width: 1000px;
   margin: 0 auto;
-}
 
-.new-task-form {
-  color: #555555;
-}
-
-.new-task-select-list, .new-task-title, .new-task-detail {
-  width: 300px;
-  margin-bottom: 25px;
-}
-
-.new-task-detail {
-  height: 200px;
+  &-form {
+    color: #555555;
+  }
+  &-select-list,
+  &-title,
+  &-detail {
+    width: 300px;
+    margin-bottom: 25px;
+  }
+  &-detail {
+    height: 200px;
+  }
 }
 
 .new-task-button {

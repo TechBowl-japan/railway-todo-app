@@ -4,7 +4,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { url } from "../const";
 import { useNavigate, useParams } from "react-router-dom";
-import "./editTask.css"
+import "./editTask.scss"
 
 export const EditTask = () => {
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ export const EditTask = () => {
     .catch((err) => {
       setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
     })
-  }, [])
+  }, [cookies.token,listId,taskId])
 
   return (
     <div>

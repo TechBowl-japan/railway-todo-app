@@ -3,7 +3,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { Navigate, useNavigate, Link } from "react-router-dom";
 import { Header } from "../components/Header";
-import "./signin.css";
+import "./signin.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../authSlice";
 import { url } from "../const";
@@ -16,7 +16,7 @@ export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [,setCookie] = useCookies();
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const onSignIn = () => {

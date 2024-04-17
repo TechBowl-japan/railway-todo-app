@@ -3,15 +3,20 @@
 .edit-task {
   width: 1000px;
   margin: 0 auto;
-}
-
-.edit-task-form {
-  color: #555555;
-}
-
-.edit-task-title, .edit-task-detail {
-  width: 300px;
-  margin-bottom: 25px;
+  &-form {
+    color: #555555;
+  }
+  &-title, &-detail {
+    width: 300px;
+    margin-bottom: 25px;
+  }
+  &-button {
+  background-color: #242F9B;
+  color: #ffffff;
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  }
 }
 
 .delete-task-button {
@@ -20,14 +25,6 @@
   width: 80px;
   height: 40px;
   margin: 25px 5px;
-  border-radius: 5px;
-}
-
-.edit-task-button {
-  background-color: #242F9B;
-  color: #ffffff;
-  width: 80px;
-  height: 40px;
   border-radius: 5px;
 }
 

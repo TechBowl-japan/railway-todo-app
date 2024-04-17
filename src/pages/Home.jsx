@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { Header } from "../components/Header";
 import { url } from "../const";
-import "./home.css";
+import "./home.scss";
 
 
 export const Home = () => {
@@ -27,7 +27,7 @@ export const Home = () => {
     .catch((err) => {
       setErrorMessage(`リストの取得に失敗しました。${err}`);
     })
-  }, []);
+  }, [cookies.token]);
 
   useEffect(() => {
     const listId = lists[0]?.id
@@ -45,7 +45,7 @@ export const Home = () => {
         setErrorMessage(`タスクの取得に失敗しました。${err}`);
       })
     }
-  }, [lists]);
+  }, [lists,cookies.token]);
 
   const handleSelectList = (id) => {
     setSelectListId(id);
@@ -112,7 +112,7 @@ const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
   if (tasks === null) return <></>
 
-  if(isDoneDisplay == "done"){
+  if(isDoneDisplay === "done"){
     return (
       <ul>
         {tasks.filter((task) => {
