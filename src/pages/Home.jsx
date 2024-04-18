@@ -61,6 +61,11 @@ export const Home = () => {
       setErrorMessage(`タスクの取得に失敗しました。${err}`);
     })
   }
+  const handleEnterList = (e,id) => {
+    if (e.key === "Enter" ) {
+      handleSelectList(id)
+    }
+  }
   return (
     <div>
       <Header />
@@ -78,10 +83,13 @@ export const Home = () => {
             {lists.map((list, key) => {
               const isActive = list.id === selectListId;
               return (
-                <li 
+                <li
                   key={key}
+                  tabindex="0"
+                  role="button"
                   className={`list-tab-item ${isActive ? "active" : ""}`}
                   onClick={() => handleSelectList(list.id)}
+                  onKeyDown={(e) => handleEnterList(e,list.id)}
                 >
                   {list.title}
                 </li>
