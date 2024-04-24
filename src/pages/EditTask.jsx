@@ -8,13 +8,22 @@ import "./editTask.scss"
 
 export const EditTask = () => {
   const navigate = useNavigate();
-  const current_date = new Date();
+  // const current_date = new Date();
   const { listId, taskId } = useParams();
   const [cookies] = useCookies();
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
   const [isDone, setIsDone] = useState();
   const [limit,setLimit] = useState("");
+  const [timeDifference,setTimeDifference] = useState({
+    years: 0,
+    month:0,
+    days: 0,
+    hours: 0,
+    minutes:0,
+    seconds: 0
+  })
+
   const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
@@ -56,37 +65,43 @@ export const EditTask = () => {
       setErrorMessage(`削除に失敗しました。${err}`);
     })
   }
-
   useEffect(() => {
-    axios.get(`${url}/lists/${listId}/tasks/${taskId}`, {
-      headers: {
-        authorization: `Bearer ${cookies.token}`
-      }
-    })
-    .then((res) => {
-      const task = res.data
-      setTitle(task.title)
-      setDetail(task.detail)
-      setIsDone(task.done)
-      setLimit(task.limit)
-    })
-    .catch((err) => {
-      setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
-    })
-  }, [cookies.token,listId,taskId])
+    axios
+      .get(`${url}/lists/${listId}/tasks/${taskId}`, {
+        headers: {
+          authorization: `Bearer ${cookies.token}`
+        }
+      })
+      .then((res) => {
+        const task = res.data;
+        setTitle(task.title);
+        setDetail(task.detail);
+        setIsDone(task.done);
+        setLimit(task.limit);
+        const difference = calculateTimeDifference(
+          new Date(task.limit).getTime(),
+          new Date().getTime()
+        );
+        setTimeDifference(difference);
+      })
+      .catch((err) => {
+        setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
+      });
+  }, [cookies.token, listId, taskId]);
 
 
   const calculateTimeDifference = (date1, date2) => {
-    const difference = Math.abs(date1 - date2) / 1000; // ミリ秒から秒に変換
+    const difference = (date1 - date2) / 1000; // ミリ秒から秒に変換
     const years = Math.floor(difference / (365 * 24 * 60 * 60));
     const months = Math.floor((difference % (365 * 24 * 60 * 60)) / (30 * 24 * 60 * 60));
     const days = Math.floor((difference % (30 * 24 * 60 * 60)) / (24 * 60 * 60));
     const hours = Math.floor((difference % (24 * 60 * 60)) / (60 * 60));
     const minutes = Math.floor((difference % (60 * 60)) / 60);
     const seconds = Math.floor(difference % 60);
-  
+
     return { years, months, days, hours, minutes, seconds };
   };
+
 
   return (
     <div>
@@ -100,14 +115,13 @@ export const EditTask = () => {
           <label>期限日時</label><br />
           <input type="text" onChange={handleLimitChange} className="edit-task-detail" value={limit} /><br />
           <label>残り日時</label><br />
-          {/* <p className="edit-task-remain">{new Date(limit).getTime() - current_date.getTime() }</p> */}
           <p className="edit-task-remain">
-            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).years}年
-            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).months}か月
-            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).days}日
-            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).hours}時間
-            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).minutes}分
-            {calculateTimeDifference(new Date(limit).getTime(), current_date.getTime()).seconds}秒
+            {timeDifference.years}年
+            {timeDifference.months}か月
+            {timeDifference.days}日
+            {timeDifference.hours}時間
+            {timeDifference.minutes}分
+            {timeDifference.seconds}秒
           </p>
           <label>詳細</label><br />
           <textarea type="text" onChange={handleDetailChange} className="edit-task-detail" value={detail} /><br />

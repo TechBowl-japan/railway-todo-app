@@ -49,6 +49,7 @@ export const Home = () => {
 
   const handleSelectList = (id) => {
     setSelectListId(id);
+    console.log("呼び出されました")
     axios.get(`${url}/lists/${id}/tasks`, {
       headers: {
         authorization: `Bearer ${cookies.token}`
@@ -79,23 +80,23 @@ export const Home = () => {
               <p><Link to={`/lists/${selectListId}/edit`}>選択中のリストを編集</Link></p>
             </div>
           </div>
-          <ul className="list-tab">
+          <div className="list-tab">
             {lists.map((list, key) => {
               const isActive = list.id === selectListId;
               return (
-                <li
+                <p
                   key={key}
-                  tabindex="0"
+                  tabIndex="0"
                   role="button"
                   className={`list-tab-item ${isActive ? "active" : ""}`}
                   onClick={() => handleSelectList(list.id)}
                   onKeyDown={(e) => handleEnterList(e,list.id)}
                 >
                   {list.title}
-                </li>
+                </p>
               )
             })}
-          </ul>
+          </div>
           <div className="tasks">
             <div className="tasks-header">
               <h2>タスク一覧</h2>
@@ -130,7 +131,8 @@ const Tasks = (props) => {
           <li key={key} className="task-item">
             <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
               {task.title}<br />
-              {task.done ? "完了" : "未完了"}
+              {task.done ? "完了" : "未完了"}<br />
+              期限日時 : {task.limit}
             </Link>
           </li>
         ))}
@@ -147,7 +149,8 @@ const Tasks = (props) => {
         <li key={key} className="task-item">
           <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
             {task.title}<br />
-            {task.done ? "完了" : "未完了"}
+            {task.done ? "完了" : "未完了"}<br />
+            期限日時 : {task.limit}
           </Link>
         </li>
       ))}
