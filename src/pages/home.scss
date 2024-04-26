@@ -81,3 +81,25 @@
   }
 
 }
+
+@media screen and (max-width: 820px) {
+  .task-item,.tasks,.list-header{
+    width: 60%;
+  }
+
+  .taskList {
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .task-item,.tasks,.list-header{
+    width: 100%;
+  }
+
+  .taskList {
+    width: 100%;
+  }
+
+}
