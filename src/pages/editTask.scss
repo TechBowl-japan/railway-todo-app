@@ -34,19 +34,25 @@
 
 
 @media screen and (max-width: 768px) {
-  .edit-task-form{
-    width: 768px;
-  }
   .edit-task {
     max-width: 768px;
-    // text-align: center;
+    text-align: center;
+    p {
+      margin: auto;
+    }
   }
-
+  .edit-task-form{
+    width: 768px;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 320px) {
   .edit-task {
     max-width: 320px;
     text-align: center;
+  }
+  .edit-task-form{
+    width: 320px;
   }
 }
