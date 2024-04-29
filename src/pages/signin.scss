@@ -49,3 +49,33 @@
 .error-message {
   color: #ff3333;
 }
+
+
+@media screen and (max-width: 768px) {
+  .signin{
+    width: 768px;
+    text-align: center;
+  }
+
+  .email-input {
+    max-width: 310px;
+  }
+  .password-input{
+    max-width: 310px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .signin {
+    width: 320px;
+    text-align: center;
+  }
+
+  .email-input {
+    max-width: 310px;
+  }
+  .password-input{
+    max-width: 310px;
+  }
+}

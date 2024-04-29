@@ -31,3 +31,18 @@
 .error-message {
   color: #ff3333;
 }
+
+@media screen and (max-width: 768px) {
+  .new-task{
+    width: 768px;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .new-task {
+    max-width: 320px;
+    text-align: center;
+  }
+}

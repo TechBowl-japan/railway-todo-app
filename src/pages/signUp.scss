@@ -29,3 +29,27 @@
 .error-message {
   color: #ff3333;
 }
+
+
+@media screen and (max-width: 768px) {
+  .signup {
+    width: 768px;
+    text-align: center;
+  }
+
+  .email-input,.name-input, .password-input {
+    max-width: 310px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .signup {
+    width: 320px;
+    text-align: center;
+  }
+
+  .email-input,.name-input, .password-input {
+    max-width: 310px;
+  }
+}

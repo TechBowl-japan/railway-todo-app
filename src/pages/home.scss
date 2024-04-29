@@ -23,7 +23,8 @@
       flex-shrink: 0;
       width: 100px;
       padding: 0 25px;
-      text-overflow: normal;
+      text-overflow: ellipsis;
+      overflow: hidden;
       margin-right: 5px;
       border: solid 1px #242F9B;
       justify-content: center;
@@ -65,7 +66,6 @@
     }
 
   }
-
 }
 
 .error-message {
@@ -82,9 +82,13 @@
 
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 768px) {
   .task-item,.tasks,.list-header{
     width: 60%;
+  }
+
+  .list-tab {
+    overflow-x: scroll;
   }
 
   .taskList {

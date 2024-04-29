@@ -32,3 +32,18 @@
 .error-message {
   color: #ff3333;
 }
+
+@media screen and (max-width: 768px) {
+  .edit-list {
+    max-width: 768px;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .edit-list {
+    max-width: 320px;
+    text-align: center;
+  }
+}

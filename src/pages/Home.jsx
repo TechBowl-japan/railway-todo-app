@@ -181,7 +181,6 @@ const Tasks = (props) => {
             {timeDifference.minutes}分</>
 
             )}
-            
           </Link>
         </li>
       )})}

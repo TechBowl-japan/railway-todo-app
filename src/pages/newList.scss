@@ -20,3 +20,18 @@
     border-radius: 5px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .new-list{
+    width: 768px;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .new-list {
+    max-width: 320px;
+    text-align: center;
+  }
+}

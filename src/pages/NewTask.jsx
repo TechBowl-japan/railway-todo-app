@@ -12,13 +12,15 @@ export const NewTask = () => {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
   const [limit, setLimit] = useState("");
+  const [inputLimit ,] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
-  const handleLimitChange = (e) => setLimit(e.target.value);
+  // const handleLimitChange = (e) => setLimit(e.target.value);
+  const handleInputLimitChange =  (e) => setLimit(e.target.value + ":00Z")
   const onCreateTask = () => {
     const data = {
       title: title,
@@ -71,7 +73,15 @@ export const NewTask = () => {
           <label>タイトル</label><br />
           <input type="text" onChange={handleTitleChange} className="new-task-title" /><br />
           <label>期限日時</label><br />
-          <input type="text" onChange={handleLimitChange} className="new-task-limit" /><br />
+          <p>{new Date(limit.slice(0,-1)).toLocaleDateString()}  {new Date(limit.slice(0,-1)).toLocaleTimeString('ja-JP')}</p>
+          <input
+            type="datetime-local"
+            className="edit-task-detail"
+            value={inputLimit}
+            min={new Date()}
+            onChange={handleInputLimitChange}
+          /><br />
+          {/* <input type="text" onChange={handleLimitChange} className="new-task-limit" /><br /> */}
           <label>詳細</label><br />
           <textarea type="text" onChange={handleDetailChange} className="new-task-detail" /><br />
           <button type="button" className="new-task-button" onClick={onCreateTask}>作成</button>
