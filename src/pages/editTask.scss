@@ -37,9 +37,10 @@
   .edit-task {
     max-width: 768px;
     text-align: center;
-    p {
-      margin: auto;
-    }
+    //TODO なぜか真ん中に行かないので質問
+    // &-remain {
+    //   margin:0 auto;
+    // }
   }
   .edit-task-form{
     width: 768px;
