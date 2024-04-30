@@ -6,7 +6,7 @@
   &-form {
     color: #555555;
   }
-  &-title, &-detail, &-remain{
+  &-title, &-detail,&-remain{
     width: 300px;
     margin-bottom: 25px;
   }
@@ -37,10 +37,9 @@
   .edit-task {
     max-width: 768px;
     text-align: center;
-    //TODO なぜか真ん中に行かないので質問
-    // &-remain {
-    //   margin:0 auto;
-    // }
+    &-remain {
+      width: 100%;
+    }
   }
   .edit-task-form{
     width: 768px;
