@@ -16,9 +16,14 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@eslint/js": "^9.4.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.2",
+    "globals": "^15.4.0",
     "react-scripts": "5.0.1"
   },
   "scripts": {
+    "lint": "eslint --fix src",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
