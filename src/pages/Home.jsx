@@ -21,29 +21,29 @@ export const Home = () => {
         authorization: `Bearer ${cookies.token}`
       }
     })
-    .then((res) => {
-      setLists(res.data)
-    })
-    .catch((err) => {
-      setErrorMessage(`リストの取得に失敗しました。${err}`);
-    })
+      .then((res) => {
+        setLists(res.data)
+      })
+      .catch((err) => {
+        setErrorMessage(`リストの取得に失敗しました。${err}`);
+      })
   }, []);
 
   useEffect(() => {
     const listId = lists[0]?.id
-    if(typeof listId !== "undefined"){
+    if (typeof listId !== "undefined") {
       setSelectListId(listId)
       axios.get(`${url}/lists/${listId}/tasks`, {
         headers: {
           authorization: `Bearer ${cookies.token}`
         }
       })
-      .then((res) => {
-        setTasks(res.data.tasks)
-      })
-      .catch((err) => {
-        setErrorMessage(`タスクの取得に失敗しました。${err}`);
-      })
+        .then((res) => {
+          setTasks(res.data.tasks)
+        })
+        .catch((err) => {
+          setErrorMessage(`タスクの取得に失敗しました。${err}`);
+        })
     }
   }, [lists]);
 
@@ -54,12 +54,12 @@ export const Home = () => {
         authorization: `Bearer ${cookies.token}`
       }
     })
-    .then((res) => {
-      setTasks(res.data.tasks)
-    })
-    .catch((err) => {
-      setErrorMessage(`タスクの取得に失敗しました。${err}`);
-    })
+      .then((res) => {
+        setTasks(res.data.tasks)
+      })
+      .catch((err) => {
+        setErrorMessage(`タスクの取得に失敗しました。${err}`);
+      })
   }
   return (
     <div>
@@ -78,7 +78,7 @@ export const Home = () => {
             {lists.map((list, key) => {
               const isActive = list.id === selectListId;
               return (
-                <li 
+                <li
                   key={key}
                   className={`list-tab-item ${isActive ? "active" : ""}`}
                   onClick={() => handleSelectList(list.id)}
@@ -112,20 +112,20 @@ const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
   if (tasks === null) return <></>
 
-  if(isDoneDisplay == "done"){
+  if (isDoneDisplay == "done") {
     return (
       <ul>
         {tasks.filter((task) => {
           return task.done === true
         })
-        .map((task, key) => (
-          <li key={key} className="task-item">
-            <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
-              {task.title}<br />
-              {task.done ? "完了" : "未完了"}
-            </Link>
-          </li>
-        ))}
+          .map((task, key) => (
+            <li key={key} className="task-item">
+              <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
+                {task.title}<br />
+                {task.done ? "完了" : "未完了"}
+              </Link>
+            </li>
+          ))}
       </ul>
     )
   }
@@ -135,14 +135,14 @@ const Tasks = (props) => {
       {tasks.filter((task) => {
         return task.done === false
       })
-      .map((task, key) => (
-        <li key={key} className="task-item">
-          <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
-            {task.title}<br />
-            {task.done ? "完了" : "未完了"}
-          </Link>
-        </li>
-      ))}
+        .map((task, key) => (
+          <li key={key} className="task-item">
+            <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
+              {task.title}<br />
+              {task.done ? "完了" : "未完了"}
+            </Link>
+          </li>
+        ))}
     </ul>
   )
 }
