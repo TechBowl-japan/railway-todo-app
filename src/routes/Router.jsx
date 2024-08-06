@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
 import { SignIn } from "../pages/SignIn";
@@ -11,11 +11,11 @@ import { SignUp } from "../pages/SignUp";
 import { EditList } from "../pages/EditList";
 
 export const Router = () => {
-  const auth = useSelector((state) => state.auth.isSignIn)
+  const auth = useSelector((state) => state.auth.isSignIn);
 
   return (
     <BrowserRouter>
-      <Switch>
+      <Routes>
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
         {auth ? (
@@ -23,14 +23,18 @@ export const Router = () => {
             <Route exact path="/" component={Home} />
             <Route exact path="/task/new" component={NewTask} />
             <Route exact path="/list/new" component={NewList} />
-            <Route exact path="/lists/:listId/tasks/:taskId" component={EditTask} />
+            <Route
+              exact
+              path="/lists/:listId/tasks/:taskId"
+              component={EditTask}
+            />
             <Route exact path="/lists/:listId/edit" component={EditList} />
           </>
         ) : (
-          <Redirect to="/signin" />
+          <Navigate to="/signin" />
         )}
         <Route component={NotFound} />
-      </Switch>
+      </Routes>
     </BrowserRouter>
-  )
-}
+  );
+};
