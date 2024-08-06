@@ -33,7 +33,7 @@ export const EditTask = () => {
       })
       .then((res) => {
         console.log(res.data);
-        navigate.push("/");
+        navigate("/");
       })
       .catch((err) => {
         setErrorMessage(`更新に失敗しました。${err}`);
@@ -48,7 +48,7 @@ export const EditTask = () => {
         },
       })
       .then(() => {
-        navigate.push("/");
+        navigate("/");
       })
       .catch((err) => {
         setErrorMessage(`削除に失敗しました。${err}`);

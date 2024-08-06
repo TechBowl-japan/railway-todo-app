@@ -33,7 +33,7 @@ export const SignUp = () => {
         const token = res.data.token;
         dispatch(signIn());
         setCookie("token", token);
-        navigate.push("/");
+        navigate("/");
       })
       .catch((err) => {
         setErrorMessge(`サインアップに失敗しました。 ${err}`);

@@ -31,7 +31,7 @@ export const NewTask = () => {
         },
       })
       .then(() => {
-        navigate.push("/");
+        navigate("/");
       })
       .catch((err) => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);
