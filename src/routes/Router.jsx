@@ -18,10 +18,7 @@ export const Router = () => {
       <Routes>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route
-          path="/"
-          element={auth ? <Home /> : <Navigate to="/signin" />}
-        />
+        <Route path="/" element={auth ? <Home /> : <Navigate to="/signin" />} />
         <Route
           path="/task/new"
           element={auth ? <NewTask /> : <Navigate to="/signin" />}
