@@ -5,6 +5,7 @@ import axios from "axios";
 import { Header } from "../components/Header";
 import { url } from "../const";
 import "./home.scss";
+import { changeToDateTime, getTimeDifference } from "../utils/changeTimeStruct";
 
 export const Home = () => {
   const [isDoneDisplay, setIsDoneDisplay] = useState("todo"); // todo->未完了 done->完了
@@ -127,34 +128,6 @@ export const Home = () => {
 // 表示するタスク
 const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
-
-  const changeToDateTime = (stringDate) => {
-    var date = new Date(stringDate);
-
-    var month = date.getMonth() + 1;
-
-    var day = date.getDate();
-
-    var hour = date.getHours();
-
-    var min = date.getMinutes();
-
-    return `${month}/${day} ${hour}:${min}`;
-  };
-
-  const getTimeDifference = (stringDate) => {
-    const date = new Date(stringDate);
-    const now = new Date();
-
-    let difference = Math.floor((date - now) / (1000 * 60));
-
-    const days = Math.floor(difference / (24 * 60));
-    difference %= 24 * 60;
-    const hours = Math.floor(difference / 60);
-    const minutes = difference % 60;
-
-    return `${days}日 ${hours}時間 ${minutes}分後`;
-  };
 
   if (tasks === null) return <></>;
 
