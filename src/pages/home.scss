@@ -1,7 +1,9 @@
 .taskList {
   margin: 50px auto;
   list-style: none;
-  width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .list-header {
@@ -47,7 +49,6 @@
 .task-item {
   list-style-type: none;
   height: 100px;
-  width: calc(100% - 25px);
   background-color: #f5f5f5;
   padding-left: 25px;
   font-size: large;
@@ -73,4 +74,22 @@
 
 .display-select {
   width: 100%;
+}
+
+@media screen and (min-width: 480px) {
+  .task-item {
+    width: 500px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .task-item {
+    width: 700px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .task-item {
+    width: 900px;
+  }
 }

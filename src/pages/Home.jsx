@@ -135,7 +135,7 @@ const Tasks = (props) => {
 
   if (isDoneDisplay == "done") {
     return (
-      <ul>
+      <ul className="task-list">
         {tasks
           .filter((task) => {
             return task.done === true;
