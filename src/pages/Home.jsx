@@ -41,11 +41,13 @@ export const Home = () => {
         })
         .then((res) => {
           setTasks(res.data.tasks);
+          console.log(res.data.tasks);
         })
         .catch((err) => {
           setErrorMessage(`タスクの取得に失敗しました。${err}`);
         });
     }
+    console.log(lists);
   }, [lists]);
 
   const handleSelectList = (id) => {
@@ -125,6 +127,35 @@ export const Home = () => {
 // 表示するタスク
 const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
+
+  const changeToDateTime = (stringDate) => {
+    var date = new Date(stringDate);
+
+    var month = date.getMonth() + 1;
+
+    var day = date.getDate();
+
+    var hour = date.getHours();
+
+    var min = date.getMinutes();
+
+    return `${month}/${day} ${hour}:${min}`;
+  };
+
+  const getTimeDifference = (stringDate) => {
+    const date = new Date(stringDate);
+    const now = new Date();
+
+    let difference = Math.floor((date - now) / (1000 * 60));
+
+    const days = Math.floor(difference / (24 * 60));
+    difference %= 24 * 60;
+    const hours = Math.floor(difference / 60);
+    const minutes = difference % 60;
+
+    return `${days}日 ${hours}時間 ${minutes}分後`;
+  };
+
   if (tasks === null) return <></>;
 
   if (isDoneDisplay == "done") {
@@ -164,6 +195,10 @@ const Tasks = (props) => {
             >
               {task.title}
               <br />
+              {changeToDateTime(task.limit)}
+              <br />
+              {getTimeDifference(task.limit)}
+              <br />
               {task.done ? "完了" : "未完了"}
             </Link>
           </li>
@@ -171,3 +206,4 @@ const Tasks = (props) => {
     </ul>
   );
 };
+// 2024-08-22T04:40:00Z
