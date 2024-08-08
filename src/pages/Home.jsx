@@ -148,6 +148,10 @@ const Tasks = (props) => {
               >
                 {task.title}
                 <br />
+                {changeToDateTime(task.limit)}
+                <br />
+                {getTimeDifference(task.limit)}
+                <br />
                 {task.done ? "完了" : "未完了"}
               </Link>
             </li>
