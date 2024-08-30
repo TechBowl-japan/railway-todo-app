@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { useCookies } from "react-cookie";
-import axios from "axios";
-import { Header } from "../components/Header";
-import { useNavigate } from "react-router-dom";
-import { url } from "../const";
-import "./newList.css";
+import React, { useState } from 'react';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import { Header } from '../components/Header';
+import { useNavigate } from 'react-router-dom';
+import { url } from '../const';
+import './newList.css';
 
 export const NewList = () => {
   const [cookies] = useCookies();
   const navigation = useNavigate();
-  const [title, setTitle] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [title, setTitle] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const handleTitleChange = (e) => setTitle(e.target.value);
   const onCreateList = () => {
     const data = {
@@ -24,7 +24,7 @@ export const NewList = () => {
         },
       })
       .then(() => {
-        navigation("/");
+        navigation('/');
       })
       .catch((err) => {
         setErrorMessage(`リストの作成に失敗しました。${err}`);
@@ -40,17 +40,9 @@ export const NewList = () => {
         <form className="new-list-form">
           <label>タイトル</label>
           <br />
-          <input
-            type="text"
-            onChange={handleTitleChange}
-            className="new-list-title"
-          />
+          <input type="text" onChange={handleTitleChange} className="new-list-title" />
           <br />
-          <button
-            type="button"
-            onClick={onCreateList}
-            className="new-list-button"
-          >
+          <button type="button" onClick={onCreateList} className="new-list-button">
             作成
           </button>
         </form>

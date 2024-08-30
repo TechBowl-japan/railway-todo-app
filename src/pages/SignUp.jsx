@@ -1,20 +1,20 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useCookies } from "react-cookie";
-import { useSelector, useDispatch } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
-import { signIn } from "../authSlice";
-import { Header } from "../components/Header";
-import { url } from "../const";
-import "./signUp.css";
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useCookies } from 'react-cookie';
+import { useSelector, useDispatch } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { signIn } from '../authSlice';
+import { Header } from '../components/Header';
+import { url } from '../const';
+import './signUp.css';
 
 export const SignUp = () => {
   const navigation = useNavigate();
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
   const [cookies, setCookie, removeCookie] = useCookies();
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -32,8 +32,8 @@ export const SignUp = () => {
       .then((res) => {
         const token = res.data.token;
         dispatch(signIn());
-        setCookie("token", token);
-        navigation("/");
+        setCookie('token', token);
+        navigation('/');
       })
       .catch((err) => {
         setErrorMessage(`サインアップに失敗しました。 ${err}`);
@@ -50,27 +50,15 @@ export const SignUp = () => {
         <form className="signup-form">
           <label>メールアドレス</label>
           <br />
-          <input
-            type="email"
-            onChange={handleEmailChange}
-            className="email-input"
-          />
+          <input type="email" onChange={handleEmailChange} className="email-input" />
           <br />
           <label>ユーザ名</label>
           <br />
-          <input
-            type="text"
-            onChange={handleNameChange}
-            className="name-input"
-          />
+          <input type="text" onChange={handleNameChange} className="name-input" />
           <br />
           <label>パスワード</label>
           <br />
-          <input
-            type="password"
-            onChange={handlePasswordChange}
-            className="password-input"
-          />
+          <input type="password" onChange={handlePasswordChange} className="password-input" />
           <br />
           <button type="button" onClick={onSignUp} className="signup-button">
             作成

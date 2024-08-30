@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import axios from "axios";
-import { url } from "../const";
-import { Header } from "../components/Header";
-import "./newTask.css";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import { url } from '../const';
+import { Header } from '../components/Header';
+import './newTask.css';
+import { useNavigate } from 'react-router-dom';
 
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();
   const [lists, setLists] = useState([]);
-  const [title, setTitle] = useState("");
-  const [detail, setDetail] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [title, setTitle] = useState('');
+  const [detail, setDetail] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
   const navigation = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
@@ -31,7 +31,7 @@ export const NewTask = () => {
         },
       })
       .then(() => {
-        navigation("/");
+        navigation('/');
       })
       .catch((err) => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);
@@ -76,25 +76,13 @@ export const NewTask = () => {
           <br />
           <label>タイトル</label>
           <br />
-          <input
-            type="text"
-            onChange={handleTitleChange}
-            className="new-task-title"
-          />
+          <input type="text" onChange={handleTitleChange} className="new-task-title" />
           <br />
           <label>詳細</label>
           <br />
-          <textarea
-            type="text"
-            onChange={handleDetailChange}
-            className="new-task-detail"
-          />
+          <textarea type="text" onChange={handleDetailChange} className="new-task-detail" />
           <br />
-          <button
-            type="button"
-            className="new-task-button"
-            onClick={onCreateTask}
-          >
+          <button type="button" className="new-task-button" onClick={onCreateTask}>
             作成
           </button>
         </form>
