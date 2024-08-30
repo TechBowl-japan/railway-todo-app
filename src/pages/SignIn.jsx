@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { Redirect, useNavigate, Link } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import "./signin.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,7 +31,7 @@ export const SignIn = () => {
       });
   };
 
-  if (auth) return <Redirect to="/" />;
+  if (auth) return <Navigate to="/" />;
 
   return (
     <div>
