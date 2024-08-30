@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { Navigate, useNavigate, Link } from 'react-router-dom';
 import { Header } from '../components/Header';
-import './signin.css';
+import './signin.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from '../authSlice';
 import { url } from '../const';
