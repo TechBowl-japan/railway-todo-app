@@ -14,4 +14,10 @@ export default [
       },
     },
   },
+  {
+    rules: {
+      'react/react-in-jsx-scope': 'off', // React v18では不要
+      'react/prop-types': 'off', //prop-typesは使用していないのでoff
+    },
+  },
 ];
