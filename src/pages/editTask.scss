@@ -1,12 +1,16 @@
 @charset "utf-8";
 
+$primary-color: #242f9b;
+$error-color: #ff3333;
+$text-color: #555555;
+
 .edit-task {
   width: 1000px;
   margin: 0 auto;
 }
 
 .edit-task-form {
-  color: #555555;
+  color: $text-color;
 }
 
 .edit-task-title,
@@ -16,8 +20,8 @@
 }
 
 .delete-task-button {
-  color: #ff3333;
-  border: solid 1px #ff3333;
+  color: $error-color;
+  border: solid 1px $error-color;
   width: 80px;
   height: 40px;
   margin: 25px 5px;
@@ -25,7 +29,7 @@
 }
 
 .edit-task-button {
-  background-color: #242f9b;
+  background-color: $primary-color;
   color: #ffffff;
   width: 80px;
   height: 40px;
@@ -33,5 +37,5 @@
 }
 
 .error-message {
-  color: #ff3333;
+  color: $error-color;
 }
