@@ -1,12 +1,12 @@
 @charset "utf-8";
 
-$primary-color: #242f9b;
+$header-color: #242f9b;
 $text-color: #ffffff;
 
 .header {
   width: 100%;
   height: 80px;
-  background-color: $primary-color;
+  background-color: $header-color;
   color: $text-color;
   display: flex;
   justify-content: space-between;

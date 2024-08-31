@@ -2,6 +2,7 @@ $primary-color: #242f9b;
 $error-color: #ff3333;
 $text-color: #000000;
 $background-color: #f5f5f5;
+$white-color: #ffffff;
 
 .taskList {
   margin: 50px auto;
@@ -34,7 +35,7 @@ $background-color: #f5f5f5;
 
       &.active {
         background-color: $primary-color;
-        color: #ffffff;
+        color: $white-color;
       }
     }
   }
@@ -54,7 +55,7 @@ $background-color: #f5f5f5;
       background-color: $background-color;
       padding-left: 25px;
       font-size: large;
-      border: solid 1px #ffffff;
+      border: solid 1px $white-color;
 
       .task-item-link {
         display: block;
