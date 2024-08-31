@@ -1,22 +1,26 @@
 @charset "utf-8";
 
+$primary-color: #242f9b;
+$error-color: #ff3333;
+$text-color: #555555;
+
 .edit-list {
   width: 1000px;
   margin: 0 auto;
-}
 
-.edit-list-form {
-  color: #555555;
-}
+  &-form {
+    color: $text-color;
+  }
 
-.edit-list-title {
-  width: 300px;
-  margin-bottom: 25px;
+  &-title {
+    width: 300px;
+    margin-bottom: 25px;
+  }
 }
 
 .delete-list-button {
-  color: #ff3333;
-  border: solid 1px #ff3333;
+  color: $error-color;
+  border: solid 1px $error-color;
   width: 80px;
   height: 40px;
   margin: 25px 5px;
@@ -24,7 +28,7 @@
 }
 
 .edit-list-button {
-  background-color: #242f9b;
+  background-color: $primary-color;
   color: #ffffff;
   width: 80px;
   height: 40px;
@@ -32,5 +36,5 @@
 }
 
 .error-message {
-  color: #ff3333;
+  color: $error-color;
 }
