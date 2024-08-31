@@ -1,33 +1,38 @@
 @charset "utf-8";
 
+$primary-color: #242f9b;
+$error-color: #ff3333;
+$text-color: #555555;
+$button-text-color: #ffffff;
+
 .new-task {
   width: 1000px;
   margin: 0 auto;
-}
 
-.new-task-form {
-  color: #555555;
-}
+  &-form {
+    color: $text-color;
+  }
 
-.new-task-select-list,
-.new-task-title,
-.new-task-detail {
-  width: 300px;
-  margin-bottom: 25px;
-}
+  &-select-list,
+  &-title,
+  &-detail {
+    width: 300px;
+    margin-bottom: 25px;
+  }
 
-.new-task-detail {
-  height: 200px;
-}
+  &-detail {
+    height: 200px;
+  }
 
-.new-task-button {
-  background-color: #242f9b;
-  color: #ffffff;
-  width: 80px;
-  height: 40px;
-  border-radius: 5px;
+  &-button {
+    background-color: $primary-color;
+    color: $button-text-color;
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+  }
 }
 
 .error-message {
-  color: #ff3333;
+  color: $error-color;
 }
