@@ -1,15 +1,18 @@
 @charset "utf-8";
 
+$primary-color: #242f9b;
+$text-color: #ffffff;
+
 .header {
   width: 100%;
   height: 80px;
-  background-color: #242f9b;
-  color: #ffffff;
+  background-color: $primary-color;
+  color: $text-color;
   display: flex;
   justify-content: space-between;
-}
 
-.sign-out-button {
-  color: #ffffff;
-  margin: auto 25px auto auto;
+  .sign-out-button {
+    color: $text-color;
+    margin: 25px;
+  }
 }
