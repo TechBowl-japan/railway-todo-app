@@ -1,35 +1,40 @@
 @charset "utf-8";
 
+$primary-color: #242f9b;
+$error-color: #ff3333;
+$text-color: #555555;
+$button-text-color: #ffffff;
+
 .signin {
   width: 500px;
   margin: 0 auto;
-}
 
-.signin-form {
-  margin: 25px 0;
-}
+  &-form {
+    margin: 25px 0;
+  }
 
-.email-label,
-.password-label {
-  color: #555555;
-}
+  .email-label,
+  .password-label {
+    color: $text-color;
+  }
 
-.email-input,
-.password-input {
-  width: 100%;
-  font-size: large;
-  height: 30px;
-  margin-bottom: 25px;
-}
+  .email-input,
+  .password-input {
+    width: 100%;
+    font-size: large;
+    height: 30px;
+    margin-bottom: 25px;
+  }
 
-.signin-button {
-  background-color: #242f9b;
-  color: #ffffff;
-  width: 100px;
-  height: 40px;
-  border-radius: 5px;
+  &-button {
+    background-color: $primary-color;
+    color: $button-text-color;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+  }
 }
 
 .error-message {
-  color: #ff3333;
+  color: $error-color;
 }
