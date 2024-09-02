@@ -115,6 +115,18 @@ export const Home = () => {
 
 // 表示するタスク
 const Tasks = (props) => {
+  const formatDate = (isoDateString) => {
+    const date = new Date(isoDateString);
+    date.setHours(date.getHours() - 9);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${year}/${month}/${day} ${hours}:${minutes}`;
+  };
+
   const { tasks, selectListId, isDoneDisplay } = props;
   if (tasks === null) return <></>;
 
@@ -125,15 +137,19 @@ const Tasks = (props) => {
           .filter((task) => {
             return task.done === true;
           })
-          .map((task, key) => (
-            <li key={key} className="task-item">
-              <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
-                {task.title}
-                <br />
-                {task.done ? '完了' : '未完了'}
-              </Link>
-            </li>
-          ))}
+          .map((task, key) => {
+            const limit = formatDate(task.limit);
+            return (
+              <li key={key} className="task-item">
+                <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
+                  <p>{task.title}</p>
+                  <p>期限：{limit}</p>
+                  <br />
+                  {task.done ? '完了' : '未完了'}
+                </Link>
+              </li>
+            );
+          })}
       </ul>
     );
   }
@@ -144,15 +160,19 @@ const Tasks = (props) => {
         .filter((task) => {
           return task.done === false;
         })
-        .map((task, key) => (
-          <li key={key} className="task-item">
-            <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
-              {task.title}
-              <br />
-              {task.done ? '完了' : '未完了'}
-            </Link>
-          </li>
-        ))}
+        .map((task, key) => {
+          const limit = formatDate(task.limit);
+
+          return (
+            <li key={key} className="task-item">
+              <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
+                <p>{task.title}</p>
+                <p>期限：{limit}</p>
+                {task.done ? '完了' : '未完了'}
+              </Link>
+            </li>
+          );
+        })}
     </ul>
   );
 };
