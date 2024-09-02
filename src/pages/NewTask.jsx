@@ -6,22 +6,34 @@ import { Header } from '../components/Header';
 import './newTask.scss';
 import { useNavigate } from 'react-router-dom';
 
+const format = (string) => {
+  const date = new Date(string);
+  date.setHours(date.getHours() + 9);
+  const isoString = date.toISOString();
+  const formattedString = isoString.slice(0, 19) + 'Z';
+  return formattedString;
+};
+
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
+  const [limit, setLimit] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
   const navigation = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
+  const handleLimitChange = (date) => setLimit(format(date.target.value));
+
   const onCreateTask = () => {
     const data = {
       title: title,
       detail: detail,
       done: false,
+      limit: limit,
     };
 
     axios
@@ -36,6 +48,7 @@ export const NewTask = () => {
       .catch((err) => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);
       });
+    console.log(data);
   };
 
   useEffect(() => {
@@ -82,6 +95,8 @@ export const NewTask = () => {
           <br />
           <textarea type="text" onChange={handleDetailChange} className="new-task-detail" />
           <br />
+          <label htmlFor="limit">期限</label>
+          <input type="datetime-local" id="limit" name="limit" onChange={handleLimitChange} />
           <button type="button" className="new-task-button" onClick={onCreateTask}>
             作成
           </button>
