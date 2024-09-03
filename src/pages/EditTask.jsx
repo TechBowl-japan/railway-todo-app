@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 import { url } from '../const';
 import { useNavigate, useParams } from 'react-router-dom';
 import './editTask.scss';
-import { formatForDisplay, formatDateToISO } from '../dateFormat';
+import { convertToDisplayDate, formatDateToISO } from '../dateFormat';
 
 export const EditTask = () => {
   const navigation = useNavigate();
@@ -72,7 +72,7 @@ export const EditTask = () => {
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
-        setLimit(formatForDisplay(task.limit));
+        setLimit(convertToDisplayDate(task.limit));
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
