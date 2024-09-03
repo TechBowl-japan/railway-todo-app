@@ -5,14 +5,7 @@ import { url } from '../const';
 import { Header } from '../components/Header';
 import './newTask.scss';
 import { useNavigate } from 'react-router-dom';
-
-const format = (string) => {
-  const date = new Date(string);
-  date.setHours(date.getHours() + 9);
-  const isoString = date.toISOString();
-  const formattedString = isoString.slice(0, 19) + 'Z';
-  return formattedString;
-};
+import { formatDateToISO } from '../dateFormat';
 
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();
@@ -26,14 +19,14 @@ export const NewTask = () => {
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
-  const handleLimitChange = (date) => setLimit(format(date.target.value));
+  const handleLimitChange = (date) => setLimit(date.target.value);
 
   const onCreateTask = () => {
     const data = {
       title: title,
       detail: detail,
       done: false,
-      limit: limit,
+      limit: formatDateToISO(limit),
     };
 
     axios

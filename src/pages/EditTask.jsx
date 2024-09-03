@@ -5,19 +5,7 @@ import { useCookies } from 'react-cookie';
 import { url } from '../const';
 import { useNavigate, useParams } from 'react-router-dom';
 import './editTask.scss';
-
-const formatForInput = (string) => {
-  const date = new Date(string);
-  return date.toISOString().slice(0, 16);
-};
-
-const format = (string) => {
-  const date = new Date(string);
-  date.setHours(date.getHours() + 9);
-  const isoString = date.toISOString();
-  const formattedString = isoString.slice(0, 19) + 'Z';
-  return formattedString;
-};
+import { formatForDisplay, formatDateToISO } from '../dateFormat';
 
 export const EditTask = () => {
   const navigation = useNavigate();
@@ -39,7 +27,7 @@ export const EditTask = () => {
       title: title,
       detail: detail,
       done: isDone,
-      limit: format(limit),
+      limit: formatDateToISO(limit),
     };
 
     axios
@@ -84,7 +72,7 @@ export const EditTask = () => {
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
-        setLimit(formatForInput(task.limit));
+        setLimit(formatForDisplay(task.limit));
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
