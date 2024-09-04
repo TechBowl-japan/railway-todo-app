@@ -6,6 +6,7 @@ import { Header } from '../components/Header';
 import { url } from '../const';
 import './home.scss';
 import { formatForDisplay, getTimeDifference } from '../dateUtils';
+import { TaskListItem } from '../components/TaskListItem';
 
 export const Home = () => {
   const [isDoneDisplay, setIsDoneDisplay] = useState('todo'); // todo->未完了 done->完了
@@ -130,14 +131,14 @@ const Tasks = (props) => {
           .map((task, key) => {
             const limit = formatForDisplay(task.limit);
             return (
-              <li key={key} className="task-item">
-                <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
-                  <p>{task.title}</p>
-                  <p>期限：{limit}</p>
-                  <br />
-                  {task.done ? '完了' : '未完了'}
-                </Link>
-              </li>
+              <TaskListItem
+                key={key}
+                title={task.title}
+                linkTo={`/lists/${selectListId}/tasks/${task.id}`}
+                limit={limit}
+                className={'task-item'}
+                done={task.done}
+              />
             );
           })}
       </ul>
@@ -155,14 +156,15 @@ const Tasks = (props) => {
           const timeLeft = getTimeDifference(task.limit);
 
           return (
-            <li key={key} className="task-item">
-              <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
-                <p>{task.title}</p>
-                <p>期限：{limit}</p>
-                <p>{timeLeft}</p>
-                {task.done ? '完了' : '未完了'}
-              </Link>
-            </li>
+            <TaskListItem
+              key={key}
+              title={task.title}
+              linkTo={`/lists/${selectListId}/tasks/${task.id}`}
+              limit={limit}
+              timeLeft={timeLeft}
+              className={'task-item'}
+              done={task.done}
+            />
           );
         })}
     </ul>
