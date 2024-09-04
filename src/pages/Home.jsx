@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Header } from '../components/Header';
 import { url } from '../const';
 import './home.scss';
-import { formatForDisplay } from '../dateFormat';
+import { formatForDisplay, getTimeDifference } from '../dateUtils';
 
 export const Home = () => {
   const [isDoneDisplay, setIsDoneDisplay] = useState('todo'); // todo->未完了 done->完了
@@ -117,6 +117,7 @@ export const Home = () => {
 // 表示するタスク
 const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
+
   if (tasks === null) return <></>;
 
   if (isDoneDisplay == 'done') {
@@ -151,12 +152,14 @@ const Tasks = (props) => {
         })
         .map((task, key) => {
           const limit = formatForDisplay(task.limit);
+          const timeLeft = getTimeDifference(task.limit);
 
           return (
             <li key={key} className="task-item">
               <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
                 <p>{task.title}</p>
                 <p>期限：{limit}</p>
+                <p>{timeLeft}</p>
                 {task.done ? '完了' : '未完了'}
               </Link>
             </li>
