@@ -5,7 +5,7 @@ import { url } from '../const';
 import { Header } from '../components/Header';
 import './newTask.scss';
 import { useNavigate } from 'react-router-dom';
-import { formatDateToISO } from '../dateUtils';
+import { formatDateToISO } from '../utils/dateUtils';
 
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();

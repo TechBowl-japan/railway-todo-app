@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 import { url } from '../const';
 import { useNavigate, useParams } from 'react-router-dom';
 import './editTask.scss';
-import { convertToDisplayDate, formatDateToISO } from '../dateUtils';
+import { convertToDisplayDate, formatDateToISO } from '../utils/dateUtils';
 
 export const EditTask = () => {
   const navigation = useNavigate();

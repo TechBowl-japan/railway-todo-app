@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Header } from '../components/Header';
 import { url } from '../const';
 import './home.scss';
-import { formatForDisplay, getTimeDifference } from '../dateUtils';
+import { formatForDisplay, getTimeDifference } from '../utils/dateUtils';
 import { TaskListItem } from '../components/TaskListItem';
 
 export const Home = () => {
