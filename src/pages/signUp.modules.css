@@ -1,0 +1,55 @@
+.signUp {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.signUp-form {
+  margin-top: 8px;
+}
+
+.signUp-Title {
+  color: #5555558a;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+}
+
+.email-label,
+.name-input-label,
+.password-input-label {
+  color: #5555558a;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+}
+
+.email-input,
+.name-input,
+.password-input {
+  width: 100%;
+  height: 30px;
+  border: 1px solid #55555545;
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 25px;
+}
+
+.signUp-button {
+  background-color: #6bbcb6f0;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.signUp-button:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.error-message {
+  color: #ff3333d1;
+}
