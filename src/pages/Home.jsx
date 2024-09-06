@@ -9,13 +9,13 @@ import { formatForDisplay, getTimeDifference } from '../utils/dateUtils';
 import { TaskListItem } from '../components/TaskListItem';
 
 export const Home = () => {
-  const [isDoneDisplay, setIsDoneDisplay] = useState('todo'); // todo->未完了 done->完了
+  const [isDoneDisplay, setIsDoneDisplay] = useState(false); // false->未完了 true->完了
   const [lists, setLists] = useState([]);
   const [selectListId, setSelectListId] = useState();
   const [tasks, setTasks] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
-  const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value);
+  const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value === 'done');
   useEffect(() => {
     axios
       .get(`${url}/lists`, {
@@ -121,47 +121,20 @@ const Tasks = (props) => {
 
   if (tasks === null) return <></>;
 
-  if (isDoneDisplay == 'done') {
-    return (
-      <ul>
-        {tasks
-          .filter((task) => {
-            return task.done === true;
-          })
-          .map((task, key) => {
-            const limit = formatForDisplay(task.limit);
-            return (
-              <TaskListItem
-                key={key}
-                title={task.title}
-                linkTo={`/lists/${selectListId}/tasks/${task.id}`}
-                limit={limit}
-                className={'task-item'}
-                done={task.done}
-              />
-            );
-          })}
-      </ul>
-    );
-  }
-
   return (
     <ul>
       {tasks
-        .filter((task) => {
-          return task.done === false;
-        })
+        .filter((task) => isDoneDisplay === task.done)
         .map((task, key) => {
           const limit = formatForDisplay(task.limit);
           const timeLeft = getTimeDifference(task.limit);
-
           return (
             <TaskListItem
               key={key}
               title={task.title}
               linkTo={`/lists/${selectListId}/tasks/${task.id}`}
               limit={limit}
-              timeLeft={timeLeft}
+              timeLeft={isDoneDisplay ? null : timeLeft}
               className={'task-item'}
               done={task.done}
             />
