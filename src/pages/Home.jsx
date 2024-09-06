@@ -65,6 +65,7 @@ export const Home = () => {
         setErrorMessage(`タスクの取得に失敗しました。${err}`);
       });
   };
+
   return (
     <div>
       <Header />
@@ -83,11 +84,11 @@ export const Home = () => {
             </div>
           </div>
           <ul className="list-tab">
-            {lists.map((list, key) => {
+            {lists.map((list) => {
               const isActive = list.id === selectListId;
               return (
                 <li
-                  key={key}
+                  key={list.id}
                   className={`list-tab-item ${isActive ? 'active' : ''}`}
                   onClick={() => handleSelectList(list.id)}
                 >
@@ -125,12 +126,12 @@ const Tasks = (props) => {
     <ul>
       {tasks
         .filter((task) => isDoneDisplay === task.done)
-        .map((task, key) => {
+        .map((task) => {
           const limit = formatForDisplay(task.limit);
           const timeLeft = getTimeDifference(task.limit);
           return (
             <TaskListItem
-              key={key}
+              key={task.id}
               title={task.title}
               linkTo={`/lists/${selectListId}/tasks/${task.id}`}
               limit={limit}
