@@ -119,7 +119,7 @@ export const Home = () => {
 const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
 
-  if (tasks === null) return <></>;
+  if (tasks === null) return null;
 
   return (
     <ul>
