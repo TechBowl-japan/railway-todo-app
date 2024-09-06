@@ -5,8 +5,7 @@ import axios from 'axios';
 import { Header } from '../components/Header';
 import { url } from '../const';
 import './home.scss';
-import { formatForDisplay, getTimeDifference } from '../utils/dateUtils';
-import { TaskListItem } from '../components/TaskListItem';
+import Tasks from '../components/Tasks';
 
 export const Home = () => {
   const [isDoneDisplay, setIsDoneDisplay] = useState(false); // false->未完了 true->完了
@@ -113,34 +112,5 @@ export const Home = () => {
         </div>
       </main>
     </div>
-  );
-};
-
-// 表示するタスク
-const Tasks = (props) => {
-  const { tasks, selectListId, isDoneDisplay } = props;
-
-  if (tasks === null) return null;
-
-  return (
-    <ul>
-      {tasks
-        .filter((task) => isDoneDisplay === task.done)
-        .map((task) => {
-          const limit = formatForDisplay(task.limit);
-          const timeLeft = getTimeDifference(task.limit);
-          return (
-            <TaskListItem
-              key={task.id}
-              title={task.title}
-              linkTo={`/lists/${selectListId}/tasks/${task.id}`}
-              limit={limit}
-              timeLeft={isDoneDisplay ? null : timeLeft}
-              className={'task-item'}
-              done={task.done}
-            />
-          );
-        })}
-    </ul>
   );
 };
