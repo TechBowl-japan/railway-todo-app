@@ -1,0 +1,29 @@
+.header {
+  width: 100%;
+  height: 80px;
+  background-color: #6bbcb6f0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-title {
+  color: #ffffff;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+  margin: 16px;
+}
+
+.sign-out-button {
+  color: #ffffff;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+  margin: 25px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.sign-out-button:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
