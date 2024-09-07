@@ -43,12 +43,22 @@ export const SignIn = () => {
           <label htmlFor="email" className={styles.emailLabel}>
             メールアドレス
           </label>
-          <input type="email" className={styles.emailInput} onChange={handleEmailChange} />
+          <input
+            type="email"
+            id="email"
+            className={styles.emailInput}
+            onChange={handleEmailChange}
+          />
 
           <label htmlFor="password" className={styles.passwordLabel}>
             パスワード
           </label>
-          <input type="password" className={styles.passwordInput} onChange={handlePasswordChange} />
+          <input
+            type="password"
+            id="password"
+            className={styles.passwordInput}
+            onChange={handlePasswordChange}
+          />
 
           <button type="button" className={styles.signInButton} onClick={onSignIn}>
             ログインする
