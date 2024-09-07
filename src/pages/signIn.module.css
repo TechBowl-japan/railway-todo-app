@@ -27,6 +27,7 @@
 .emailInput,
 .passwordInput {
   width: 100%;
+  box-sizing: border-box;
   border: 1px solid #55555545;
   border-radius: 8px;
   padding: 16px;
@@ -63,4 +64,39 @@
 .signUpLink:hover {
   opacity: 0.4;
   transform: scale(1.05);
+}
+
+@media screen and (max-width: 375px) {
+  .signIn {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 24px;
+  }
+
+  .signInTitle {
+    font-size: 18px;
+  }
+
+  .emailLabel,
+  .passwordLabel {
+    font-size: 12px;
+    margin-top: 18px;
+  }
+
+  .emailInput,
+  .passwordInput {
+    padding: 12px;
+    margin-top: 4px;
+  }
+
+  .signInButton {
+    width: 80px;
+    height: 32px;
+    font-size: 10px;
+    margin: 18px 0 12px;
+  }
+
+  .signUpLink {
+    font-size: 12px;
+  }
 }
