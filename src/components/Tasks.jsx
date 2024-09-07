@@ -1,5 +1,6 @@
 import { formatForDisplay, getTimeDifference } from '../utils/dateUtils';
 import { TaskListItem } from '../components/TaskListItem';
+import style from './tasks.module.css';
 
 export default function Tasks(props) {
   const { tasks, selectListId, isDoneDisplay } = props;
@@ -20,7 +21,7 @@ export default function Tasks(props) {
               linkTo={`/lists/${selectListId}/tasks/${task.id}`}
               limit={limit}
               timeLeft={isDoneDisplay ? null : timeLeft}
-              className={'task-item'}
+              className={style.taskItem}
               done={task.done}
             />
           );

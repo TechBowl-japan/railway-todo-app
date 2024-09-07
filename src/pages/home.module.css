@@ -1,0 +1,80 @@
+.taskList {
+  margin: 50px auto;
+  list-style: none;
+  width: 1000px;
+}
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.listMainTitle,
+.taskListMainTitle {
+  font-size: 24px;
+  color: #201d1d;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+}
+
+.taskListMainTitle {
+  margin-top: 24px;
+}
+
+.listMenu {
+  text-align: right;
+}
+
+.listTab {
+  list-style: none;
+  display: flex;
+  overflow-x: auto;
+}
+.listTabItem {
+  width: 100px;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+  border: 1px solid #55555545;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 24px;
+  margin-right: 5px;
+}
+
+.listTabItemActive {
+  background-color: #00000033;
+  color: white;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+}
+
+.tasks {
+  margin-top: 25px;
+}
+.tasksHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskItemLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.errorMessage {
+  color: #ff3333d1;
+}
+
+.displaySelectWrapper {
+  width: 100px;
+  margin: 12px 0 0 auto;
+}
+
+.displaySelect {
+  width: 100%;
+  border-radius: 4px;
+  padding: 4px;
+}

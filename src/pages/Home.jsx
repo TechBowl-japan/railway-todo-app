@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { Header } from '../components/Header';
 import { url } from '../const';
-import './home.scss';
+import styles from './home.module.css';
 import Tasks from '../components/Tasks';
 
 export const Home = () => {
@@ -68,12 +68,12 @@ export const Home = () => {
   return (
     <div>
       <Header />
-      <main className="taskList">
-        <p className="error-message">{errorMessage}</p>
+      <main className={styles.taskList}>
+        <p className={styles.errorMessage}>{errorMessage}</p>
         <div>
-          <div className="list-header">
-            <h2>リスト一覧</h2>
-            <div className="list-menu">
+          <div className={styles.listHeader}>
+            <h1 className={styles.listMainTitle}>リスト一覧</h1>
+            <div className={styles.listMenu}>
               <p>
                 <Link to="/list/new">リスト新規作成</Link>
               </p>
@@ -82,13 +82,13 @@ export const Home = () => {
               </p>
             </div>
           </div>
-          <ul className="list-tab">
+          <ul className={styles.listTab}>
             {lists.map((list) => {
               const isActive = list.id === selectListId;
               return (
                 <li
                   key={list.id}
-                  className={`list-tab-item ${isActive ? 'active' : ''}`}
+                  className={`${styles.listTabItem} ${isActive ? styles.listTabItemActive : ''}`}
                   onClick={() => handleSelectList(list.id)}
                 >
                   {list.title}
@@ -96,13 +96,13 @@ export const Home = () => {
               );
             })}
           </ul>
-          <div className="tasks">
-            <div className="tasks-header">
-              <h2>タスク一覧</h2>
+          <div className={styles.tasks}>
+            <div className={styles.tasksHeader}>
+              <h1 className={styles.taskListMainTitle}>タスク一覧</h1>
               <Link to="/task/new">タスク新規作成</Link>
             </div>
-            <div className="display-select-wrapper">
-              <select onChange={handleIsDoneDisplayChange} className="display-select">
+            <div className={styles.displaySelectWrapper}>
+              <select onChange={handleIsDoneDisplayChange} className={styles.displaySelect}>
                 <option value="todo">未完了</option>
                 <option value="done">完了</option>
               </select>
