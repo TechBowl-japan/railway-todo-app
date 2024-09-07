@@ -1,10 +1,10 @@
-.new-list {
+.newList {
   width: 500px;
   margin: 0 auto;
   margin-top: 24px;
 }
 
-.taskList-title-input {
+.taskListTitleInput {
   width: 100%;
   border: 1px solid #55555545;
   font-size: 16px;
@@ -12,19 +12,20 @@
   padding: 16px;
 }
 
-.new-list-title,
-.title-input-label {
+.newListTitle,
+.titleInputLabel {
   display: block;
   color: #5555558a;
   font-family: 'TsukuARdGothic-Regular';
   font-weight: bold;
+  margin-top: 24px;
 }
 
-.new-list-title {
+.newListTitle {
   margin-top: 40px;
 }
 
-.new-list-button {
+.newListButton {
   background-color: #6bbcb6f0;
   color: #ffffff;
   font-weight: bold;
@@ -37,11 +38,11 @@
     transform 0.3s ease;
 }
 
-.new-list-button:hover {
+.newListButton:hover {
   opacity: 0.8;
   transform: scale(1.05);
 }
 
-.error-message {
+.errorMessage {
   color: #ff3333d1;
 }

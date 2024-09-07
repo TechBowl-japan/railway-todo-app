@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { signIn } from '../authSlice';
 import { Header } from '../components/Header';
 import { url } from '../const';
-import './signUp.modules.css';
+import styles from './signUp.module.css';
 
 export const SignUp = () => {
   const navigation = useNavigate();
@@ -44,26 +44,30 @@ export const SignUp = () => {
   return (
     <div>
       <Header />
-      <main className="signUp">
-        <h1 className="signUp-Title">新規作成</h1>
-        <p className="error-message">{errorMessage}</p>
-        <form className="signUp-form">
-          <label className="email-label">
+      <main className={styles.signUp}>
+        <h1 className={styles.signUpTitle}>新規作成</h1>
+        <p className={styles.errorMessage}>{errorMessage}</p>
+        <form className={styles.signUpForm}>
+          <label className={styles.emailLabel}>
             メールアドレス
-            <input type="email" onChange={handleEmailChange} className="email-input" />
+            <input type="email" onChange={handleEmailChange} className={styles.emailInput} />
           </label>
 
-          <label className="name-input-label">
+          <label className={styles.nameInputLabel}>
             ユーザ名
-            <input type="text" onChange={handleNameChange} className="name-input" />
+            <input type="text" onChange={handleNameChange} className={styles.nameInput} />
           </label>
 
-          <label className="password-input-label">
+          <label className={styles.passwordInputLabel}>
             パスワード
-            <input type="password" onChange={handlePasswordChange} className="password-input" />
+            <input
+              type="password"
+              onChange={handlePasswordChange}
+              className={styles.passwordInput}
+            />
           </label>
 
-          <button type="button" onClick={onSignUp} className="signUp-button">
+          <button type="button" onClick={onSignUp} className={styles.signUpButton}>
             作成
           </button>
         </form>

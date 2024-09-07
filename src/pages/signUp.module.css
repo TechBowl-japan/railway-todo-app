@@ -1,59 +1,55 @@
-.new-task {
+.signUp {
   width: 500px;
   margin: 0 auto;
   margin-top: 24px;
 }
 
-.new-task-title {
+.signUpForm {
+  margin-top: 8px;
+}
+
+.signUpTitle {
   color: #5555558a;
   font-family: 'TsukuARdGothic-Regular';
   font-weight: bold;
-  margin-top: 24px;
 }
 
-.task-select-list-label,
-.title-input-label,
-.detail-input-label,
-.limit-input-label {
-  display: block;
+.emailLabel,
+.nameInputLabel,
+.passwordInputLabel {
   color: #5555558a;
   font-family: 'TsukuARdGothic-Regular';
   font-weight: bold;
-  margin-top: 24px;
 }
 
-.new-task-select-list,
-.task-title-input,
-.task-detail-input,
-.task-limit-input {
+.emailInput,
+.nameInput,
+.passwordInput {
   width: 100%;
+  height: 30px;
   border: 1px solid #55555545;
   border-radius: 8px;
   padding: 8px;
+  margin-bottom: 25px;
 }
 
-.task-detail-input {
-  height: 54px;
-}
-
-.new-task-button {
+.signUpButton {
   background-color: #6bbcb6f0;
   color: #ffffff;
   font-weight: bold;
   width: 100px;
   height: 40px;
   border-radius: 8px;
-  margin-top: 24px;
   transition:
     background-color 0.3s ease,
     transform 0.3s ease;
 }
 
-.new-task-button:hover {
+.signUpButton:hover {
   opacity: 0.8;
   transform: scale(1.05);
 }
 
-.error-message {
+.errorMessage {
   color: #ff3333d1;
 }

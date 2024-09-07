@@ -4,60 +4,63 @@
   margin-top: 24px;
 }
 
-.signIn-form {
-  margin: 8px;
+.signInForm {
+  margin-top: 16px;
 }
 
-.signIn-title {
+.signInTitle {
   color: #5555558a;
   font-family: 'TsukuARdGothic-Regular';
   font-weight: bold;
+  margin-top: 40px;
 }
 
-.email-label,
-.password-label {
+.emailLabel,
+.passwordLabel {
+  display: block;
   color: #5555558a;
   font-family: 'TsukuARdGothic-Regular';
   font-weight: bold;
+  margin-top: 16px;
 }
 
-.email-input,
-.password-input {
+.emailInput,
+.passwordInput {
   width: 100%;
-  font-size: large;
-  height: 30px;
-  margin-bottom: 25px;
+  border: 1px solid #55555545;
+  border-radius: 8px;
+  padding: 16px;
 }
 
-.signIn-button {
+.signInButton {
   background-color: #6bbcb6f0;
   color: #ffffff;
   font-weight: bold;
   border-radius: 8px;
   width: 100px;
   height: 40px;
-  margin-bottom: 8px;
+  margin: 24px 0px;
   transition:
     background-color 0.3s ease,
     transform 0.3s ease;
 }
 
-.signIn-button:hover {
+.signInButton:hover {
   opacity: 0.8;
   transform: scale(1.05);
 }
 
-.error-message {
+.errorMessage {
   color: #ff3333d1;
 }
 
-.signUp-link {
+.signUpLink {
   transition:
     background-color 0.3s ease,
     transform 0.3s ease;
 }
 
-.signUp-link:hover {
+.signUpLink:hover {
   opacity: 0.4;
   transform: scale(1.05);
 }
