@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { Navigate, useNavigate, Link } from 'react-router-dom';
 import { Header } from '../components/Header';
-import './signin.scss';
+import './signIn.modules.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from '../authSlice';
 import { url } from '../const';
@@ -36,23 +36,27 @@ export const SignIn = () => {
   return (
     <div>
       <Header />
-      <main className="signin">
-        <h2>サインイン</h2>
+      <main className="signIn">
+        <h1 className="signIn-title">ログイン</h1>
         <p className="error-message">{errorMessage}</p>
-        <form className="signin-form">
-          <label className="email-label">メールアドレス</label>
-          <br />
-          <input type="email" className="email-input" onChange={handleEmailChange} />
-          <br />
-          <label className="password-label">パスワード</label>
-          <br />
-          <input type="password" className="password-input" onChange={handlePasswordChange} />
-          <br />
-          <button type="button" className="signin-button" onClick={onSignIn}>
-            サインイン
+        <form className="signIn-form">
+          <label className="email-label">
+            メールアドレス
+            <input type="email" className="email-input" onChange={handleEmailChange} />
+          </label>
+
+          <label className="password-label">
+            パスワード
+            <input type="password" className="password-input" onChange={handlePasswordChange} />
+          </label>
+
+          <button type="button" className="signIn-button" onClick={onSignIn}>
+            ログインする
           </button>
         </form>
-        <Link to="/signup">新規作成</Link>
+        <Link to="/signup" className="signUp-link">
+          新規作成はこちら
+        </Link>
       </main>
     </div>
   );

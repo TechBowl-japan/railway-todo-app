@@ -1,0 +1,63 @@
+.signIn {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.signIn-form {
+  margin: 8px;
+}
+
+.signIn-title {
+  color: #5555558a;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+}
+
+.email-label,
+.password-label {
+  color: #5555558a;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+}
+
+.email-input,
+.password-input {
+  width: 100%;
+  font-size: large;
+  height: 30px;
+  margin-bottom: 25px;
+}
+
+.signIn-button {
+  background-color: #6bbcb6f0;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 8px;
+  width: 100px;
+  height: 40px;
+  margin-bottom: 8px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.signIn-button:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.error-message {
+  color: #ff3333d1;
+}
+
+.signUp-link {
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.signUp-link:hover {
+  opacity: 0.4;
+  transform: scale(1.05);
+}
