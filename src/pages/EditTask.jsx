@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { url } from '../const';
 import { useNavigate, useParams } from 'react-router-dom';
-import './editTask.scss';
+import styles from './editTask.module.css';
 import { convertToDisplayDate, formatDateToISO } from '../utils/dateUtils';
 
 export const EditTask = () => {
@@ -82,37 +82,38 @@ export const EditTask = () => {
   return (
     <div>
       <Header />
-      <main className="edit-task">
-        <h2>タスク編集</h2>
-        <p className="error-message">{errorMessage}</p>
-        <form className="edit-task-form">
-          <label>タイトル</label>
-          <br />
+      <main className={styles.editTask}>
+        <h1 className={styles.editMainTitle}>タスク編集</h1>
+        <p className={styles.errorMessage}>{errorMessage}</p>
+        <form>
+          <label className={styles.editTitleLabel}>タイトル</label>
           <input
             type="text"
             onChange={handleTitleChange}
-            className="edit-task-title"
+            className={styles.editTaskTitle}
             value={title}
           />
-          <br />
-          <label>詳細</label>
-          <br />
+          <label htmlFor="edit-detail-label" className={styles.editDetailLabel}>
+            詳細
+          </label>
           <textarea
             type="text"
+            id="edit-detail-label"
             onChange={handleDetailChange}
-            className="edit-task-detail"
+            className={styles.editTaskDetail}
             value={detail}
           />
-          <br />
-          <label htmlFor="limit">期限</label>
+          <label htmlFor="edit-limit-label" className={styles.editLimitLabel}>
+            期限
+          </label>
           <input
             type="datetime-local"
-            id="limit"
+            id="edit-limit-label"
             name="limit"
             value={limit}
             onChange={handleLimitChange}
+            className={styles.editTaskLimit}
           />
-          <br />
           <div>
             <input
               type="radio"
@@ -121,6 +122,7 @@ export const EditTask = () => {
               value="todo"
               onChange={handleIsDoneChange}
               checked={isDone === false ? 'checked' : ''}
+              className={styles.NotCompletionSelect}
             />
             未完了
             <input
@@ -130,13 +132,14 @@ export const EditTask = () => {
               value="done"
               onChange={handleIsDoneChange}
               checked={isDone === true ? 'checked' : ''}
+              className={styles.completionSelect}
             />
             完了
           </div>
-          <button type="button" className="delete-task-button" onClick={onDeleteTask}>
+          <button type="button" className={styles.deleteTaskButton} onClick={onDeleteTask}>
             削除
           </button>
-          <button type="button" className="edit-task-button" onClick={onUpdateTask}>
+          <button type="button" className={styles.editTaskButton} onClick={onUpdateTask}>
             更新
           </button>
         </form>

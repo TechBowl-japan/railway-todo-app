@@ -1,0 +1,85 @@
+.editTask {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.editMainTitle {
+  color: #5555558a;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.editTitleLabel,
+.editDetailLabel,
+.editLimitLabel {
+  display: block;
+  color: #5555558a;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+.editTaskTitle,
+.editTaskDetail,
+.editTaskLimit {
+  width: 100%;
+  border: 1px solid #55555545;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.editTaskDetail {
+  height: 54px;
+}
+
+.NotCompletionSelect,
+.completionSelect {
+  margin-top: 24px;
+}
+
+.completionSelect {
+  margin-left: 16px;
+}
+
+.deleteTaskButton {
+  background-color: #ff3333d1;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 24px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.deleteTaskButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.editTaskButton {
+  background-color: #6bbcb6f0;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 24px;
+  margin-left: 16px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.editTaskButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.errorMessage {
+  color: #ff3333d1;
+}
