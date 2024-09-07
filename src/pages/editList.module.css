@@ -19,6 +19,7 @@
 }
 
 .editListTitle {
+  box-sizing: border-box;
   width: 100%;
   border: 1px solid #55555545;
   border-radius: 8px;
@@ -64,4 +65,35 @@
 
 .errorMessage {
   color: #ff3333d1;
+}
+
+@media screen and (max-width: 375px) {
+  .editList {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .editMainTitle {
+    font-size: 24px;
+  }
+
+  .editListTitleLabel {
+    margin-top: 18px;
+  }
+
+  .editListTitle {
+    padding: 12px;
+    margin-top: 4px;
+  }
+
+  .deleteListButton {
+    width: 80px;
+    height: 32px;
+  }
+
+  .editListButton {
+    width: 80px;
+    height: 32px;
+    margin-left: 8px;
+  }
 }
