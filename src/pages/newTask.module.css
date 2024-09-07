@@ -27,6 +27,7 @@
 .taskDetailInput,
 .taskLimitInput {
   width: 100%;
+  box-sizing: border-box;
   border: 1px solid #55555545;
   border-radius: 8px;
   padding: 8px;
@@ -56,4 +57,30 @@
 
 .errorMessage {
   color: #ff3333d1;
+}
+
+@media screen and (max-width: 375px) {
+  .newTask {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 24px;
+  }
+
+  .newTaskTitle {
+    font-size: 18px;
+  }
+
+  .taskSelectListLabel,
+  .titleInputLabel,
+  .detailInputLabel,
+  .limitInputLabel {
+    font-size: 12px;
+    margin-top: 18px;
+  }
+
+  .newTaskButton {
+    width: 80px;
+    height: 32px;
+    margin-top: 18px;
+  }
 }
