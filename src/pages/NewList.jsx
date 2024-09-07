@@ -38,8 +38,15 @@ export const NewList = () => {
         <h1 className={styles.newListTitle}>リスト新規作成</h1>
         <p className={styles.errorMessage}>{errorMessage}</p>
         <form>
-          <label className={styles.titleInputLabel}>タイトル</label>
-          <input type="text" onChange={handleTitleChange} className={styles.taskListTitleInput} />
+          <label htmlFor="taskListTitleInput" className={styles.titleInputLabel}>
+            タイトル
+          </label>
+          <input
+            type="text"
+            id="taskListTitleInput"
+            onChange={handleTitleChange}
+            className={styles.taskListTitleInput}
+          />
           <button type="button" onClick={onCreateList} className={styles.newListButton}>
             作成
           </button>

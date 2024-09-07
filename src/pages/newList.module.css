@@ -6,6 +6,7 @@
 
 .taskListTitleInput {
   width: 100%;
+  box-sizing: border-box;
   border: 1px solid #55555545;
   font-size: 16px;
   border-radius: 8px;
@@ -45,4 +46,33 @@
 
 .errorMessage {
   color: #ff3333d1;
+}
+
+@media screen and (max-width: 768px) {
+  .newList {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .newListTitle {
+    font-size: 24px;
+  }
+  .newList {
+    width: 300px;
+    margin: 0 16px;
+    margin-top: 24px;
+  }
+
+  .titleInputLabel {
+    margin-top: 12px;
+  }
+  .taskListTitleInput {
+    padding: 12px;
+  }
+
+  .newListButton {
+    width: 80px;
+    height: 32px;
+  }
 }
