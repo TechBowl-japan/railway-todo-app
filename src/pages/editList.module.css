@@ -1,0 +1,67 @@
+.editList {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.editMainTitle {
+  color: #5555558a;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.editListTitleLabel {
+  display: block;
+  color: #5555558a;
+  font-family: 'TsukuARdGothic-Regular';
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+.editListTitle {
+  width: 100%;
+  border: 1px solid #55555545;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.deleteListButton {
+  background-color: #ff3333d1;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 24px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.deleteListButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.editListButton {
+  background-color: #6bbcb6f0;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 24px;
+  margin-left: 16px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.editListButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.errorMessage {
+  color: #ff3333d1;
+}
