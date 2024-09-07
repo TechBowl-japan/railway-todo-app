@@ -2,8 +2,24 @@
   list-style-type: none;
   width: 500px;
   background-color: #d4d3d34a;
-  padding: 16px;
   border: 1px solid #55555545;
   border-radius: 4px;
-  margin-top: 8px;
+  padding: 16px;
+  margin: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .taskItem {
+    width: auto;
+    padding: 8px;
+    margin: 16px 80px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .taskItem {
+    width: auto;
+    padding: 8px;
+    margin: 16px;
+  }
 }
