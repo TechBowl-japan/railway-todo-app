@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Header } from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 import { url } from '../const';
-import './newList.scss';
+import './newList.modules.css';
 
 export const NewList = () => {
   const [cookies] = useCookies();
@@ -35,13 +35,11 @@ export const NewList = () => {
     <div>
       <Header />
       <main className="new-list">
-        <h2>リスト新規作成</h2>
+        <h1 className="new-list-title">リスト新規作成</h1>
         <p className="error-message">{errorMessage}</p>
-        <form className="new-list-form">
-          <label>タイトル</label>
-          <br />
-          <input type="text" onChange={handleTitleChange} className="new-list-title" />
-          <br />
+        <form>
+          <label className="title-input-label">タイトル</label>
+          <input type="text" onChange={handleTitleChange} className="taskList-title-input" />
           <button type="button" onClick={onCreateList} className="new-list-button">
             作成
           </button>
