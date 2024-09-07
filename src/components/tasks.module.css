@@ -1,0 +1,9 @@
+.taskItem {
+  list-style-type: none;
+  width: 500px;
+  background-color: #d4d3d34a;
+  padding: 16px;
+  border: 1px solid #55555545;
+  border-radius: 4px;
+  margin-top: 8px;
+}
