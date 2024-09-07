@@ -83,3 +83,40 @@
 .errorMessage {
   color: #ff3333d1;
 }
+
+@media screen and (max-width: 375px) {
+  .editTask {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 24px;
+  }
+
+  .editMainTitle {
+    font-size: 18px;
+  }
+
+  .editTitleLabel,
+  .editDetailLabel,
+  .editLimitLabel {
+    font-size: 12px;
+    margin-top: 18px;
+  }
+
+  .editTaskTitle,
+  .editTaskDetail,
+  .editTaskLimit {
+    margin-top: 4px;
+  }
+
+  .deleteTaskButton {
+    width: 80px;
+    height: 32px;
+    margin-top: 18px;
+  }
+
+  .editTaskButton {
+    width: 80px;
+    height: 32px;
+    margin-top: 18px;
+  }
+}
