@@ -48,24 +48,30 @@ export const SignUp = () => {
         <h1 className={styles.signUpTitle}>新規作成</h1>
         <p className={styles.errorMessage}>{errorMessage}</p>
         <form className={styles.signUpForm}>
-          <label className={styles.emailLabel}>
+          <label htmlFor="email" className={styles.emailLabel}>
             メールアドレス
-            <input type="email" onChange={handleEmailChange} className={styles.emailInput} />
           </label>
+          <input
+            type="email"
+            id="email"
+            onChange={handleEmailChange}
+            className={styles.emailInput}
+          />
 
-          <label className={styles.nameInputLabel}>
+          <label htmlFor="name" className={styles.nameInputLabel}>
             ユーザ名
-            <input type="text" onChange={handleNameChange} className={styles.nameInput} />
           </label>
+          <input type="text" id="name" onChange={handleNameChange} className={styles.nameInput} />
 
-          <label className={styles.passwordInputLabel}>
+          <label htmlFor="password" className={styles.passwordInputLabel}>
             パスワード
-            <input
-              type="password"
-              onChange={handlePasswordChange}
-              className={styles.passwordInput}
-            />
           </label>
+          <input
+            type="password"
+            id="password"
+            onChange={handlePasswordChange}
+            className={styles.passwordInput}
+          />
 
           <button type="button" onClick={onSignUp} className={styles.signUpButton}>
             作成

@@ -27,6 +27,7 @@
 .passwordInput {
   width: 100%;
   height: 30px;
+  box-sizing: border-box;
   border: 1px solid #55555545;
   border-radius: 8px;
   padding: 8px;
@@ -52,4 +53,36 @@
 
 .errorMessage {
   color: #ff3333d1;
+}
+
+@media screen and (max-width: 375px) {
+  .signUp {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 24px;
+  }
+
+  .signUpTitle {
+    font-size: 18px;
+  }
+
+  .emailLabel,
+  .nameInputLabel,
+  .passwordInputLabel {
+    font-size: 12px;
+    margin-top: 18px;
+  }
+
+  .emailInput,
+  .nameInput,
+  .passwordInput {
+    padding: 18px;
+    margin-top: 4px;
+  }
+
+  .signUpButton {
+    width: 80px;
+    height: 32px;
+    font-size: 10px;
+  }
 }
