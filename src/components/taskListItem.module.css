@@ -17,14 +17,14 @@
 }
 
 .timeLeft {
-  font-size: 12px;
+  font-size: 16px;
   font-family: 'TsukuARdGothic-Regular';
   font-weight: bold;
   margin-top: 4px;
 }
 
 .done {
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'TsukuARdGothic-Regular';
   font-weight: bold;
   margin-top: 4px;
@@ -32,36 +32,6 @@
 
 @media screen and (max-width: 768px) {
   .taskTitle {
-    font-size: 18px;
-  }
-
-  .limit {
-    font-size: 14px;
-  }
-
-  .timeLeft {
-    font-size: 14px;
-  }
-
-  .done {
-    font-size: 16px;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .taskTitle {
-    font-size: 16px;
-  }
-
-  .limit {
-    font-size: 12px;
-  }
-
-  .timeLeft {
-    font-size: 12px;
-  }
-
-  .done {
-    font-size: 14px;
+    font-size: 20px;
   }
 }

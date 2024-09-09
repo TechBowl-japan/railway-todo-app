@@ -102,10 +102,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .listTab {
-    font-size: 18px;
-  }
-
   .tasksHeader {
     margin: 0 16px;
   }
@@ -113,37 +109,27 @@
   .displaySelectWrapper {
     width: 100px;
   }
-}
-
-@media screen and (max-width: 375px) {
-  .listMainTitle {
-    font-size: 16px;
-  }
-
-  .listMenu {
-    font-size: 14px;
-  }
 
   .listTab {
     flex-wrap: wrap;
     margin: 16px;
   }
 
-  .listTabItem {
-    width: 100%;
-    padding: 0 12px;
-    font-size: 14px;
+  .displaySelect {
+    padding: 4px;
   }
+}
 
-  .tasksHeader {
-    font-size: 14px;
+@media screen and (max-width: 375px) {
+  .listMainTitle {
+    font-size: 20px;
   }
 
   .taskListMainTitle {
-    font-size: 16px;
+    font-size: 20px;
   }
 
-  .displaySelect {
-    padding: 4px;
+  .listTabItem {
+    font-size: 16px;
   }
 }
