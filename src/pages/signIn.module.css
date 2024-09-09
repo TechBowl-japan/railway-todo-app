@@ -1,5 +1,5 @@
 .signIn {
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
   margin-top: 24px;
 }
@@ -30,6 +30,7 @@
   box-sizing: border-box;
   border: 1px solid #55555545;
   border-radius: 8px;
+  font-size: 18px;
   padding: 16px;
 }
 
@@ -66,37 +67,41 @@
   transform: scale(1.05);
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 768px) {
   .signIn {
-    width: 300px;
-    margin: 0 auto;
+    padding: 0 12px;
+  }
+
+  .signInTitle {
+    font-size: 24px;
     margin-top: 24px;
   }
 
+  .emailInput,
+  .passwordInput {
+    padding: 12px;
+  }
+  .signInButton {
+    width: 100%;
+    font-size: 16px;
+    margin: 18px 0 12px;
+  }
+}
+
+@media screen and (max-width: 375px) {
   .signInTitle {
     font-size: 18px;
   }
 
   .emailLabel,
   .passwordLabel {
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 18px;
   }
 
   .emailInput,
   .passwordInput {
-    padding: 12px;
+    font-size: 16px;
     margin-top: 4px;
-  }
-
-  .signInButton {
-    width: 80px;
-    height: 32px;
-    font-size: 10px;
-    margin: 18px 0 12px;
-  }
-
-  .signUpLink {
-    font-size: 12px;
   }
 }
