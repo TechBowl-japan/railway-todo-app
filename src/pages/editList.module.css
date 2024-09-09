@@ -1,5 +1,5 @@
 .editList {
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -67,14 +67,14 @@
   color: #ff3333d1;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 768px) {
   .editList {
-    width: 300px;
-    margin: 0 auto;
+    padding: 0 12px;
   }
 
   .editMainTitle {
     font-size: 24px;
+    margin-top: 24px;
   }
 
   .editListTitleLabel {
@@ -87,13 +87,18 @@
   }
 
   .deleteListButton {
-    width: 80px;
-    height: 32px;
+    width: 100%;
   }
 
   .editListButton {
-    width: 80px;
-    height: 32px;
-    margin-left: 8px;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 18px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .editMainTitle {
+    font-size: 20px;
   }
 }

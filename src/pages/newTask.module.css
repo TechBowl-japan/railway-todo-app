@@ -84,6 +84,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .newTaskTitle {
+    font-size: 20px;
+  }
+
   .newTaskSelectList,
   .taskTitleInput,
   .taskDetailInput,
