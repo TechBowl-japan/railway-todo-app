@@ -1,5 +1,5 @@
 .editTask {
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
   margin-top: 24px;
 }
@@ -16,6 +16,7 @@
 .editLimitLabel {
   display: block;
   color: #5555558a;
+  font-size: 18px;
   font-family: 'TsukuARdGothic-Regular';
   font-weight: bold;
   margin-top: 24px;
@@ -25,9 +26,11 @@
 .editTaskDetail,
 .editTaskLimit {
   width: 100%;
+  box-sizing: border-box;
   border: 1px solid #55555545;
   border-radius: 8px;
   padding: 8px;
+  margin-top: 4px;
 }
 
 .editTaskDetail {
@@ -84,21 +87,19 @@
   color: #ff3333d1;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 768px) {
   .editTask {
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 24px;
+    padding: 0 12px;
   }
 
   .editMainTitle {
-    font-size: 18px;
+    font-size: 24px;
   }
 
   .editTitleLabel,
   .editDetailLabel,
   .editLimitLabel {
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 18px;
   }
 
@@ -109,14 +110,19 @@
   }
 
   .deleteTaskButton {
-    width: 80px;
-    height: 32px;
+    width: 100%;
     margin-top: 18px;
   }
 
   .editTaskButton {
-    width: 80px;
-    height: 32px;
+    width: 100%;
+    margin-left: 0;
     margin-top: 18px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .editMainTitle {
+    font-size: 20px;
   }
 }
