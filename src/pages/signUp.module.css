@@ -1,5 +1,5 @@
 .signUp {
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
   margin-top: 24px;
 }
@@ -30,7 +30,8 @@
   box-sizing: border-box;
   border: 1px solid #55555545;
   border-radius: 8px;
-  padding: 8px;
+  font-size: 18px;
+  padding: 24px;
   margin-bottom: 25px;
 }
 
@@ -55,34 +56,41 @@
   color: #ff3333d1;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 768px) {
   .signUp {
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 24px;
+    padding: 12px;
+    margin-top: 0;
   }
 
   .signUpTitle {
-    font-size: 18px;
+    font-size: 24px;
+    margin: 12px 0;
   }
 
   .emailLabel,
   .nameInputLabel,
   .passwordInputLabel {
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 18px;
   }
 
   .emailInput,
   .nameInput,
   .passwordInput {
-    padding: 18px;
+    font-size: 16px;
+    padding: 20px;
     margin-top: 4px;
   }
 
   .signUpButton {
-    width: 80px;
-    height: 32px;
-    font-size: 10px;
+    width: 100%;
+    font-size: 18px;
+    padding: 4px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .signUpTitle {
+    font-size: 20px;
   }
 }
