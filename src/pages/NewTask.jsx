@@ -67,12 +67,12 @@ export const NewTask = () => {
         <h1 className={styles.newTaskTitle}>タスク新規作成</h1>
         <p className={styles.errorMessage}>{errorMessage}</p>
         <form>
-          <label htmlFor="taskListSelect" className={styles.taskSelectListLabel}>
+          <label htmlFor="taskListSelect" className={styles.label}>
             リスト
           </label>
           <select
             onChange={(e) => handleSelectList(e.target.value)}
-            className={styles.newTaskSelectList}
+            className={styles.input}
             id="taskListSelect"
           >
             {lists.map((list, key) => (
@@ -81,32 +81,27 @@ export const NewTask = () => {
               </option>
             ))}
           </select>
-          <label htmlFor="title" className={styles.titleInputLabel}>
+          <label htmlFor="title" className={styles.label}>
             タイトル
           </label>
-          <input
-            type="text"
-            id="title"
-            onChange={handleTitleChange}
-            className={styles.taskTitleInput}
-          />
-          <label className={styles.detailInputLabel} id="detail">
+          <input type="text" id="title" onChange={handleTitleChange} className={styles.input} />
+          <label className={styles.label} id="detail">
             詳細
           </label>
           <textarea
             type="text"
             id="detail"
             onChange={handleDetailChange}
-            className={styles.taskDetailInput}
+            className={styles.input}
           />
-          <label htmlFor="limit" className={styles.limitInputLabel}>
+          <label htmlFor="limit" className={styles.label}>
             期限
           </label>
           <input
             type="datetime-local"
             id="limit"
             name="limit"
-            className={styles.taskLimitInput}
+            className={styles.input}
             onChange={handleLimitChange}
           />
           <button type="button" className={styles.newTaskButton} onClick={onCreateTask}>

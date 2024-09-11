@@ -11,10 +11,7 @@
   margin-top: 24px;
 }
 
-.taskSelectListLabel,
-.titleInputLabel,
-.detailInputLabel,
-.limitInputLabel {
+.label {
   display: block;
   color: #5555558a;
   font-family: 'TsukuARdGothic-Regular';
@@ -22,20 +19,13 @@
   margin-top: 24px;
 }
 
-.newTaskSelectList,
-.taskTitleInput,
-.taskDetailInput,
-.taskLimitInput {
+.input {
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #55555545;
   border-radius: 8px;
   padding: 12px;
   margin-top: 4px;
-}
-
-.taskDetailInput {
-  height: 54px;
 }
 
 .newTaskButton {
@@ -69,10 +59,7 @@
     font-size: 24px;
   }
 
-  .taskSelectListLabel,
-  .titleInputLabel,
-  .detailInputLabel,
-  .limitInputLabel {
+  .label {
     font-size: 16px;
     margin-top: 18px;
   }
@@ -88,10 +75,7 @@
     font-size: 20px;
   }
 
-  .newTaskSelectList,
-  .taskTitleInput,
-  .taskDetailInput,
-  .taskLimitInput {
+  .input {
     font-size: 16px;
   }
 }

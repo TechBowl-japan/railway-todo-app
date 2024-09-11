@@ -40,23 +40,18 @@ export const SignIn = () => {
         <h1 className={styles.signInTitle}>ログイン</h1>
         <p className={styles.errorMessage}>{errorMessage}</p>
         <form className={styles.signInForm}>
-          <label htmlFor="email" className={styles.emailLabel}>
+          <label htmlFor="email" className={styles.label}>
             メールアドレス
           </label>
-          <input
-            type="email"
-            id="email"
-            className={styles.emailInput}
-            onChange={handleEmailChange}
-          />
+          <input type="email" id="email" className={styles.input} onChange={handleEmailChange} />
 
-          <label htmlFor="password" className={styles.passwordLabel}>
+          <label htmlFor="password" className={styles.label}>
             パスワード
           </label>
           <input
             type="password"
             id="password"
-            className={styles.passwordInput}
+            className={styles.input}
             onChange={handlePasswordChange}
           />
 

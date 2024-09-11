@@ -86,24 +86,19 @@ export const EditTask = () => {
         <h1 className={styles.editMainTitle}>タスク編集</h1>
         <p className={styles.errorMessage}>{errorMessage}</p>
         <form>
-          <label className={styles.editTitleLabel}>タイトル</label>
-          <input
-            type="text"
-            onChange={handleTitleChange}
-            className={styles.editTaskTitle}
-            value={title}
-          />
-          <label htmlFor="edit-detail-label" className={styles.editDetailLabel}>
+          <label className={styles.label}>タイトル</label>
+          <input type="text" onChange={handleTitleChange} className={styles.input} value={title} />
+          <label htmlFor="edit-detail-label" className={styles.label}>
             詳細
           </label>
           <textarea
             type="text"
             id="edit-detail-label"
             onChange={handleDetailChange}
-            className={styles.editTaskDetail}
+            className={styles.input}
             value={detail}
           />
-          <label htmlFor="edit-limit-label" className={styles.editLimitLabel}>
+          <label htmlFor="edit-limit-label" className={styles.label}>
             期限
           </label>
           <input
@@ -112,7 +107,7 @@ export const EditTask = () => {
             name="limit"
             value={limit}
             onChange={handleLimitChange}
-            className={styles.editTaskLimit}
+            className={styles.input}
           />
           <div>
             <input

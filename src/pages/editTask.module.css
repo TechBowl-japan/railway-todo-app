@@ -11,9 +11,7 @@
   margin-top: 40px;
 }
 
-.editTitleLabel,
-.editDetailLabel,
-.editLimitLabel {
+.label {
   display: block;
   color: #5555558a;
   font-size: 18px;
@@ -22,9 +20,7 @@
   margin-top: 24px;
 }
 
-.editTaskTitle,
-.editTaskDetail,
-.editTaskLimit {
+.input {
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #55555545;
@@ -96,16 +92,12 @@
     font-size: 24px;
   }
 
-  .editTitleLabel,
-  .editDetailLabel,
-  .editLimitLabel {
+  .label {
     font-size: 16px;
     margin-top: 18px;
   }
 
-  .editTaskTitle,
-  .editTaskDetail,
-  .editTaskLimit {
+  .input {
     margin-top: 4px;
   }
 

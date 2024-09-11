@@ -15,8 +15,7 @@
   margin-top: 40px;
 }
 
-.emailLabel,
-.passwordLabel {
+.label {
   display: block;
   color: #5555558a;
   font-family: 'TsukuARdGothic-Regular';
@@ -24,8 +23,7 @@
   margin-top: 16px;
 }
 
-.emailInput,
-.passwordInput {
+.input {
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #55555545;
@@ -77,8 +75,7 @@
     margin-top: 24px;
   }
 
-  .emailInput,
-  .passwordInput {
+  .input {
     padding: 12px;
   }
   .signInButton {
@@ -93,14 +90,12 @@
     font-size: 20px;
   }
 
-  .emailLabel,
-  .passwordLabel {
+  .label {
     font-size: 16px;
     margin-top: 18px;
   }
 
-  .emailInput,
-  .passwordInput {
+  .input {
     font-size: 16px;
     margin-top: 4px;
   }

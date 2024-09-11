@@ -14,17 +14,13 @@
   font-weight: bold;
 }
 
-.emailLabel,
-.nameInputLabel,
-.passwordInputLabel {
+.label {
   color: #5555558a;
   font-family: 'TsukuARdGothic-Regular';
   font-weight: bold;
 }
 
-.emailInput,
-.nameInput,
-.passwordInput {
+.input {
   width: 100%;
   height: 30px;
   box-sizing: border-box;
@@ -67,16 +63,12 @@
     margin: 12px 0;
   }
 
-  .emailLabel,
-  .nameInputLabel,
-  .passwordInputLabel {
+  .label {
     font-size: 16px;
     margin-top: 18px;
   }
 
-  .emailInput,
-  .nameInput,
-  .passwordInput {
+  .input {
     font-size: 16px;
     padding: 20px;
     margin-top: 4px;
