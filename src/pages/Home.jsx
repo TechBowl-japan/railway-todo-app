@@ -14,7 +14,9 @@ export const Home = () => {
   const [tasks, setTasks] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
+
   const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value === 'done');
+
   useEffect(() => {
     axios
       .get(`${url}/lists`, {
@@ -65,6 +67,12 @@ export const Home = () => {
       });
   };
 
+  const handleKeyDown = (event, id) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleSelectList(id);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -82,14 +90,19 @@ export const Home = () => {
               </p>
             </div>
           </div>
-          <ul className={styles.listTab}>
+          <ul role="tablist" aria-label="リストタブ" className={styles.listTab}>
             {lists.map((list) => {
               const isActive = list.id === selectListId;
               return (
                 <li
                   key={list.id}
+                  role="tab"
+                  id={list.id}
+                  tabIndex={0}
+                  aria-selected={isActive}
                   className={`${styles.listTabItem} ${isActive ? styles.listTabItemActive : ''}`}
                   onClick={() => handleSelectList(list.id)}
+                  onKeyDown={(event) => handleKeyDown(event, list.id)}
                 >
                   {list.title}
                 </li>
