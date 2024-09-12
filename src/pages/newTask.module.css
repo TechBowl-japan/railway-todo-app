@@ -1,20 +1,20 @@
 .newTask {
-  max-width: 500px;
+  max-width: var(--main-width);
   margin: 0 auto;
   margin-top: 24px;
 }
 
 .newTaskTitle {
-  color: #5555558a;
-  font-family: 'TsukuARdGothic-Regular';
+  color: var(--main-color);
+  font-family: var(--font-family);
   font-weight: bold;
   margin-top: 24px;
 }
 
 .label {
   display: block;
-  color: #5555558a;
-  font-family: 'TsukuARdGothic-Regular';
+  color: var(--main-color);
+  font-family: var(--font-family);
   font-weight: bold;
   margin-top: 24px;
 }
@@ -56,12 +56,16 @@
   }
 
   .newTaskTitle {
-    font-size: 24px;
+    font-size: var(--font-size-mobile-xl);
   }
 
   .label {
     font-size: 16px;
     margin-top: 18px;
+  }
+
+  .input {
+    font-size: 16px;
   }
 
   .newTaskButton {
@@ -70,12 +74,8 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 375px) {
   .newTaskTitle {
-    font-size: 20px;
-  }
-
-  .input {
-    font-size: 16px;
+    font-size: var(--title-font-size-mobile-base);
   }
 }

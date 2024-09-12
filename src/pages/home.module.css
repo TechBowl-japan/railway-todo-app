@@ -12,7 +12,7 @@
 .taskListMainTitle {
   font-size: 24px;
   color: #201d1d;
-  font-family: 'TsukuARdGothic-Regular';
+  font-family: var(--font-family);
   font-weight: bold;
 }
 
@@ -32,7 +32,7 @@
 
 .listTabItem {
   width: 100%;
-  font-family: 'TsukuARdGothic-Regular';
+  font-family: var(--font-family);
   font-weight: bold;
   text-align: center;
   border: 1px solid #55555545;
@@ -45,7 +45,7 @@
 .listTabItemActive {
   background-color: #00000033;
   color: white;
-  font-family: 'TsukuARdGothic-Regular';
+  font-family: var(--font-family);
   font-weight: bold;
 }
 
@@ -122,11 +122,11 @@
 
 @media screen and (max-width: 375px) {
   .listMainTitle {
-    font-size: 20px;
+    font-size: var(--title-font-size-mobile-base);
   }
 
   .taskListMainTitle {
-    font-size: 20px;
+    font-size: var(--title-font-size-mobile-base);
   }
 
   .listTabItem {

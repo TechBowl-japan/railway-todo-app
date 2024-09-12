@@ -1,10 +1,10 @@
 .newList {
-  max-width: 500px;
+  max-width: var(--main-width);
   margin: 0 auto;
   margin-top: 24px;
 }
 
-.taskListTitleInput {
+.taskTitleInput {
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #55555545;
@@ -17,8 +17,8 @@
 .newListTitle,
 .titleInputLabel {
   display: block;
-  color: #5555558a;
-  font-family: 'TsukuARdGothic-Regular';
+  color: var(--main-color);
+  font-family: var(--font-family);
   font-weight: bold;
   margin-top: 24px;
 }
@@ -56,7 +56,7 @@
   }
 
   .newListTitle {
-    font-size: 24px;
+    font-size: var(--font-size-mobile-xl);
     margin-top: 28px;
   }
 
@@ -64,7 +64,7 @@
     margin-top: 12px;
   }
 
-  .taskListTitleInput {
+  .taskTitleInput {
     padding: 12px;
   }
 
@@ -75,6 +75,6 @@
 
 @media screen and (max-width: 375px) {
   .newListTitle {
-    font-size: 20px;
+    font-size: var(--title-font-size-mobile-base);
   }
 }

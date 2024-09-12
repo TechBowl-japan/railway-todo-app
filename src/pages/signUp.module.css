@@ -1,5 +1,5 @@
 .signUp {
-  max-width: 500px;
+  max-width: var(--main-width);
   margin: 0 auto;
   margin-top: 24px;
 }
@@ -9,14 +9,14 @@
 }
 
 .signUpTitle {
-  color: #5555558a;
-  font-family: 'TsukuARdGothic-Regular';
+  color: var(--main-color);
+  font-family: var(--font-family);
   font-weight: bold;
 }
 
 .label {
-  color: #5555558a;
-  font-family: 'TsukuARdGothic-Regular';
+  color: var(--main-color);
+  font-family: var(--font-family);
   font-weight: bold;
 }
 
@@ -59,7 +59,7 @@
   }
 
   .signUpTitle {
-    font-size: 24px;
+    font-size: var(--font-size-mobile-xl);
     margin: 12px 0;
   }
 
@@ -83,6 +83,6 @@
 
 @media screen and (max-width: 375px) {
   .signUpTitle {
-    font-size: 20px;
+    font-size: var(--title-font-size-mobile-base);
   }
 }

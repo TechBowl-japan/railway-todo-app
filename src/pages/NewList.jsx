@@ -45,7 +45,7 @@ export const NewList = () => {
             type="text"
             id="taskListTitleInput"
             onChange={handleTitleChange}
-            className={styles.taskListTitleInput}
+            className={styles.taskTitleInput}
           />
           <button type="button" onClick={onCreateList} className={styles.newListButton}>
             作成

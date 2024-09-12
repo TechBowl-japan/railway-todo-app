@@ -1,5 +1,5 @@
 .signIn {
-  max-width: 500px;
+  max-width: var(--main-width);
   margin: 0 auto;
   margin-top: 24px;
 }
@@ -9,16 +9,16 @@
 }
 
 .signInTitle {
-  color: #5555558a;
-  font-family: 'TsukuARdGothic-Regular';
+  color: var(--main-color);
+  font-family: var(--font-family);
   font-weight: bold;
   margin-top: 40px;
 }
 
 .label {
   display: block;
-  color: #5555558a;
-  font-family: 'TsukuARdGothic-Regular';
+  color: var(--main-color);
+  font-family: var(--font-family);
   font-weight: bold;
   margin-top: 16px;
 }
@@ -71,7 +71,7 @@
   }
 
   .signInTitle {
-    font-size: 24px;
+    font-size: var(--font-size-mobile-xl);
     margin-top: 24px;
   }
 
@@ -87,7 +87,7 @@
 
 @media screen and (max-width: 375px) {
   .signInTitle {
-    font-size: 20px;
+    font-size: var(--title-font-size-mobile-base);
   }
 
   .label {
