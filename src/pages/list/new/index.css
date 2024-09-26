@@ -1,0 +1,47 @@
+.new_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  max-width: var(--width-edit-form);
+  margin: 0 auto;
+}
+
+.new_list__error {
+  color: var(--red-500);
+}
+
+.new_list__title {
+  color: var(--slate-700);
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+.new_list__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.new_list__form_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.new_list__form_label {
+  color: var(--slate-600);
+  font-weight: 500;
+}
+
+.new_list__form_actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.new_list__form_actions_spacer {
+  flex: 1;
+}

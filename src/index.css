@@ -1,27 +1,108 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+@import '@unocss/reset/tailwind.css';
+@import '@fontsource/inter/400';
+@import '@fontsource/inter/500';
+@import '@fontsource/inter/700';
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+:root {
+  --indigo-600: #4f46e5;
+
+  --red-500: #ef4444;
+
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --slate-950: #020617;
+
+  --width-login-form: 420px;
+  --width-edit-form: 600px;
+  --width-main-content: 800px;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.5rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app_button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
 }
 
-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+.app_button:focus {
   outline: none;
-  padding: 0;
-  appearance: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
+}
+
+.app_button:not(:disabled):hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.app_button:not(:disabled):active {
+  opacity: 0.6;
+}
+
+.app_button:not([data-variant='secondary']) {
+  background-color: var(--app-button-accent-color, var(--indigo-600));
+  color: #ffffff;
+}
+
+.app_button:not([data-variant='secondary']):disabled {
+  background-color: var(--slate-300);
+}
+
+.app_button[data-variant='secondary'] {
+  border: 1px solid currentColor;
+  color: var(--app-button-accent-color, var(--indigo-600));
+}
+
+.app_button[data-variant='secondary']:disabled {
+  color: var(--slate-300);
+}
+
+.app_input {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--slate-200);
+  color: var(--slate-800);
+}
+
+.app_input:focus {
+  outline: none;
+  border-color: var(--indigo-600);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
+}
+
+.app_input::placeholder {
+  color: var(--slate-500);
+}
+
+.main_content {
+  padding: 80px 40px;
+  padding-left: 360px;
+  min-height: 100vh;
 }
