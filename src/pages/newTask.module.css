@@ -1,0 +1,81 @@
+.newTask {
+  max-width: var(--main-width);
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.newTaskTitle {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+.label {
+  display: block;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #55555545;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 4px;
+}
+
+.newTaskButton {
+  background-color: #6bbcb6f0;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 24px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.newTaskButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.errorMessage {
+  color: #ff3333d1;
+}
+
+@media screen and (max-width: 768px) {
+  .newTask {
+    padding: 0 12px;
+  }
+
+  .newTaskTitle {
+    font-size: var(--font-size-mobile-xl);
+  }
+
+  .label {
+    font-size: 16px;
+    margin-top: 18px;
+  }
+
+  .input {
+    font-size: 16px;
+  }
+
+  .newTaskButton {
+    width: 100%;
+    margin-top: 24px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .newTaskTitle {
+    font-size: var(--title-font-size-mobile-base);
+  }
+}

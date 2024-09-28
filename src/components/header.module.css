@@ -1,0 +1,34 @@
+.header {
+  width: 100%;
+  background-color: #6bbcb6f0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerTitle {
+  color: #ffffff;
+  font-family: var(--font-family);
+  font-weight: bold;
+  margin: 16px;
+}
+
+.signOutButton {
+  color: #ffffff;
+  font-family: var(--font-family);
+  font-weight: bold;
+  margin: 0px 25px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.signOutButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 375px) {
+  .headerTitle {
+    font-size: var(--title-font-size-mobile-base);
+  }
+}

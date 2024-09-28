@@ -1,0 +1,135 @@
+.taskList {
+  margin: 50px auto;
+  list-style: none;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.listMainTitle,
+.taskListMainTitle {
+  font-size: 24px;
+  color: #201d1d;
+  font-family: var(--font-family);
+  font-weight: bold;
+}
+
+.listMenu {
+  text-align: right;
+}
+
+.listTab {
+  list-style: none;
+  display: flex;
+  white-space: nowrap;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 12px 0;
+  margin-top: 24px;
+}
+
+.listTabItem {
+  width: 100%;
+  font-family: var(--font-family);
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #55555545;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 58px;
+}
+
+.listTabItemActive {
+  background-color: #00000033;
+  color: white;
+  font-family: var(--font-family);
+  font-weight: bold;
+}
+
+.tasks {
+  margin-top: 58px;
+}
+
+.tasksHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 16px;
+}
+
+.taskItemLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.errorMessage {
+  color: #ff3333d1;
+}
+
+.displaySelectWrapper {
+  width: 100px;
+  margin: 12px 16px 0 auto;
+}
+
+.displaySelect {
+  width: 100%;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+@media screen and (min-width: 1000px) {
+  .taskList {
+    width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .listHeader {
+    margin: 0 16px;
+  }
+
+  .listTab {
+    font-size: 18px;
+    padding-bottom: 12px;
+    margin: 32px 16px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tasksHeader {
+    margin: 0 16px;
+  }
+
+  .displaySelectWrapper {
+    width: 100px;
+  }
+
+  .listTab {
+    flex-wrap: wrap;
+    margin: 16px;
+  }
+
+  .displaySelect {
+    padding: 4px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .listMainTitle {
+    font-size: var(--title-font-size-mobile-base);
+  }
+
+  .taskListMainTitle {
+    font-size: var(--title-font-size-mobile-base);
+  }
+
+  .listTabItem {
+    font-size: 16px;
+  }
+}

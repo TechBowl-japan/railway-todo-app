@@ -1,0 +1,120 @@
+.editTask {
+  max-width: var(--main-width);
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.editMainTitle {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.label {
+  display: block;
+  color: var(--main-color);
+  font-size: 18px;
+  font-family: var(--font-family);
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #55555545;
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+.editTaskDetail {
+  height: 54px;
+}
+
+.NotCompletionSelect,
+.completionSelect {
+  margin-top: 24px;
+}
+
+.completionSelect {
+  margin-left: 16px;
+}
+
+.deleteTaskButton {
+  background-color: #ff3333d1;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 24px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.deleteTaskButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.editTaskButton {
+  background-color: #6bbcb6f0;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 24px;
+  margin-left: 16px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.editTaskButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.errorMessage {
+  color: #ff3333d1;
+}
+
+@media screen and (max-width: 768px) {
+  .editTask {
+    padding: 0 12px;
+  }
+
+  .editMainTitle {
+    font-size: var(--font-size-mobile-xl);
+  }
+
+  .label {
+    font-size: 16px;
+    margin-top: 18px;
+  }
+
+  .input {
+    margin-top: 4px;
+  }
+
+  .deleteTaskButton {
+    width: 100%;
+    margin-top: 18px;
+  }
+
+  .editTaskButton {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 18px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .editMainTitle {
+    font-size: var(--title-font-size-mobile-base);
+  }
+}

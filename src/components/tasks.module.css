@@ -1,0 +1,17 @@
+.taskItem {
+  list-style-type: none;
+  width: 500px;
+  background-color: #d4d3d34a;
+  border: 1px solid #55555545;
+  border-radius: 4px;
+  padding: 16px;
+  margin: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .taskItem {
+    width: auto;
+    padding: 8px;
+    margin: 12px;
+  }
+}

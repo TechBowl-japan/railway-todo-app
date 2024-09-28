@@ -1,0 +1,102 @@
+.signIn {
+  max-width: var(--main-width);
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.signInForm {
+  margin-top: 16px;
+}
+
+.signInTitle {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.label {
+  display: block;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #55555545;
+  border-radius: 8px;
+  font-size: 18px;
+  padding: 16px;
+}
+
+.signInButton {
+  background-color: #6bbcb6f0;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 8px;
+  width: 100px;
+  height: 40px;
+  margin: 24px 0px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.signInButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.errorMessage {
+  color: #ff3333d1;
+}
+
+.signUpLink {
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.signUpLink:hover {
+  opacity: 0.4;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .signIn {
+    padding: 0 12px;
+  }
+
+  .signInTitle {
+    font-size: var(--font-size-mobile-xl);
+    margin-top: 24px;
+  }
+
+  .input {
+    padding: 12px;
+  }
+  .signInButton {
+    width: 100%;
+    font-size: 16px;
+    margin: 18px 0 12px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .signInTitle {
+    font-size: var(--title-font-size-mobile-base);
+  }
+
+  .label {
+    font-size: 16px;
+    margin-top: 18px;
+  }
+
+  .input {
+    font-size: 16px;
+    margin-top: 4px;
+  }
+}

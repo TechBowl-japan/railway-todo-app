@@ -1,0 +1,80 @@
+.newList {
+  max-width: var(--main-width);
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.taskTitleInput {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #55555545;
+  font-size: 18px;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 4px;
+}
+
+.newListTitle,
+.titleInputLabel {
+  display: block;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+.newListTitle {
+  margin-top: 40px;
+}
+
+.newListButton {
+  background-color: #6bbcb6f0;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 24px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.newListButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.errorMessage {
+  color: #ff3333d1;
+}
+
+@media screen and (max-width: 768px) {
+  .newList {
+    padding: 12px;
+    margin-top: 0;
+  }
+
+  .newListTitle {
+    font-size: var(--font-size-mobile-xl);
+    margin-top: 28px;
+  }
+
+  .titleInputLabel {
+    margin-top: 12px;
+  }
+
+  .taskTitleInput {
+    padding: 12px;
+  }
+
+  .newListButton {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .newListTitle {
+    font-size: var(--title-font-size-mobile-base);
+  }
+}
