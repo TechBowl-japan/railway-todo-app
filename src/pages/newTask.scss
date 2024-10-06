@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+// 色の変数定義
+$primary-color: #242f9b;
+$error-color: #ff3333;
+$text-color: #555555;
+$button-width: 80px;
+$button-height: 40px;
+
+.new-task {
+  width: 1000px;
+  margin: 0 auto;
+
+  .new-task-form {
+    color: $text-color;
+
+    .new-task-select-list,
+    .new-task-title,
+    .new-task-detail {
+      width: 300px;
+      margin-bottom: 25px;
+    }
+
+    .new-task-detail {
+      height: 200px;
+    }
+
+    .new-task-button {
+      background-color: $primary-color;
+      color: #ffffff;
+      width: $button-width;
+      height: $button-height;
+      border-radius: 5px;
+    }
+  }
+
+  .error-message {
+    color: $error-color;
+  }
+}

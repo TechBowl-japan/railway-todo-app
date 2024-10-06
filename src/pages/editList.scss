@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+// 色の変数定義
+$primary-color: #242f9b;
+$error-color: #ff3333;
+$text-color: #555555;
+$button-width: 80px;
+$button-height: 40px;
+$input-width: 300px;
+$margin-bottom: 25px;
+
+// edit-listスタイル
+.edit-list {
+  width: 1000px;
+  margin: 0 auto;
+
+  .edit-list-form {
+    color: $text-color;
+
+    .edit-list-title {
+      width: $input-width;
+      margin-bottom: $margin-bottom;
+    }
+
+    .delete-list-button {
+      color: $error-color;
+      border: solid 1px $error-color;
+      width: $button-width;
+      height: $button-height;
+      margin: $margin-bottom 5px;
+      border-radius: 5px;
+    }
+
+    .edit-list-button {
+      background-color: $primary-color;
+      color: #ffffff;
+      width: $button-width;
+      height: $button-height;
+      border-radius: 5px;
+    }
+  }
+
+  .error-message {
+    color: $error-color;
+  }
+}

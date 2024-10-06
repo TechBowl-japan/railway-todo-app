@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+// 色の変数定義
+$primary-color: #242f9b;
+$error-color: #ff3333;
+$text-color: #555555;
+$input-width: 300px;
+$button-width: 80px;
+$button-height: 40px;
+$margin-bottom: 25px;
+$border-radius: 5px;
+
+// edit-taskスタイル
+.edit-task {
+  width: 1000px;
+  margin: 0 auto;
+
+  .edit-task-form {
+    color: $text-color;
+
+    .edit-task-title,
+    .edit-task-detail {
+      width: $input-width;
+      margin-bottom: $margin-bottom;
+    }
+
+    .delete-task-button {
+      color: $error-color;
+      border: solid 1px $error-color;
+      width: $button-width;
+      height: $button-height;
+      margin: $margin-bottom 5px;
+      border-radius: $border-radius;
+    }
+
+    .edit-task-button {
+      background-color: $primary-color;
+      color: #ffffff;
+      width: $button-width;
+      height: $button-height;
+      border-radius: $border-radius;
+    }
+
+    .error-message {
+      color: $error-color;
+    }
+  }
+}

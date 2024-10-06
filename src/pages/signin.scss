@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+// カラーバリエーション
+$primary-color: #242f9b;
+$error-color: #ff3333;
+$text-color: #555555;
+$button-text-color: #ffffff;
+
+// 共通レイアウト
+$width-medium: 500px;
+$input-height: 30px;
+$button-width: 100px;
+$button-height: 40px;
+$margin-bottom: 25px;
+$border-radius: 5px;
+
+// サインインページのスタイル
+.signin {
+  width: $width-medium;
+  margin: 0 auto;
+
+  .signin-form {
+    margin: $margin-bottom 0;
+
+    .email-label,
+    .password-label {
+      color: $text-color;
+    }
+
+    .email-input,
+    .password-input {
+      width: 100%;
+      font-size: large;
+      height: $input-height;
+      margin-bottom: $margin-bottom;
+    }
+
+    .signin-button {
+      background-color: $primary-color;
+      color: $button-text-color;
+      width: $button-width;
+      height: $button-height;
+      border-radius: $border-radius;
+      cursor: pointer;
+      border: none;
+    }
+  }
+
+  .error-message {
+    color: $error-color;
+  }
+}

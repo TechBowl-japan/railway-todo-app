@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+// カラーバリエーション
+$primary-color: #242f9b;
+$text-color: #555555;
+$button-text-color: #ffffff;
+
+// 共通レイアウト
+$width-large: 1000px;
+$input-width: 300px;
+$button-width: 80px;
+$button-height: 40px;
+$margin-bottom: 25px;
+$border-radius: 5px;
+
+// new-listスタイル
+.new-list {
+  width: $width-large;
+  margin: 0 auto;
+
+  .new-list-form {
+    color: $text-color;
+
+    .new-list-title {
+      width: $input-width;
+      margin-bottom: $margin-bottom;
+    }
+
+    .new-list-button {
+      background-color: $primary-color;
+      color: $button-text-color;
+      width: $button-width;
+      height: $button-height;
+      border-radius: $border-radius;
+      cursor: pointer;
+      border: none;
+    }
+  }
+
+  .error-message {
+    color: red; // エラーメッセージの色は固定で赤に設定
+  }
+}
