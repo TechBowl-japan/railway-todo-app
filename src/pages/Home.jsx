@@ -78,7 +78,7 @@ export const Home = () => {
             {lists.map((list, key) => {
               const isActive = list.id === selectListId;
               return (
-                <li 
+                <li
                   key={key}
                   className={`list-tab-item ${isActive ? "active" : ""}`}
                   onClick={() => handleSelectList(list.id)}
