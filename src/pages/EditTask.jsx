@@ -3,11 +3,11 @@ import { Header } from "../components/Header";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { url } from "../const";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./editTask.css"
 
 export const EditTask = () => {
-  const history = useHistory();
+  const history = useNavigate();
   const { listId, taskId } = useParams();
   const [cookies] = useCookies();
   const [title, setTitle] = useState("");
@@ -68,7 +68,7 @@ export const EditTask = () => {
     .catch((err) => {
       setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
     })
-  }, [])
+  }, [cookies.token, listId, taskId])
 
   return (
     <div>
