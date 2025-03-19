@@ -4,7 +4,7 @@ import axios from "axios";
 import { Header } from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { url } from "../const";
-import "./newList.css";
+import "./newList.scss";
 
 export const NewList = () => {
   const [cookies] = useCookies();
@@ -14,34 +14,39 @@ export const NewList = () => {
   const handleTitleChange = (e) => setTitle(e.target.value);
   const onCreateList = () => {
     const data = {
-      title: title
-    }
+      title: title,
+    };
 
-    axios.post(`${url}/lists`, data, {
-      headers: {
-        authorization: `Bearer ${cookies.token}`
-      }
-    })
-    .then(() => {
-      history.push("/");
-    })
-    .catch((err) => {
-      setErrorMessage(`リストの作成に失敗しました。${err}`);
-    })
-  }
+    axios
+      .post(`${url}/lists`, data, {
+        headers: {
+          authorization: `Bearer ${cookies.token}`,
+        },
+      })
+      .then(() => {
+        history.push("/");
+      })
+      .catch((err) => {
+        setErrorMessage(`リストの作成に失敗しました。${err}`);
+      });
+  };
 
   return (
     <div>
       <Header />
-      <main className="new-list">
+      <main className='new-list'>
         <h2>リスト新規作成</h2>
-        <p className="error-message">{errorMessage}</p>
-        <form className="new-list-form">
-          <label>タイトル</label><br />
-          <input type="text" onChange={handleTitleChange} className="new-list-title" /><br />
-          <button type="button" onClick={onCreateList} className="new-list-button">作成</button>
+        <p className='error-message'>{errorMessage}</p>
+        <form className='new-list-form'>
+          <label>タイトル</label>
+          <br />
+          <input type='text' onChange={handleTitleChange} className='new-list-title' />
+          <br />
+          <button type='button' onClick={onCreateList} className='new-list-button'>
+            作成
+          </button>
         </form>
       </main>
     </div>
-  )
-}
+  );
+};
