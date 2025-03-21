@@ -5,6 +5,8 @@ import { useCookies } from "react-cookie";
 import { url } from "../const";
 import { useNavigate, useParams } from "react-router-dom";
 import "./editTask.scss";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const EditTask = () => {
   const navigate = useNavigate();
@@ -13,16 +15,19 @@ export const EditTask = () => {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
   const [isDone, setIsDone] = useState();
+  const [limit, setLimit] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
+  const handleLimitChange = (limit) => setLimit(limit);
   const onUpdateTask = () => {
     console.log(isDone);
     const data = {
       title: title,
       detail: detail,
       done: isDone,
+      limit: limit.toISOString(),
     };
 
     axios
@@ -67,6 +72,7 @@ export const EditTask = () => {
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
+        setLimit(new Date(task.limit));
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
@@ -87,6 +93,10 @@ export const EditTask = () => {
           <label>詳細</label>
           <br />
           <textarea type='text' onChange={handleDetailChange} className='edit-task-detail' value={detail} />
+          <br />
+          <label>期限</label>
+          <br />
+          <DatePicker selected={limit} onChange={handleLimitChange} className='new-task-limit' showTimeSelect dateFormat='yyyy-MM-dd HH:mm:ss' />
           <br />
           <div>
             <input type='radio' id='todo' name='status' value='todo' onChange={handleIsDoneChange} checked={isDone === false ? "checked" : ""} />

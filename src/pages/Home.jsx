@@ -5,11 +5,14 @@ import axios from "axios";
 import { Header } from "../components/Header";
 import { url } from "../const";
 import "./home.scss";
+import moment from "moment";
+import "moment-duration-format";
 
 export const Home = () => {
   const [isDoneDisplay, setIsDoneDisplay] = useState("todo"); // todo->未完了 done->完了
   const [lists, setLists] = useState([]);
   const [selectListId, setSelectListId] = useState();
+  const [nowTime, setNowTime] = useState();
   const [tasks, setTasks] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
@@ -33,6 +36,9 @@ export const Home = () => {
     const listId = lists[0]?.id;
     if (typeof listId !== "undefined") {
       setSelectListId(listId);
+      const now = new Date();
+      const isoNow = now.toISOString();
+      setNowTime(isoNow);
       axios
         .get(`${url}/lists/${listId}/tasks`, {
           headers: {
@@ -111,10 +117,10 @@ export const Home = () => {
 
 // 表示するタスク
 const Tasks = (props) => {
-  const { tasks, selectListId, isDoneDisplay } = props;
+  const { tasks, selectListId, isDoneDisplay, nowTime } = props;
   if (tasks === null) return <></>;
 
-  if (isDoneDisplay == "done") {
+  if (isDoneDisplay === "done") {
     return (
       <ul>
         {tasks
@@ -146,6 +152,11 @@ const Tasks = (props) => {
               {task.title}
               <br />
               {task.done ? "完了" : "未完了"}
+              <br />
+              <span>Task Limit : </span> {moment.utc(task.limit).local().format("YYYY/MM/DD HH:mm:ss")}
+              <br />
+              <span>Left Time : </span>
+              {moment.duration(moment.utc(task.limit).local().diff(moment(nowTime))).format("Y [years] M [months] D [days] HH:mm:ss")}
             </Link>
           </li>
         ))}
