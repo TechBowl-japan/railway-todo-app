@@ -1,9 +1,9 @@
 import React from 'react'
 import { useCookies } from 'react-cookie'
-import { useSelector, useDispatch } from 'react-redux/es/exports'
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { signOut } from '../authSlice'
-import './header.css'
+import './header.scss'
 
 export const Header = () => {
   const auth = useSelector((state) => state.auth.isSignIn)
