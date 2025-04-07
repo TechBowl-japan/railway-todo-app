@@ -1,5 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client"; //React18以降の記法。ReactDOM.createRoot()関数使用可能
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -7,7 +8,10 @@ import { CookiesProvider } from "react-cookie";
 import { Provider } from "react-redux";
 import { store } from "./store"
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+//ReactDOM.render(
+root.render(
   <Provider store={store}>
     <CookiesProvider>
       <App />

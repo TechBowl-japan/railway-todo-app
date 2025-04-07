@@ -1,39 +1,21 @@
-# Railway中級編 Todoアプリをアップデートしよう
-
-## 初期設定
-### 必要なツール
-1. Node.js v16以降
+# 初期設定
+## 必要なツール
+1. Node.js v16以降推奨
 2. Yarn v1
+3. Visual Studio Code
 
-このRailwayに取り組む方はすでにインストールできていると思いますがされていない方はインストールしてください。  
-初期設定は原則HTML/CSS/JavaScript Railway, React.js Railwayと同様となります。
+上記 3 つをインストールする必要があります。インストールできているかの確認やインストール方法は、
+[Railway 準備編](https://www.notion.so/techbowl/Railway-ceba695d5014460e9733c2a46318cdec) をご確認いただき、挑戦の準備をしましょう。
 
-#### railway-todo-appリポジトリのFork
-画面右上にあるForkより[railway-todo-app](https://github.com/TechBowl-japan/railway-todo-app)のリポジトリを自分のアカウントにForkしてください。
+その他リポジトリの更新の仕方や、トラブルシューティングについても上記の Railway 準備編にございます。
+何かあった際は、まずそちらを確認しましょう。
 
-#### railway-todo-appリポジトリのClone
-作成したリポジトリを作業するディレクトリにクローンしましょう。
-- Macなら Terminal.app(iTerm2などでも良い)
-- Windowsなら PowerShell(GitBashなどのインストールしたアプリでもう良いです。アプリによってはコマンドが異なることがあります)  
-で作業するディレクトリを開き、次のコマンドでForkしたReact.js　Railwayのリポジトリをローカルにクローンしてください。
+## .envファイルの設定
+クローンしたリポジトリには .env.sample というファイルがあります。それをコピーしたものを .env にファイル名を変更してください。  
+Fork して最初の状態では API の URL を .env ファイルから読み込むようになっています。それを自身の .env に追記してください。
 
-```powershell
-git clone https://github.com/{GitHubのユーザー名}/railway-todo-app.git
-```
-
-SSHでクローンを行う場合には、次のようになります
-
-```powershell
-git clone git@github.com:[GitHubのユーザー名]/railway-todo-app.git
-```
-
-#### .envファイルの設定
-クローンしたリポジトリには.env.sampleというファイルがあります。それをコピーしたものを.envにファイル名を変更してください。  
-フォークして最初の状態ではAPIのURLを.envファイルから読み込むようになっています。それを自身の.envに追記してください。
-- API URL: https://railway-react-todo-backend.herokuapp.com
-
-#### パッケージのインストール
-クローンしたばかりのリポジトリは歯抜けの状態なので、必要なファイルをダウンロードする必要があります。 10 分程度掛かることもあるため、気長に待ちましょう。上から順番に __１つずつ__ コマンドを実行しましょう：
+## パッケージのインストール
+Clone したばかりのリポジトリは歯抜けの状態なので、必要なファイルをダウンロードする必要があります。 10 分程度掛かることもあるため、気長に待ちましょう。上から順番に __１つずつ__ コマンドを実行しましょう。
 
 ```powershell
 cd railway-todo-app
@@ -41,7 +23,7 @@ cd railway-todo-app
 yarn install
 ```
 
-#### ローカルサーバの起動
+## ローカルサーバの起動
 以下コマンドを実行します。
 
 ```powershell

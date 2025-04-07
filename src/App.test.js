@@ -1,3 +1,4 @@
+import React from "react"; //eslintエラー対策のため追記
 import { render, screen } from '@testing-library/react';
 import App from './App';
 

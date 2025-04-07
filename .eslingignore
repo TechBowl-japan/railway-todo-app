@@ -1,0 +1,11 @@
+**/*.css
+node_modules/
+Public/
+.env
+.eslingignore
+.gitignore
+eslint.config.mjs
+package-lock.json
+package.json
+README.md
+yarn.lock
