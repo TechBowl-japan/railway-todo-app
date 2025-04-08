@@ -1,0 +1,51 @@
+.edit_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  max-width: var(--width-edit-form);
+  margin: 0 auto;
+}
+
+.edit_list__error {
+  color: var(--red-500);
+}
+
+.edit_list__title {
+  color: var(--slate-700);
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+.edit_list__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.edit_list__form_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.edit_list__form_label {
+  color: var(--slate-600);
+  font-weight: 500;
+}
+
+.edit_list__form_actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.edit_list__form_actions_spacer {
+  flex: 1;
+}
+
+.edit_list__form_actions_delete {
+  --app-button-accent-color: var(--red-500);
+}

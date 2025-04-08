@@ -1,0 +1,47 @@
+.signin {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  max-width: var(--width-login-form);
+  margin: 0 auto;
+}
+
+.signin__error {
+  color: var(--red-500);
+}
+
+.signin__title {
+  color: var(--slate-700);
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+.signin__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.signin__form_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.signin__form_label {
+  color: var(--slate-600);
+  font-weight: 500;
+}
+
+.signin__form_actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.signin__form_actions_spacer {
+  flex: 1;
+}

@@ -1,0 +1,47 @@
+.signup {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  max-width: var(--width-login-form);
+  margin: 0 auto;
+}
+
+.signup__error {
+  color: var(--red-500);
+}
+
+.signup__title {
+  color: var(--slate-700);
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+.signup__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.signup__form_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.signup__form_label {
+  color: var(--slate-600);
+  font-weight: 500;
+}
+
+.signup__form_actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.signup__form_actions_spacer {
+  flex: 1;
+}

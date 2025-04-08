@@ -1,0 +1,96 @@
+.task_create_form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--slate-200);
+}
+
+.task_create_form[data-state='focused'] {
+  border-color: var(--indigo-600);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.task_create_form__title_container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task_create_form__title {
+  flex: 1;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--slate-800);
+  background: transparent;
+}
+
+.task_create_form__title::placeholder {
+  color: var(--slate-500);
+}
+
+.task_create_form__title:focus {
+  outline: none;
+}
+
+.task_create_form__mark_button {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.task_create_form__mark____incomplete {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--slate-300);
+}
+
+.task_create_form__mark____complete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--indigo-600);
+}
+
+.task_create_form__mark____complete_check {
+  margin: 0.25rem;
+  fill: #ffffff;
+}
+
+.task_create_form__detail {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font: inherit;
+  background: transparent;
+  color: var(--slate-500);
+  resize: none;
+  height: 0;
+  width: 100%;
+}
+
+.task_create_form__detail::placeholder {
+  color: var(--slate-300);
+}
+
+.task_create_form__detail:focus {
+  outline: none;
+}
+
+.task_create_form__actions {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.task_create_form__spacer {
+  flex: 1;
+}
