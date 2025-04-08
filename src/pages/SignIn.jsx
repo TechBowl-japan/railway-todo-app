@@ -3,7 +3,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { Redirect, useHistory, Link } from "react-router-dom";
 import { Header } from "../components/Header";
-import "./signin.css";
+import "./signin.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../authSlice";
 import { url } from "../const";
@@ -43,11 +43,19 @@ export const SignIn = () => {
         <form className="signin-form">
           <label className="email-label">メールアドレス</label>
           <br />
-          <input type="email" className="email-input" onChange={handleEmailChange} />
+          <input
+            type="email"
+            className="email-input"
+            onChange={handleEmailChange}
+          />
           <br />
           <label className="password-label">パスワード</label>
           <br />
-          <input type="password" className="password-input" onChange={handlePasswordChange} />
+          <input
+            type="password"
+            className="password-input"
+            onChange={handlePasswordChange}
+          />
           <br />
           <button type="button" className="signin-button" onClick={onSignIn}>
             サインイン
