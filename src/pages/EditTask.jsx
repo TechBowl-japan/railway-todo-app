@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie'
 import { url } from '../const'
 import { useHistory, useParams } from 'react-router-dom'
 import './editTask.scss'
+import toInputDateTime from '../hooks/toInputDateTime'
 
 export const EditTask = () => {
   const history = useHistory()
@@ -12,17 +13,20 @@ export const EditTask = () => {
   const [cookies] = useCookies()
   const [title, setTitle] = useState('')
   const [detail, setDetail] = useState('')
+  const [limit, setLimit] = useState('')
   const [isDone, setIsDone] = useState()
   const [errorMessage, setErrorMessage] = useState('')
   const handleTitleChange = (e) => setTitle(e.target.value)
   const handleDetailChange = (e) => setDetail(e.target.value)
+  const handleDateChange = (e) => setLimit(e.target.value)
   const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done')
   const onUpdateTask = () => {
-    console.log(isDone)
+    const isoLimit = new Date(limit).toISOString() //limitはすでにローカル時間 -> UTCへの変換いらない
     const data = {
       title: title,
       detail: detail,
       done: isDone,
+      limit: isoLimit,
     }
 
     axios
@@ -66,12 +70,13 @@ export const EditTask = () => {
         const task = res.data
         setTitle(task.title)
         setDetail(task.detail)
+        setLimit(task.limit)
         setIsDone(task.done)
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`)
       })
-  }, [])
+  }, [listId, taskId, cookies.token])
 
   return (
     <div>
@@ -87,6 +92,14 @@ export const EditTask = () => {
             onChange={handleTitleChange}
             className="edit-task-title"
             value={title}
+          />
+          <br />
+          <label>期限</label>
+          <br />
+          <input
+            type="datetime-local"
+            onChange={handleDateChange}
+            value={toInputDateTime(limit)}
           />
           <br />
           <label>詳細</label>

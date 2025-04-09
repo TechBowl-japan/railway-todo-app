@@ -11,20 +11,26 @@ export const NewTask = () => {
   const [lists, setLists] = useState([])
   const [title, setTitle] = useState('')
   const [detail, setDetail] = useState('')
+  const [limit, setLimit] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [cookies] = useCookies()
   const history = useHistory()
   const handleTitleChange = (e) => setTitle(e.target.value)
   const handleDetailChange = (e) => setDetail(e.target.value)
+  const handleDateChange = (e) => setLimit(e.target.value)
   const handleSelectList = (id) => setSelectListId(id)
   const onCreateTask = () => {
-    const data = {
-      title: title,
-      detail: detail,
-      done: false,
-    }
+  const isoLimit = new Date(limit).toISOString()
+  console.log('送信する日付:', isoLimit)
+    
+  const data = {
+    title: title,
+    detail: detail,
+    done: false,
+    limit: isoLimit,
+  }
 
-    axios
+  axios
       .post(`${url}/lists/${selectListId}/tasks`, data, {
         headers: {
           authorization: `Bearer ${cookies.token}`,
@@ -52,7 +58,7 @@ export const NewTask = () => {
       .catch((err) => {
         setErrorMessage(`リストの取得に失敗しました。${err}`)
       })
-  }, [])
+  }, [cookies.token])
 
   return (
     <div>
@@ -80,6 +86,14 @@ export const NewTask = () => {
             type="text"
             onChange={handleTitleChange}
             className="new-task-title"
+          />
+          <br />
+          <label>期限</label>
+          <br />
+          <input
+            type="datetime-local"
+            onChange={handleDateChange}
+            className="new-task-date"
           />
           <br />
           <label>詳細</label>
