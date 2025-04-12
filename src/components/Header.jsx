@@ -1,14 +1,14 @@
 import React from "react";
 import { useCookies } from "react-cookie";
 import { useSelector, useDispatch } from "react-redux/es/exports";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { signOut } from "../authSlice";
 import "./header.scss";
 
 export const Header = () => {
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   //const [cookies, setCookie, removeCookie] = useCookies(); //一時退避
   const [removeCookie] = useCookies();
   const handleSignOut = () => {
