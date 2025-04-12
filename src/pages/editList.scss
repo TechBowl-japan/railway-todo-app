@@ -1,36 +1,45 @@
 @charset "utf-8";
 
+/* 変数 */
+$red01: #ff3333;
+$gray01: #555555;
+$blue01: #242f9b;
+$white01: #ffffff;
+
+//mixin 引数
+@mixin box01 {
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+}
+
 .edit-list {
   width: 1000px;
   margin: 0 auto;
-}
 
-.edit-list-form {
-  color: #555555;
-}
+  &-form {
+    color: $gray01;
+  }
 
-.edit-list-title {
-  width: 300px;
-  margin-bottom: 25px;
+  &-title {
+    width: 300px;
+    margin-bottom: 25px;
+  }
+
+  &-button {
+    @include box01;
+    background-color: $blue01;
+    color: $white01;
+  }
 }
 
 .delete-list-button {
-  color: #ff3333;
-  border: solid 1px #ff3333;
-  width: 80px;
-  height: 40px;
+  @include box01;
+  color: $red01;
+  border: solid 1px $red01;
   margin: 25px 5px;
-  border-radius: 5px;
-}
-
-.edit-list-button {
-  background-color: #242f9b;
-  color: #ffffff;
-  width: 80px;
-  height: 40px;
-  border-radius: 5px;
 }
 
 .error-message {
-  color: #ff3333;
+  color: $red01;
 }

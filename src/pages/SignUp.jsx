@@ -9,7 +9,7 @@ import { url } from "../const";
 import "./signUp.scss";
 
 export const SignUp = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ export const SignUp = () => {
         const token = res.data.token;
         dispatch(signIn());
         setCookie("token", token);
-        history.push("/");
+      navigate.push("/");
       })
       .catch((err) => {
         setErrorMessge(`サインアップに失敗しました。 ${err}`);

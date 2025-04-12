@@ -11,7 +11,7 @@ import { url } from "../const";
 export const SignIn = () => {
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState();
@@ -25,7 +25,7 @@ export const SignIn = () => {
       .then((res) => {
         setCookie("token", res.data.token);
         dispatch(signIn());
-        history.push("/");
+        navigate("/");
       })
       .catch((err) => {
         setErrorMessage(`サインインに失敗しました。${err}`);

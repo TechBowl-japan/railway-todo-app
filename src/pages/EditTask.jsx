@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router";
 import "./editTask.scss";
 
 export const EditTask = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const { listId, taskId } = useParams();
   const [cookies] = useCookies();
   const [title, setTitle] = useState("");
@@ -33,7 +33,7 @@ export const EditTask = () => {
       })
       .then((res) => {
         console.log(res.data);
-        history.push("/");
+        navigate("/");
       })
       .catch((err) => {
         setErrorMessage(`更新に失敗しました。${err}`);
@@ -48,7 +48,7 @@ export const EditTask = () => {
         },
       })
       .then(() => {
-        history.push("/");
+        navigate("/");
       })
       .catch((err) => {
         setErrorMessage(`削除に失敗しました。${err}`);
