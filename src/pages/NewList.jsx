@@ -26,6 +26,7 @@ export const NewList = () => {
       .then(() => {
         history.push("/");
       })
+
       .catch((err) => {
         setErrorMessage(`リストの作成に失敗しました。${err}`);
       });

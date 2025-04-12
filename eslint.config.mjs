@@ -2,6 +2,7 @@ import { defineConfig } from "eslint/config";
 import globals from "globals";
 import js from "@eslint/js";
 import pluginReact from "eslint-plugin-react";
+import { version } from "react";
 
 
 export default defineConfig([
@@ -16,13 +17,17 @@ export default defineConfig([
         process: "readonly", // const.js。ビルドツールで内部的にprocess.env展開
       }
     },
-
-    rules: {
+    settings: {
+      react: {
+        version: "19.0.0"
+      }
+    },
+    rules: { //rules:を記載すると、pluginReactが必要
       "react/prop-types": "off" ////ES Lintのflat configでは下の設定が優先。
     },
     plugins: {
       js,
-      react: pluginReact //react:ES Lintでreactを認識させるプラグイン名の変数割当ラベル。Reactの構文チェック
+      react: pluginReact //FlatConfigで必要。react:ESLintでreactを認識させるプラグイン名の変数割当ラベル。Reactの構文チェック
     },
     extends: ["js/recommended"]
   },
