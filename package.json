@@ -8,13 +8,6 @@
     "@fontsource/inter": "^5.0.5",
     "@reduxjs/toolkit": "^1.9.5",
     "@unocss/reset": "^0.53.6",
-    "axios": "^1.4.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-redux": "^8.1.1",
-    "react-router-dom": "^5.3.4"
-
-    "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
