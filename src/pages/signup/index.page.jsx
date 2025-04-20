@@ -26,7 +26,7 @@ const SignUp = () => {
 
       signup({ email, name, password })
         .catch(err => {
-          setErrorMessage(`サインインに失敗しました: ${err.message}`)
+          setErrorMessage(`サインアップに失敗しました: ${err.message}`)
         })
         .finally(() => {
           setIsSubmitting(false)
@@ -61,24 +61,32 @@ const SignUp = () => {
             htmlFor={`${id}-name`}
             autoComplete="name"
             className="signup__form_label"
-            value={name}
-            onChange={event => setName(event.target.value)}
           >
             Name
           </label>
-          <input id={`${id}-name`} type="text" className="app_input" />
+          <input
+            id={`${id}-name`}
+            type="text"
+            className="app_input"
+            value={name}
+            onChange={event => setName(event.target.value)}
+          />
         </fieldset>
         <fieldset className="signup__form_field">
           <label
             htmlFor={`${id}-password`}
             autoComplete="new-password"
             className="signup__form_label"
-            value={password}
-            onChange={event => setPassword(event.target.value)}
           >
             Password
           </label>
-          <input id={`${id}-password`} type="password" className="app_input" />
+          <input
+            id={`${id}-password`}
+            type="password"
+            className="app_input"
+            value={password}
+            onChange={event => setPassword(event.target.value)}
+          />
         </fieldset>
         <div className="signup__form_actions">
           <Link className="app_button" data-variant="secondary" to="/signin">
