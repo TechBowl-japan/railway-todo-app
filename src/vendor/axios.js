@@ -4,7 +4,7 @@ import axios from 'axios'
  * axiosに対してbaseURLおよびトークン無効時のリダイレクト処理を追加
  */
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_RAILWAY_TODO_API_URL,
 })
 
 axiosInstance.interceptors.response.use(
