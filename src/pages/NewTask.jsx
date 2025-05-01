@@ -11,16 +11,20 @@ export const NewTask = () => {
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [limit, setLimit] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleLimitChange = (e) => setLimit(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
+  
   const onCreateTask = () => {
     const data = {
       title: title,
       detail: detail,
+      limit: `${limit}:00Z`,
       done: false,
     };
 
@@ -37,6 +41,15 @@ export const NewTask = () => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);
       });
   };
+  // ①useEffectで現在の日時を取得する。
+  const date= new Date();
+  console.log(date);
+  //- limitのフォーマット「YYYY-MM-DDTHH:MM:SSZ」に注意してください。
+  //- 例）2022-07-15T11:11:11Z
+  // ②、①で取得した値をuseStateに保管する。
+  // ③、②で保管した日時を出力する。
+
+  //onsubmitで入力時刻をsetDate
 
   useEffect(() => {
     axios
@@ -88,6 +101,20 @@ export const NewTask = () => {
             type="text"
             onChange={handleDetailChange}
             className="new-task-detail"
+          />
+          <br />
+          <label htmlFor="limit">期限</label>
+          <br />
+          <input
+            type="datetime-local"
+            id="limit"
+            //name="limit-time"
+            placeholder="2025-01-01T00:00"
+            //value="2025-12-12T23:59:59Z"
+            min="2025-01-01T00:00"
+            max="2050-12-31T00:00"
+            onChange={handleLimitChange}
+            className="new-task-limit"
           />
           <br />
           <button
