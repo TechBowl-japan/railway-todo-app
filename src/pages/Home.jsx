@@ -14,6 +14,10 @@ export const Home = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value);
+
+  const currentTime = new Date().toLocaleDateString('ja-JP');
+  console.log(currentTime)
+
   useEffect(() => {
     axios
       .get(`${url}/lists`, {
@@ -144,6 +148,15 @@ const Tasks = (props) => {
                 <br />
                 {task.limit}
                 <br />
+                {/* 残り時間
+                現在日時取得
+                期日ー現在日時
+                超えなかったら
+                  残り時間表示
+                もし期日超えたら
+                  期限切れのテキスト表示
+                 */}
+                <br />
                 {task.done ? "完了" : "未完了"}
               </Link>
             </li>
@@ -166,8 +179,8 @@ const Tasks = (props) => {
             >
               {task.title}
               <br />
-              {/* {task.limit} */}
-              { task.limit.substring(0,10) }
+              {task.limit}
+              {/* { task.limit.substring(0,10) } */}
               <br />
               {task.done ? "完了" : "未完了"}
             </Link>

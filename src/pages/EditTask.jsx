@@ -12,16 +12,19 @@ export const EditTask = () => {
   const [cookies] = useCookies();
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [limit, setLimit] = useState("");
   const [isDone, setIsDone] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleLimitChange = (e) => {setLimit(`${e.target.value}:00Z`)}
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
   const onUpdateTask = () => {
     console.log(isDone);
     const data = {
       title: title,
       detail: detail,
+      limit: limit,
       done: isDone,
     };
 
@@ -66,6 +69,7 @@ export const EditTask = () => {
         const task = res.data;
         setTitle(task.title);
         setDetail(task.detail);
+        setLimit(task.limit);
         setIsDone(task.done);
       })
       .catch((err) => {
@@ -98,6 +102,19 @@ export const EditTask = () => {
             value={detail}
           />
           <br />
+          <label>期日</label>
+          <br />
+          <input
+            type="datetime-local"
+            //name="limit-time"
+            min="2025-01-01T00:00"
+            max="2050-12-31T00:00"
+            onChange={handleLimitChange}
+            //value={limit}
+            //placeholder={limit}
+            id="limit"
+            className="new-task-limit"
+          />
           <div>
             <input
               type="radio"

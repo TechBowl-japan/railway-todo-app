@@ -17,9 +17,7 @@ export const NewTask = () => {
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
-  const handleLimitChange = (e) => {
-    setLimit(`${e.target.value}:00Z`);
-  }
+  const handleLimitChange = (e) => {setLimit(`${e.target.value}:00Z`)}
   const handleSelectList = (id) => setSelectListId(id);
 
   const onCreateTask = () => {
