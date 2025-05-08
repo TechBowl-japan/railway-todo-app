@@ -9,11 +9,13 @@
   margin: 25px 0;
 }
 
-.email-label, .password-label {
+.email-label,
+.password-label {
   color: #555555;
 }
 
-.email-input, .password-input {
+.email-input,
+.password-input {
   width: 100%;
   font-size: large;
   height: 30px;
@@ -21,7 +23,7 @@
 }
 
 .signin-button {
-  background-color: #242F9B;
+  background-color: #242f9b;
   color: #ffffff;
   width: 100px;
   height: 40px;

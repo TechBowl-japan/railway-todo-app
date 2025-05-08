@@ -1,4 +1,4 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Ignore artifacts: #.gitignore踏襲
 
 # dependencies
 /node_modules
@@ -24,4 +24,9 @@ yarn-error.log*
 
 .env
 
-logo.svg
+#追記
+/public
+.gitignore
+.eslint.config.mjs
+.package.json
+yarn.lock
