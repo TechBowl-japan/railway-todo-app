@@ -129,6 +129,13 @@ export const Home = () => {
 // 表示するタスク
 const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
+
+  //const limit01= tasks[0].limit;
+
+  const currentDate = new Date();
+  const diff = currentDate.getTime;
+  // let diff = limit.getTime - currentDate.getTime;
+
   if (tasks === null) return <></>;
 
   if (isDoneDisplay == "done") {
@@ -139,6 +146,7 @@ const Tasks = (props) => {
             return task.done === true;
           })
           .map((task, key) => (
+
             <li key={key} className="task-item">
               <Link
                 to={`/lists/${selectListId}/tasks/${task.id}`}
@@ -151,6 +159,7 @@ const Tasks = (props) => {
                 {/* 残り時間
                 現在日時取得
                 期日ー現在日時
+                引き算
                 超えなかったら
                   残り時間表示
                 もし期日超えたら
