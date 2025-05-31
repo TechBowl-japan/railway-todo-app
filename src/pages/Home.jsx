@@ -130,11 +130,23 @@ export const Home = () => {
 const Tasks = (props) => {
   const { tasks, selectListId, isDoneDisplay } = props;
 
-  //const limit01= tasks[0].limit;
+  //現在時刻と期限の差分を計算
+  const getRemainingTime = (limitString)=>{
+    const now = new Date();
+    const limit = new Date(limitString);
+    const diffMs = limit - now;
 
-  const currentDate = new Date();
-  const diff = currentDate.getTime;
-  // let diff = limit.getTime - currentDate.getTime;
+    if(diffMs <= 0){
+      return "期限切れ"
+    }
+
+    const diffMinutes = Math.floor(diffMs/1000/60);
+    const days= Math.floor(diffMinutes/(60*24));
+    const hours = Math.floor(diffMinutes % (60*24)/60);
+    const minutes=diffMinutes%60;
+
+    return `残り時間：${days}日 ${hours}時間 ${minutes}分`
+  }
 
   if (tasks === null) return <></>;
 
@@ -154,17 +166,9 @@ const Tasks = (props) => {
               >
                 {task.title}
                 <br />
-                {task.limit}
+                期限：{task.limit}
                 <br />
-                {/* 残り時間
-                現在日時取得
-                期日ー現在日時
-                引き算
-                超えなかったら
-                  残り時間表示
-                もし期日超えたら
-                  期限切れのテキスト表示
-                 */}
+                残り時間：{getRemainingTime(task.limit)}
                 <br />
                 {task.done ? "完了" : "未完了"}
               </Link>
@@ -188,8 +192,10 @@ const Tasks = (props) => {
             >
               {task.title}
               <br />
-              {task.limit}
-              {/* { task.limit.substring(0,10) } */}
+              期限：{task.limit}
+              <br />
+              {/* 残り時間 */}
+              {getRemainingTime(task.limit)}
               <br />
               {task.done ? "完了" : "未完了"}
             </Link>

@@ -44,15 +44,6 @@ export const NewTask = () => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);
       });
   };
-  // ①useEffectで現在の日時を取得する。
-  const date= new Date();
-  console.log(date);
-  //- limitのフォーマット「YYYY-MM-DDTHH:MM:SSZ」に注意してください。
-  //- 例）2022-07-15T11:11:11Z
-  // ②、①で取得した値をuseStateに保管する。
-  // ③、②で保管した日時を出力する。
-
-  //onsubmitで入力時刻をsetDate
 
   useEffect(() => {
     axios
