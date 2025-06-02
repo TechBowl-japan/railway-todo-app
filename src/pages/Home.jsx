@@ -140,7 +140,7 @@ const Tasks = (props) => {
       return "期限切れ"
     }
 
-    const diffMinutes = Math.floor(diffMs/1000/60);
+    const diffMinutes = Math.floor(diffMs/1000/60); //切捨て
     const days= Math.floor(diffMinutes/(60*24));
     const hours = Math.floor(diffMinutes % (60*24)/60);
     const minutes=diffMinutes%60;
@@ -166,7 +166,7 @@ const Tasks = (props) => {
               >
                 {task.title}
                 <br />
-                期限：{task.limit}
+                期限：{task.limit} {/*ローカル時間に直す */}
                 <br />
                 残り時間：{getRemainingTime(task.limit)}
                 <br />

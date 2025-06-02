@@ -17,7 +17,12 @@ export const EditTask = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
-  const handleLimitChange = (e) => {setLimit(`${e.target.value}:00Z`)}
+  const handleLimitChange = (e) => {
+    //setLimit(`${e.target.value}:00Z`)
+      const date = new Date(e.target.value);
+      setLimit(date.toISOString());
+  }
+  //newをロジックを揃える handlelimitchangeと
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
   const onUpdateTask = () => {
     console.log(isDone);
@@ -106,12 +111,9 @@ export const EditTask = () => {
           <br />
           <input
             type="datetime-local"
-            //name="limit-time"
             min="2025-01-01T00:00"
             max="2050-12-31T00:00"
             onChange={handleLimitChange}
-            //value={limit}
-            //placeholder={limit}
             id="limit"
             className="new-task-limit"
           />

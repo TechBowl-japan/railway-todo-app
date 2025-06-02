@@ -19,7 +19,7 @@ export const NewTask = () => {
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleLimitChange = (e) => {
     const date = new Date(e.target.value);
-    setLimit(date.toISOString());
+    setLimit(date.toISOString()); //9時間時差修正必要
   };
   const handleSelectList = (id) => setSelectListId(id);
 
@@ -27,7 +27,7 @@ export const NewTask = () => {
     const data = {
       title: title,
       detail: detail,
-      limit: limit,
+      limit: limit, //期限
       done: false,
     };
 
@@ -102,9 +102,7 @@ export const NewTask = () => {
           <input
             type="datetime-local"
             id="limit"
-            //name="limit-time"
             placeholder="2025-01-01T00:00"
-            //value="2025-12-12T23:59:59Z"
             min="2025-01-01T00:00"
             max="2050-12-31T00:00"
             onChange={handleLimitChange}
