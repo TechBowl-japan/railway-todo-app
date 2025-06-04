@@ -18,10 +18,16 @@ export const EditTask = () => {
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleLimitChange = (e) => {
-    //setLimit(`${e.target.value}:00Z`)
-      const date = new Date(e.target.value);
-      setLimit(date.toISOString());
-  }
+    const local = new Date(e.target.value); // JSTとして入力された時間
+    const yyyy = local.getFullYear();
+    const mm = String(local.getMonth() + 1).padStart(2, "0");
+    const dd = String(local.getDate()).padStart(2, "0");
+    const hh = String(local.getHours()).padStart(2, "0");
+    const mi = String(local.getMinutes()).padStart(2, "0");
+    const ss = "00";
+    const jstIsoLike = `${yyyy}-${mm}-${dd}T${hh}:${mi}:${ss}Z`;
+    setLimit(jstIsoLike); // ← これでJSTのままZ付き保存
+  };
   //newをロジックを揃える handlelimitchangeと
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
   const onUpdateTask = () => {
