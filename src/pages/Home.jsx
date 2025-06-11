@@ -132,8 +132,9 @@ const Tasks = (props) => {
 
   //現在時刻と期限の差分を計算
   const getRemainingTime = (limitString)=>{
+    //limitString→例："2025-05-23T04:01:00.000Z" UCT
     const now = new Date();
-    const limit = new Date(limitString);
+    const limit = new Date(limitString); // Z付きのUTC → newDate()でJST補正/2025-05-23 13:01:00 (JST)
     const diffMs = limit - now;
 
     if(diffMs <= 0){
