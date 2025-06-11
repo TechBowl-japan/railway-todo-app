@@ -17,18 +17,24 @@ export const EditTask = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+  // const handleLimitChange = (e) => {
+  //   const local = new Date(e.target.value); // JSTとして入力された時間
+  //   const yyyy = local.getFullYear();
+  //   const mm = String(local.getMonth() + 1).padStart(2, "0");
+  //   const dd = String(local.getDate()).padStart(2, "0");
+  //   const hh = String(local.getHours()).padStart(2, "0");
+  //   const mi = String(local.getMinutes()).padStart(2, "0");
+  //   const ss = "00";
+  //   const jstIsoLike = `${yyyy}-${mm}-${dd}T${hh}:${mi}:${ss}Z`;
+  //   setLimit(jstIsoLike); // ← これでJSTのままZ付き保存
+  // };
   const handleLimitChange = (e) => {
-    const local = new Date(e.target.value); // JSTとして入力された時間
-    const yyyy = local.getFullYear();
-    const mm = String(local.getMonth() + 1).padStart(2, "0");
-    const dd = String(local.getDate()).padStart(2, "0");
-    const hh = String(local.getHours()).padStart(2, "0");
-    const mi = String(local.getMinutes()).padStart(2, "0");
-    const ss = "00";
-    const jstIsoLike = `${yyyy}-${mm}-${dd}T${hh}:${mi}:${ss}Z`;
-    setLimit(jstIsoLike); // ← これでJSTのままZ付き保存
+    const localDateTime = e.target.value;  // "2025-05-23T13:01"(JST)
+    const localDate = new Date(localDateTime);  // ローカルJST
+    const utcISOString = localDate.toISOString();
+    // 正規Z付きUTC 2025-05-23T04:01:00.000Z（13:01 JST ＝ 04:01 UTC ←-9h）
+    setLimit(utcISOString); //uctでAPIに送る
   };
-  //newをロジックを揃える handlelimitchangeと
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
   const onUpdateTask = () => {
     console.log(isDone);
@@ -67,6 +73,18 @@ export const EditTask = () => {
       .catch((err) => {
         setErrorMessage(`削除に失敗しました。${err}`);
       });
+  };
+
+  // 期日フォーマッター 
+  const formatForDatetimeLocal = (date) => {
+    //datetime-localの形式(2025-05-23T04:01)の形式に変換
+    //limitのままだと、UTC 2025-05-23T04:01:00.000Z
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    const hh = String(date.getHours()).padStart(2, '0');
+    const mi = String(date.getMinutes()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}T${hh}:${mi}`;
   };
 
   useEffect(() => {
@@ -122,6 +140,7 @@ export const EditTask = () => {
             onChange={handleLimitChange}
             id="limit"
             className="new-task-limit"
+            value={limit ? formatForDatetimeLocal(new Date(limit)) : ""} //limit(UCT)をJSTに変換
           />
           <div>
             <input
