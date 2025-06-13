@@ -33,6 +33,7 @@ export const Home = () => {
       });
   }, []);
 
+
   useEffect(() => {
     const listId = lists[0]?.id;
     if (typeof listId !== "undefined") {
@@ -121,6 +122,10 @@ export const Home = () => {
             />
           </div>
         </div>
+
+        <div className="modalWrapper is-closed">
+          modalWrapperガワ
+        </div>
       </main>
     </div>
   );
@@ -149,6 +154,28 @@ const Tasks = (props) => {
     return `残り時間：${days}日 ${hours}時間 ${minutes}分`
   }
 
+
+  // const openEditTaskModal =()=>{
+  //   //モーダルに表示用クラス付与
+  // }
+
+  const formatJST = (lim)=> {
+    //const changedLimit = new Date(limit);
+    //limitがnullの場合考慮
+    const tmpLim = new Date(lim);
+    const changedLimit = lim ? tmpLim.toString(): "";
+    //const changedLimit = lim ? tmpLim.toDateString() + tmpLim.toTimeString(): "";
+    //const changedLimit = lim ? tmpLim.toString(): "";
+    
+
+    //const changedLimit = lim ? tmpLim.toLocaleDateString("ja-jp") : "未設定";
+    //return changedLimit.toString();
+
+    return changedLimit;
+    //return lim;
+  }
+
+
   if (tasks === null) return <></>;
 
   if (isDoneDisplay == "done") {
@@ -167,7 +194,8 @@ const Tasks = (props) => {
               >
                 {task.title}
                 <br />
-                期限：{task.limit} {/*ローカル時間に直す */}
+                {/*期限：{task.limit} */}
+                期限：{formatJST(task.limit)}
                 <br />
                 残り時間：{getRemainingTime(task.limit)}
                 <br />
@@ -186,21 +214,23 @@ const Tasks = (props) => {
           return task.done === false;
         })
         .map((task, key) => (
-          <li key={key} className="task-item">
+          // <li key={key} className="task-item"
+          //   onClick={openEditTaskModal}
+          // >
             <Link
               to={`/lists/${selectListId}/tasks/${task.id}`}
               className="task-item-link"
             >
               {task.title}
               <br />
-              期限：{task.limit}
+              期限：{formatJST(task.limit)}
               <br />
               {/* 残り時間 */}
               {getRemainingTime(task.limit)}
               <br />
               {task.done ? "完了" : "未完了"}
             </Link>
-          </li>
+          // </li>
         ))}
     </ul>
   );

@@ -74,3 +74,12 @@
 .display-select {
   width: 100%;
 }
+
+
+//modal
+.modalWrapper {
+  display: block;
+}
+.modalWrapper.is-closed {
+  display: none;
+}
