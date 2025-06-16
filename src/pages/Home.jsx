@@ -154,20 +154,36 @@ const Tasks = (props) => {
     return `残り時間：${days}日 ${hours}時間 ${minutes}分`
   }
 
-
-  // const openEditTaskModal =()=>{
-  //   //モーダルに表示用クラス付与
-  // }
-
   const formatJST = (lim)=> {
+
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      weekday: 'short',
+    }
+
     //const changedLimit = new Date(limit);
     //limitがnullの場合考慮
     const tmpLim = new Date(lim);
-    const changedLimit = lim ? tmpLim.toString(): "";
+    //const changedLimit = lim ? tmpLim.toString(): "";
+
+    //const formatForDatetimeLocal = (tmpLim) => {
+      //datetime-localの形式(2025-05-23T04:01)の形式に変換
+      //limitのままだと、UTC 2025-05-23T04:01:00.000Z
+      const yyyy = tmpLim.getFullYear();
+      const mm = String(tmpLim.getMonth() + 1).padStart(2, '0');
+      const dd = String(tmpLim.getDate()).padStart(2, '0');
+      const hh = String(tmpLim.getHours()).padStart(2, '0');
+      const mi = String(tmpLim.getMinutes()).padStart(2, '0');
+      const tmpLimString = `${yyyy}-${mm}-${dd}T${hh}:${mi}Z`;
+    //};
+    const changedLimit = tmpLimString ? tmpLimString: "";
+
+    //const changedLimit = tmpLim ? tmpLim: "";
+
     //const changedLimit = lim ? tmpLim.toDateString() + tmpLim.toTimeString(): "";
     //const changedLimit = lim ? tmpLim.toString(): "";
-    
-
     //const changedLimit = lim ? tmpLim.toLocaleDateString("ja-jp") : "未設定";
     //return changedLimit.toString();
 
@@ -214,9 +230,11 @@ const Tasks = (props) => {
           return task.done === false;
         })
         .map((task, key) => (
+          
           // <li key={key} className="task-item"
           //   onClick={openEditTaskModal}
           // >
+          <li className="task-item">
             <Link
               to={`/lists/${selectListId}/tasks/${task.id}`}
               className="task-item-link"
@@ -230,7 +248,7 @@ const Tasks = (props) => {
               <br />
               {task.done ? "完了" : "未完了"}
             </Link>
-          // </li>
+          </li>
         ))}
     </ul>
   );
