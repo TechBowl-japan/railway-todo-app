@@ -165,6 +165,10 @@ export const EditTaskModal = () => {
           >
             更新
           </button>
+          <br />
+          <button>Back</button>
+          <br />
+          <button>Cancel</button>
         </form>
       </main>
     </div>

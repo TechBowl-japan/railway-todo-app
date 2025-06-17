@@ -230,7 +230,6 @@ const Tasks = (props) => {
           return task.done === false;
         })
         .map((task, key) => (
-          
           // <li key={key} className="task-item"
           //   onClick={openEditTaskModal}
           // >
