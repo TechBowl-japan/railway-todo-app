@@ -123,7 +123,10 @@ export const Home = () => {
         </div>
 
         <div className="modalWrapper is-closed">
-          modalWrapperガワ
+        modalWrapperガワ
+          <div className="modal">
+            modal中身
+          </div>
         </div>
       </main>
     </div>
@@ -158,6 +161,14 @@ const Tasks = (props) => {
     const tmpLim = new Date(lim);
 
     return tmpLim.toLocaleString(); //表示形式 2025/6/17 12:28:00
+  }
+
+  //Modal開閉
+  const openEditTaskModal = (e) => {
+    //クリックしたliを指定
+    //モーダル表示クラスを付与
+    document.getElementsByClassName("modalWrapper")[0].classList.toggle("is-closed");
+    //指定のタスク編集モーダル表示
   }
 
 
@@ -200,11 +211,31 @@ const Tasks = (props) => {
           // <li key={key} className="task-item"
           //   onClick={openEditTaskModal}
           // >
-          <li className="task-item">
-            <Link
+          // <li className="task-item">
+          //   <Link
+          //     to={`/lists/${selectListId}/tasks/${task.id}`}
+          //     className="task-item-link"
+          //   >
+          //     {task.title}
+          //     <br />
+          //     期限：{formatJST(task.limit)}
+          //     <br />
+          //     {/* 残り時間 */}
+          //     {getRemainingTime(task.limit)}
+          //     <br />
+          //     {task.done ? "完了" : "未完了"}
+          //   </Link>
+          // </li>
+
+
+          <li key={key} className="task-item"
+            onClick={openEditTaskModal}
+          >
+          {/* <li className="task-item"> */}
+            {/* <Link
               to={`/lists/${selectListId}/tasks/${task.id}`}
               className="task-item-link"
-            >
+            > */}
               {task.title}
               <br />
               期限：{formatJST(task.limit)}
@@ -213,8 +244,9 @@ const Tasks = (props) => {
               {getRemainingTime(task.limit)}
               <br />
               {task.done ? "完了" : "未完了"}
-            </Link>
+            {/* </Link> */}
           </li>
+
         ))}
     </ul>
   );
