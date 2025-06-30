@@ -1,40 +1,40 @@
-import React, { useCallback, useState } from 'react'
-import { Redirect, Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { useLogin } from '~/hooks/useLogin'
-import { useId } from '~/hooks/useId'
-import './index.css'
+import React, { useCallback, useState } from 'react';
+import { Redirect, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useLogin } from '~/hooks/useLogin';
+import { useId } from '~/hooks/useId';
+import './index.css';
 
 const SignIn = () => {
-  const auth = useSelector(state => state.auth.token !== null)
-  const { login } = useLogin()
+  const auth = useSelector(state => state.auth.token !== null);
+  const { login } = useLogin();
 
-  const id = useId()
-  const [errorMessage, setErrorMessage] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const id = useId();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const onSubmit = useCallback(
     event => {
-      event.preventDefault()
+      event.preventDefault();
 
-      setIsSubmitting(true)
+      setIsSubmitting(true);
 
       login({ email, password })
         .catch(err => {
-          setErrorMessage(err.message)
+          setErrorMessage(err.message);
         })
         .finally(() => {
-          setIsSubmitting(false)
-        })
+          setIsSubmitting(false);
+        });
     },
-    [email, password],
-  )
+    [email, password]
+  );
 
   if (auth) {
-    return <Redirect to="/" />
+    return <Redirect to="/" />;
   }
 
   return (
@@ -79,7 +79,7 @@ const SignIn = () => {
         </div>
       </form>
     </main>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

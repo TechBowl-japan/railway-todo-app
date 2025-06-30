@@ -1,83 +1,81 @@
-import { useCallback, useState, useEffect } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { BackButton } from '~/components/BackButton'
-import './index.css'
-import { setCurrentList } from '~/store/list'
-import { fetchTasks, updateTask, deleteTask } from '~/store/task'
-import { useId } from '~/hooks/useId'
+import { useCallback, useState, useEffect } from 'react';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { BackButton } from '~/components/BackButton';
+import './index.css';
+import { setCurrentList } from '~/store/list';
+import { fetchTasks, updateTask, deleteTask } from '~/store/task';
+import { useId } from '~/hooks/useId';
 
 const EditTask = () => {
-  const id = useId()
+  const id = useId();
 
-  const { listId, taskId } = useParams()
-  const history = useHistory()
-  const dispatch = useDispatch()
+  const { listId, taskId } = useParams();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const [title, setTitle] = useState('')
-  const [detail, setDetail] = useState('')
-  const [done, setDone] = useState(false)
+  const [title, setTitle] = useState('');
+  const [detail, setDetail] = useState('');
+  const [done, setDone] = useState(false);
 
-  const [errorMessage, setErrorMessage] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const task = useSelector(state =>
-    state.task.tasks?.find(task => task.id === taskId),
-  )
+  const task = useSelector(state => state.task.tasks?.find(task => task.id === taskId));
 
   useEffect(() => {
     if (task) {
-      setTitle(task.title)
-      setDetail(task.detail)
-      setDone(task.done)
+      setTitle(task.title);
+      setDetail(task.detail);
+      setDone(task.done);
     }
-  }, [task])
+  }, [task]);
 
   useEffect(() => {
-    void dispatch(setCurrentList(listId))
-    void dispatch(fetchTasks())
-  }, [listId])
+    void dispatch(setCurrentList(listId));
+    void dispatch(fetchTasks());
+  }, [listId]);
 
   const onSubmit = useCallback(
     event => {
-      event.preventDefault()
+      event.preventDefault();
 
-      setIsSubmitting(true)
+      setIsSubmitting(true);
 
       void dispatch(updateTask({ id: taskId, title, detail, done }))
         .unwrap()
         .then(() => {
-          history.push(`/lists/${listId}`)
+          history.push(`/lists/${listId}`);
         })
         .catch(err => {
-          setErrorMessage(err.message)
+          setErrorMessage(err.message);
         })
         .finally(() => {
-          setIsSubmitting(false)
-        })
+          setIsSubmitting(false);
+        });
     },
-    [title, taskId, listId, detail, done],
-  )
+    [title, taskId, listId, detail, done]
+  );
 
   const handleDelete = useCallback(() => {
     if (!window.confirm('Are you sure you want to delete this task?')) {
-      return
+      return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     void dispatch(deleteTask({ id: taskId }))
       .unwrap()
       .then(() => {
-        history.push(`/`)
+        history.push(`/`);
       })
       .catch(err => {
-        setErrorMessage(err.message)
+        setErrorMessage(err.message);
       })
       .finally(() => {
-        setIsSubmitting(false)
-      })
-  }, [taskId])
+        setIsSubmitting(false);
+      });
+  }, [taskId]);
 
   return (
     <main className="edit_list">
@@ -141,7 +139,7 @@ const EditTask = () => {
         </div>
       </form>
     </main>
-  )
-}
+  );
+};
 
-export default EditTask
+export default EditTask;
