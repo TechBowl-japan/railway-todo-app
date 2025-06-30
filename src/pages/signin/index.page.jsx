@@ -5,6 +5,7 @@ import { useLogin } from '~/hooks/useLogin';
 import { useId } from '~/hooks/useId';
 import './index.css';
 import { Button } from '~/components/Button';
+import { Textfield } from '~/components/TextField';
 const SignIn = () => {
   const auth = useSelector(state => state.auth.token !== null);
   const { login } = useLogin();
@@ -42,32 +43,26 @@ const SignIn = () => {
       <h2 className="signin__title">Login</h2>
       <p className="signin__error">{errorMessage}</p>
       <form className="signin__form" onSubmit={onSubmit}>
-        <fieldset className="signin__form_field">
-          <label htmlFor={`${id}-email`} className="signin__form_label">
-            E-mail Address
-          </label>
-          <input
-            id={`${id}-email`}
-            type="email"
-            autoComplete="email"
-            className="app_input"
-            value={email}
-            onChange={event => setEmail(event.target.value)}
-          />
-        </fieldset>
-        <fieldset className="signin__form_field">
-          <label htmlFor={`${id}-password`} className="signin__form_label">
-            Password
-          </label>
-          <input
-            id={`${id}-password`}
-            type="password"
-            autoComplete="current-password"
-            className="app_input"
-            value={password}
-            onChange={event => setPassword(event.target.value)}
-          />
-        </fieldset>
+        <Textfield
+          id={id}
+          type="email"
+          onChange={event => setEmail(event.target.value)}
+          autoComplete="email"
+          value={email}
+          mode="signup"
+        >
+          E-mail Address
+        </Textfield>
+        <Textfield
+          id={id}
+          type="password"
+          onChange={event => setPassword(event.target.value)}
+          autoComplete="password"
+          value={password}
+          mode="signin"
+        >
+          Password
+        </Textfield>
         <div className="signin__form_actions">
           <Link className="app_button" data-variant="secondary" to="/signup">
             Register
