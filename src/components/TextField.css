@@ -1,0 +1,21 @@
+.signin__form_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.signin__form_label {
+  color: var(--slate-600);
+  font-weight: 500;
+}
+
+.signup__form_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.signup__form_label {
+  color: var(--slate-600);
+  font-weight: 500;
+}

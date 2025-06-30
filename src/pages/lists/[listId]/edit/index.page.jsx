@@ -5,7 +5,7 @@ import { BackButton } from '~/components/BackButton';
 import './index.css';
 import { fetchLists, updateList, deleteList } from '~/store/list';
 import { useId } from '~/hooks/useId';
-
+import { Button } from '~/components/Button';
 const EditList = () => {
   const id = useId();
 
@@ -102,9 +102,9 @@ const EditList = () => {
           >
             Delete
           </button>
-          <button type="submit" className="app_button" disabled={isSubmitting}>
+          <Button type="submit" disabled={isSubmitting}>
             Update
-          </button>
+          </Button>
         </div>
       </form>
     </main>
