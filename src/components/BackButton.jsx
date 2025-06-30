@@ -1,9 +1,9 @@
-import { ChevronIcon } from '~/icons/ChevronIcon'
-import './BackButton.css'
+import { ChevronIcon } from '~/icons/ChevronIcon';
+import './BackButton.css';
 
 const handleClick = () => {
-  window.history.back()
-}
+  window.history.back();
+};
 
 export const BackButton = () => {
   return (
@@ -11,5 +11,5 @@ export const BackButton = () => {
       <ChevronIcon className="back_button__icon" />
       Back
     </button>
-  )
-}
+  );
+};

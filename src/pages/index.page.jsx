@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchLists } from '~/store/list/index'
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLists } from '~/store/list/index';
 
 const Home = () => {
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const currentListId = useSelector(state => state.list.current)
+  const currentListId = useSelector(state => state.list.current);
 
   useEffect(() => {
-    dispatch(fetchLists())
-  }, [])
+    dispatch(fetchLists());
+  }, []);
 
   useEffect(() => {
     if (currentListId) {
-      history.push(`/lists/${currentListId}`)
+      history.push(`/lists/${currentListId}`);
     }
-  }, [currentListId])
+  }, [currentListId]);
 
-  return <div></div>
-}
+  return <div></div>;
+};
 
-export default Home
+export default Home;

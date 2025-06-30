@@ -1,42 +1,42 @@
-import React, { useCallback, useState } from 'react'
-import { Redirect, Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import './index.css'
-import { useSignup } from '~/hooks/useSignup'
-import { useId } from '~/hooks/useId'
+import React, { useCallback, useState } from 'react';
+import { Redirect, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import './index.css';
+import { useSignup } from '~/hooks/useSignup';
+import { useId } from '~/hooks/useId';
 
 const SignUp = () => {
-  const auth = useSelector(state => state.auth.token !== null)
+  const auth = useSelector(state => state.auth.token !== null);
 
-  const id = useId()
-  const [errorMessage, setErrorMessage] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const id = useId();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [email, setEmail] = useState('')
-  const [name, setName] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
 
-  const { signup } = useSignup()
+  const { signup } = useSignup();
 
   const onSubmit = useCallback(
     event => {
-      event.preventDefault()
+      event.preventDefault();
 
-      setIsSubmitting(true)
+      setIsSubmitting(true);
 
       signup({ email, name, password })
         .catch(err => {
-          setErrorMessage(`サインアップに失敗しました: ${err.message}`)
+          setErrorMessage(`サインアップに失敗しました: ${err.message}`);
         })
         .finally(() => {
-          setIsSubmitting(false)
-        })
+          setIsSubmitting(false);
+        });
     },
-    [email, name, password],
-  )
+    [email, name, password]
+  );
 
   if (auth) {
-    return <Redirect to="/" />
+    return <Redirect to="/" />;
   }
 
   return (
@@ -57,11 +57,7 @@ const SignUp = () => {
           />
         </fieldset>
         <fieldset className="signup__form_field">
-          <label
-            htmlFor={`${id}-name`}
-            autoComplete="name"
-            className="signup__form_label"
-          >
+          <label htmlFor={`${id}-name`} autoComplete="name" className="signup__form_label">
             Name
           </label>
           <input
@@ -99,7 +95,7 @@ const SignUp = () => {
         </div>
       </form>
     </main>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

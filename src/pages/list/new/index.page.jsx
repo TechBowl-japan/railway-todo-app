@@ -1,42 +1,42 @@
-import React, { useCallback, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { BackButton } from '~/components/BackButton'
-import './index.css'
-import { createList, setCurrentList } from '~/store/list/index'
-import { useId } from '~/hooks/useId'
+import React, { useCallback, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { BackButton } from '~/components/BackButton';
+import './index.css';
+import { createList, setCurrentList } from '~/store/list/index';
+import { useId } from '~/hooks/useId';
 
 const NewList = () => {
-  const id = useId()
-  const history = useHistory()
-  const dispatch = useDispatch()
+  const id = useId();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('');
 
-  const [errorMessage, setErrorMessage] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = useCallback(
     event => {
-      event.preventDefault()
+      event.preventDefault();
 
-      setIsSubmitting(true)
+      setIsSubmitting(true);
 
       void dispatch(createList({ title }))
         .unwrap()
         .then(listId => {
-          dispatch(setCurrentList(listId))
-          history.push(`/`)
+          dispatch(setCurrentList(listId));
+          history.push(`/`);
         })
         .catch(err => {
-          setErrorMessage(err.message)
+          setErrorMessage(err.message);
         })
         .finally(() => {
-          setIsSubmitting(false)
-        })
+          setIsSubmitting(false);
+        });
     },
-    [title],
-  )
+    [title]
+  );
 
   return (
     <main className="new_list">
@@ -67,7 +67,7 @@ const NewList = () => {
         </div>
       </form>
     </main>
-  )
-}
+  );
+};
 
-export default NewList
+export default NewList;

@@ -1,97 +1,92 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
-import { useDispatch } from 'react-redux'
-import './TaskCreateForm.css'
-import { CheckIcon } from '~/icons/CheckIcon'
-import { createTask } from '~/store/task'
+import { useCallback, useEffect, useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import './TaskCreateForm.css';
+import { CheckIcon } from '~/icons/CheckIcon';
+import { createTask } from '~/store/task';
 
 export const TaskCreateForm = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const refForm = useRef(null)
-  const [elemTextarea, setElemTextarea] = useState(null)
+  const refForm = useRef(null);
+  const [elemTextarea, setElemTextarea] = useState(null);
 
-  const [formState, setFormState] = useState('initial')
+  const [formState, setFormState] = useState('initial');
 
-  const [title, setTitle] = useState('')
-  const [detail, setDetail] = useState('')
-  const [done, setDone] = useState(false)
+  const [title, setTitle] = useState('');
+  const [detail, setDetail] = useState('');
+  const [done, setDone] = useState(false);
 
   const handleToggle = useCallback(() => {
-    setDone(prev => !prev)
-  }, [])
+    setDone(prev => !prev);
+  }, []);
 
   const handleFocus = useCallback(() => {
-    setFormState('focused')
-  }, [])
+    setFormState('focused');
+  }, []);
 
   const handleBlur = useCallback(() => {
     if (title || detail) {
-      return
+      return;
     }
 
     setTimeout(() => {
       // フォーム内の要素がフォーカスされている場合は何もしない
-      const formElement = refForm.current
+      const formElement = refForm.current;
       if (formElement && formElement.contains(document.activeElement)) {
-        return
+        return;
       }
 
-      setFormState('initial')
-      setDone(false)
-    }, 100)
-  }, [title, detail])
+      setFormState('initial');
+      setDone(false);
+    }, 100);
+  }, [title, detail]);
 
   const handleDiscard = useCallback(() => {
-    setTitle('')
-    setDetail('')
-    setFormState('initial')
-    setDone(false)
-  }, [])
+    setTitle('');
+    setDetail('');
+    setFormState('initial');
+    setDone(false);
+  }, []);
 
   const onSubmit = useCallback(
     event => {
-      event.preventDefault()
+      event.preventDefault();
 
-      setFormState('submitting')
+      setFormState('submitting');
 
       void dispatch(createTask({ title, detail, done }))
         .unwrap()
         .then(() => {
-          handleDiscard()
+          handleDiscard();
         })
         .catch(err => {
-          alert(err.message)
-          setFormState('focused')
-        })
+          alert(err.message);
+          setFormState('focused');
+        });
     },
-    [title, detail, done],
-  )
+    [title, detail, done]
+  );
 
   useEffect(() => {
     if (!elemTextarea) {
-      return
+      return;
     }
 
     const recalcHeight = () => {
-      elemTextarea.style.height = 'auto'
-      elemTextarea.style.height = `${elemTextarea.scrollHeight}px`
-    }
+      elemTextarea.style.height = 'auto';
+      elemTextarea.style.height = `${elemTextarea.scrollHeight}px`;
+    };
 
-    elemTextarea.addEventListener('input', recalcHeight)
-    recalcHeight()
+    elemTextarea.addEventListener('input', recalcHeight);
+    recalcHeight();
 
     return () => {
-      elemTextarea.removeEventListener('input', recalcHeight)
-    }
-  }, [elemTextarea])
+      elemTextarea.removeEventListener('input', recalcHeight);
+    };
+  }, [elemTextarea]);
 
   return (
-    <form
-      ref={refForm}
-      className="task_create_form"
-      onSubmit={onSubmit}
-      data-state={formState}
-    >
+    <form ref={refForm} className="task_create_form" onSubmit={onSubmit} data-state={formState}>
       <div className="task_create_form__title_container">
         <button
           type="button"
@@ -101,19 +96,11 @@ export const TaskCreateForm = () => {
           onBlur={handleBlur}
         >
           {done ? (
-            <div
-              className="task_create_form__mark____complete"
-              aria-label="Completed"
-            >
-              <CheckIcon
-                className="task_create_form__mark____complete_check"
-              />
+            <div className="task_create_form__mark____complete" aria-label="Completed">
+              <CheckIcon className="task_create_form__mark____complete_check" />
             </div>
           ) : (
-            <div
-              className="task_create_form__mark____incomplete"
-              aria-label="Incomplete"
-            ></div>
+            <div className="task_create_form__mark____incomplete" aria-label="Incomplete"></div>
           )}
         </button>
         <input
@@ -163,5 +150,5 @@ export const TaskCreateForm = () => {
         </div>
       )}
     </form>
-  )
-}
+  );
+};
