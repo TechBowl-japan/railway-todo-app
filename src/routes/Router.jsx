@@ -19,38 +19,20 @@ export const Router = () => {
       <Sidebar />
       <div className="main_content">
         <Switch>
-          <Route exact path="/signin">
-            <SignIn />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/signup" component={SignUp} />
           {auth ? (
-            <>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route exact path="/lists/:listId">
-                <ListIndex />
-              </Route>
-              <Route exact path="/list/new">
-                <NewList />
-              </Route>
-              <Route exact path="/lists/:listId/tasks/:taskId">
-                <EditTask />
-              </Route>
-              <Route exact path="/lists/:listId/edit">
-                <EditList />
-              </Route>
-            </>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/lists/:listId" component={ListIndex} />
+              <Route exact path="/list/new" component={NewList} />
+              <Route exact path="/lists/:listId/tasks/:taskId" component={EditTask} />
+              <Route exact path="/lists/:listId/edit" component={EditList} />
+            </Switch>
           ) : (
-            <Route path="/">
-              <Redirect to="/signin" />
-            </Route>
+            <Redirect to="/signin" />
           )}
-          <Route path="*">
-            <NotFound />
-          </Route>
+          <Route component={NotFound} />
         </Switch>
       </div>
     </BrowserRouter>
