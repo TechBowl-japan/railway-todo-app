@@ -10,7 +10,7 @@ export const TaskItem = ({ task }) => {
   const dispatch = useDispatch();
 
   const { listId } = useParams();
-  const { id, title, detail, done } = task;
+  const { id, title, detail, done, limit } = task;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -20,6 +20,30 @@ export const TaskItem = ({ task }) => {
       setIsSubmitting(false);
     });
   }, [id, done]);
+
+  const getRemainingTime = limit => {
+    if (!limit) return '';
+
+    const now = new Date();
+    const target = new Date(limit);
+    const diff = target - now - 1000 * 60 * 60 * 9;
+
+    const absDiff = Math.abs(diff);
+    const minutes = Math.floor(absDiff / (1000 * 60)) % 60;
+    const hours = Math.floor(absDiff / (1000 * 60 * 60)) % 24;
+    const days = Math.floor(absDiff / (1000 * 60 * 60 * 24));
+
+    let result = '';
+    if (days > 0) result += `${days}日`;
+    if (hours > 0) result += `${hours}時間`;
+    if (minutes > 0) result += `${minutes}分`;
+
+    if (diff < 0) {
+      return `期限切れ: ${result || '数秒'} 遅れています`;
+    } else {
+      return `あと ${result || '数秒'}`;
+    }
+  };
 
   return (
     <div className="task_item">
@@ -47,6 +71,11 @@ export const TaskItem = ({ task }) => {
         </Link>
       </div>
       <div className="task_item__detail">{detail}</div>
+      {limit && (
+        <div className="task_item__limit">
+          期限: {limit ? limit.slice(0, 16) : ''}（{getRemainingTime(limit)}）
+        </div>
+      )}
     </div>
   );
 };
