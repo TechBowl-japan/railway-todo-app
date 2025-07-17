@@ -61,7 +61,7 @@ const SignUp = () => {
           type="text"
           onChange={event => setName(event.target.value)}
           autoComplete="name"
-          value={email}
+          value={name}
           mode="signup"
         >
           Name
@@ -71,7 +71,7 @@ const SignUp = () => {
           type="password"
           onChange={event => setPassword(event.target.value)}
           autoComplete="password"
-          value={email}
+          value={password}
           mode="signup"
         >
           Password
