@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { TaskItem } from '~/components/TaskItem';
@@ -6,10 +6,13 @@ import { TaskCreateForm } from '~/components/TaskCreateForm';
 import { setCurrentList } from '~/store/list';
 import { fetchTasks } from '~/store/task';
 import './index.css';
+import { Modal } from '~/components/Modal';
+import EditList from './edit/index.page';
 
 const ListIndex = () => {
   const dispatch = useDispatch();
   const { listId } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isLoading = useSelector(state => state.task.isLoading || state.list.isLoading);
 
@@ -26,7 +29,7 @@ const ListIndex = () => {
   useEffect(() => {
     dispatch(setCurrentList(listId));
     dispatch(fetchTasks()).unwrap();
-  }, [listId,dispatch]);
+  }, [listId, dispatch]);
 
   if (isLoading) {
     return <div></div>;
@@ -40,9 +43,9 @@ const ListIndex = () => {
           <span className="tasks_list__title__count">{incompleteTasksCount}</span>
         )}
         <div className="tasks_list__title_spacer"></div>
-        <Link to={`/lists/${listId}/edit`}>
-          <button className="app_button">Edit...</button>
-        </Link>
+        <button className="app_button" onClick={() => setIsModalOpen(true)}>
+          Edit...
+        </button>
       </div>
       <div className="tasks_list__items">
         <TaskCreateForm />
@@ -51,6 +54,11 @@ const ListIndex = () => {
         })}
         {tasks?.length === 0 && <div className="tasks_list__items__empty">No tasks yet!</div>}
       </div>
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <EditList onClose={() => setIsModalOpen(false)} />
+        </Modal>
+      )}
     </div>
   );
 };

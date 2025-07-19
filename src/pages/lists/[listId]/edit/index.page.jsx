@@ -1,16 +1,15 @@
 import { useCallback, useState, useEffect } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { BackButton } from '~/components/BackButton';
 import './index.css';
 import { fetchLists, updateList, deleteList } from '~/store/list';
 import { useId } from '~/hooks/useId';
 import { Button } from '~/components/Button';
-const EditList = () => {
+const EditList = ({ onClose }) => {
   const id = useId();
 
   const { listId } = useParams();
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
@@ -33,13 +32,12 @@ const EditList = () => {
   const onSubmit = useCallback(
     event => {
       event.preventDefault();
-
       setIsSubmitting(true);
 
       void dispatch(updateList({ id: listId, title }))
         .unwrap()
         .then(() => {
-          history.push(`/lists/${listId}`);
+          onClose();
         })
         .catch(err => {
           setErrorMessage(err.message);
@@ -48,20 +46,17 @@ const EditList = () => {
           setIsSubmitting(false);
         });
     },
-    [title, listId, dispatch, history]
+    [title, listId, dispatch, onClose]
   );
 
   const handleDelete = useCallback(() => {
-    if (!window.confirm('Are you sure you want to delete this list?')) {
-      return;
-    }
+    if (!window.confirm('Are you sure you want to delete this list?')) return;
 
     setIsSubmitting(true);
-
     void dispatch(deleteList({ id: listId }))
       .unwrap()
       .then(() => {
-        history.push(`/`);
+        onClose();
       })
       .catch(err => {
         setErrorMessage(err.message);
@@ -69,11 +64,11 @@ const EditList = () => {
       .finally(() => {
         setIsSubmitting(false);
       });
-  }, [dispatch, history,listId]);
+  }, [dispatch, listId, onClose]);
 
   return (
     <main className="edit_list">
-      <BackButton />
+      <BackButton onClick={onClose} />
       <h2 className="edit_list__title">Edit List</h2>
       <p className="edit_list__error">{errorMessage}</p>
       <form className="edit_list__form" onSubmit={onSubmit}>
@@ -90,9 +85,9 @@ const EditList = () => {
           />
         </fieldset>
         <div className="edit_list__form_actions">
-          <Link to="/" data-variant="secondary" className="app_button">
+          <button type="button" data-variant="secondary" className="app_button" onClick={onClose}>
             Cancel
-          </Link>
+          </button>
           <div className="edit_list__form_actions_spacer"></div>
           <button
             type="button"
