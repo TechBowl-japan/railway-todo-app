@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { PencilIcon } from '~/icons/PencilIcon';
@@ -13,18 +13,27 @@ export const TaskItem = ({ task }) => {
   const { id, title, detail, done, limit } = task;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [now, setNow] = useState(new Date());
 
   const handleToggle = useCallback(() => {
+    console.log(task);
     setIsSubmitting(true);
     void dispatch(updateTask({ id, done: !done })).finally(() => {
       setIsSubmitting(false);
     });
   }, [id, done]);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setNow(new Date());
+    }, 1000 * 60); // 1分ごとに更新
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   const getRemainingTime = limit => {
     if (!limit) return '';
 
-    const now = new Date();
     const target = new Date(limit);
     const diff = target - now - 1000 * 60 * 60 * 9;
 
