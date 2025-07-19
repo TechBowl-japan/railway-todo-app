@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { TaskItem } from '~/components/TaskItem';
 import { TaskCreateForm } from '~/components/TaskCreateForm';
 import { setCurrentList } from '~/store/list';
@@ -8,11 +8,14 @@ import { fetchTasks } from '~/store/task';
 import './index.css';
 import { Modal } from '~/components/Modal';
 import EditList from './edit/index.page';
+import EditTask from './tasks/[taskId]/index.page';
 
 const ListIndex = () => {
   const dispatch = useDispatch();
   const { listId } = useParams();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isListModalOpen, setIsListModalOpen] = useState(false);
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [selectedTaskId, setSelectedTaskId] = useState(null);
 
   const isLoading = useSelector(state => state.task.isLoading || state.list.isLoading);
 
@@ -35,6 +38,11 @@ const ListIndex = () => {
     return <div></div>;
   }
 
+  const openTaskEditModal = taskId => {
+    setSelectedTaskId(taskId);
+    setIsTaskModalOpen(true);
+  };
+
   return (
     <div className="tasks_list">
       <div className="tasks_list__title">
@@ -43,20 +51,27 @@ const ListIndex = () => {
           <span className="tasks_list__title__count">{incompleteTasksCount}</span>
         )}
         <div className="tasks_list__title_spacer"></div>
-        <button className="app_button" onClick={() => setIsModalOpen(true)}>
+        <button className="app_button" onClick={() => setIsListModalOpen(true)}>
           Edit...
         </button>
       </div>
       <div className="tasks_list__items">
         <TaskCreateForm />
-        {tasks?.map(task => {
-          return <TaskItem key={task.id} task={task} />;
-        })}
+        {tasks?.map(task => (
+          <TaskItem key={task.id} task={task} onEdit={() => openTaskEditModal(task.id)} />
+        ))}
         {tasks?.length === 0 && <div className="tasks_list__items__empty">No tasks yet!</div>}
       </div>
-      {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
-          <EditList onClose={() => setIsModalOpen(false)} />
+
+      {isListModalOpen && (
+        <Modal onClose={() => setIsListModalOpen(false)}>
+          <EditList onClose={() => setIsListModalOpen(false)} />
+        </Modal>
+      )}
+
+      {isTaskModalOpen && (
+        <Modal onClose={() => setIsTaskModalOpen(false)}>
+          <EditTask taskId={selectedTaskId} onClose={() => setIsTaskModalOpen(false)} />
         </Modal>
       )}
     </div>

@@ -8,10 +8,10 @@ import { fetchTasks, updateTask, deleteTask } from '~/store/task';
 import { useId } from '~/hooks/useId';
 import { toISOStringWithTimezone } from '~/hooks/TaskLimit';
 
-const EditTask = () => {
+const EditTask = ({ taskId, onClose }) => {
   const id = useId();
 
-  const { listId, taskId } = useParams();
+  const { listId } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -50,7 +50,7 @@ const EditTask = () => {
       void dispatch(updateTask({ id: taskId, title, detail, done, limit: date }))
         .unwrap()
         .then(() => {
-          history.push(`/lists/${listId}`);
+          onClose?.();
         })
         .catch(err => {
           setErrorMessage(err.message);
@@ -72,7 +72,7 @@ const EditTask = () => {
     void dispatch(deleteTask({ id: taskId }))
       .unwrap()
       .then(() => {
-        history.push(`/`);
+        onClose();
       })
       .catch(err => {
         setErrorMessage(err.message);
@@ -84,7 +84,7 @@ const EditTask = () => {
 
   return (
     <main className="edit_list">
-      <BackButton />
+      <BackButton onClick={onClose} />
       <h2 className="edit_list__title">Edit List</h2>
       <p className="edit_list__error">{errorMessage}</p>
       <form className="edit_list__form" onSubmit={onSubmit}>
@@ -135,9 +135,9 @@ const EditTask = () => {
           </div>
         </fieldset>
         <div className="edit_list__form_actions">
-          <Link to="/" data-variant="secondary" className="app_button">
+          <button onClick={onClose} data-variant="secondary" className="app_button">
             Cancel
-          </Link>
+          </button>
           <div className="edit_list__form_actions_spacer"></div>
           <button
             type="button"
