@@ -36,7 +36,7 @@ const NewList = () => {
           setIsSubmitting(false);
         });
     },
-    [title]
+    [history, dispatch, title]
   );
 
   return (

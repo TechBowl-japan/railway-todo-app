@@ -18,7 +18,7 @@ export const useSignup = () => {
       ).unwrap();
       history.push('/');
     },
-    [useDispatch]
+    [dispatch,history]
   );
 
   return {

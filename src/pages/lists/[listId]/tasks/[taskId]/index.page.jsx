@@ -37,7 +37,7 @@ const EditTask = () => {
   useEffect(() => {
     void dispatch(setCurrentList(listId));
     void dispatch(fetchTasks());
-  }, [listId]);
+  }, [listId, dispatch]);
 
   const onSubmit = useCallback(
     event => {
@@ -59,7 +59,7 @@ const EditTask = () => {
           setIsSubmitting(false);
         });
     },
-    [title, taskId, listId, detail, done, limit]
+    [title, taskId, listId, detail, done, limit, dispatch, history]
   );
 
   const handleDelete = useCallback(() => {
@@ -80,7 +80,7 @@ const EditTask = () => {
       .finally(() => {
         setIsSubmitting(false);
       });
-  }, [taskId]);
+  }, [taskId, dispatch, history]);
 
   return (
     <main className="edit_list">

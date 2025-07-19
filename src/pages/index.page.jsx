@@ -11,13 +11,13 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchLists());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (currentListId) {
       history.push(`/lists/${currentListId}`);
     }
-  }, [currentListId]);
+  }, [currentListId, history]);
 
   return <div></div>;
 };

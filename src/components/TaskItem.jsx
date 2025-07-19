@@ -5,6 +5,7 @@ import { PencilIcon } from '~/icons/PencilIcon';
 import { CheckIcon } from '~/icons/CheckIcon';
 import { updateTask } from '~/store/task';
 import './TaskItem.css';
+import PropTypes from 'prop-types';
 
 export const TaskItem = ({ task }) => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export const TaskItem = ({ task }) => {
     void dispatch(updateTask({ id, done: !done })).finally(() => {
       setIsSubmitting(false);
     });
-  }, [id, done]);
+  }, [id, done, dispatch, task]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -89,4 +90,14 @@ export const TaskItem = ({ task }) => {
       )}
     </div>
   );
+};
+
+TaskItem.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    detail: PropTypes.string,
+    done: PropTypes.bool.isRequired,
+    limit: PropTypes.string,
+  }).isRequired,
 };

@@ -34,7 +34,7 @@ const SignUp = () => {
           setIsSubmitting(false);
         });
     },
-    [email, name, password]
+    [email, name, password, signup]
   );
 
   if (auth) {

@@ -69,7 +69,7 @@ export const TaskCreateForm = () => {
           setFormState('focused');
         });
     },
-    [title, detail, done, limit]
+    [title, detail, done, limit, dispatch, handleDiscard]
   );
 
   useEffect(() => {
