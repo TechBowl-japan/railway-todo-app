@@ -6,6 +6,7 @@ import './index.css';
 import { setCurrentList } from '~/store/list';
 import { fetchTasks, updateTask, deleteTask } from '~/store/task';
 import { useId } from '~/hooks/useId';
+import { toISOStringWithTimezone } from '~/hooks/TaskLimit';
 
 const EditTask = () => {
   const id = useId();
@@ -43,9 +44,10 @@ const EditTask = () => {
       event.preventDefault();
 
       setIsSubmitting(true);
-      const isoLimit = `${limit}:00.000Z`;
+      const now = new Date(limit);
+      const date = toISOStringWithTimezone(now);
 
-      void dispatch(updateTask({ id: taskId, title, detail, done, limit: isoLimit }))
+      void dispatch(updateTask({ id: taskId, title, detail, done, limit: date }))
         .unwrap()
         .then(() => {
           history.push(`/lists/${listId}`);

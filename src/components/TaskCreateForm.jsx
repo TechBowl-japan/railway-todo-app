@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import './TaskCreateForm.css';
 import { CheckIcon } from '~/icons/CheckIcon';
 import { createTask } from '~/store/task';
+import { toISOStringWithTimezone } from '~/hooks/TaskLimit';
 
 export const TaskCreateForm = () => {
   const dispatch = useDispatch();
@@ -55,9 +56,10 @@ export const TaskCreateForm = () => {
       event.preventDefault();
 
       setFormState('submitting');
-      const isoLimit = limit ? new Date(limit).toISOString() : null;
+      const now = new Date(limit);
+      const date = toISOStringWithTimezone(now);
 
-      void dispatch(createTask({ title, detail, done, limit: isoLimit }))
+      void dispatch(createTask({ title, detail, done, limit: date }))
         .unwrap()
         .then(() => {
           handleDiscard();
