@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { PencilIcon } from '~/icons/PencilIcon';
 import { CheckIcon } from '~/icons/CheckIcon';
 import { updateTask } from '~/store/task';

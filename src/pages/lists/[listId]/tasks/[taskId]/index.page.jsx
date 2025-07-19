@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { BackButton } from '~/components/BackButton';
 import './index.css';
@@ -7,12 +7,12 @@ import { setCurrentList } from '~/store/list';
 import { fetchTasks, updateTask, deleteTask } from '~/store/task';
 import { useId } from '~/hooks/useId';
 import { toISOStringWithTimezone } from '~/hooks/TaskLimit';
+import PropTypes from 'prop-types';
 
 const EditTask = ({ taskId, onClose }) => {
   const id = useId();
 
   const { listId } = useParams();
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
@@ -59,7 +59,7 @@ const EditTask = ({ taskId, onClose }) => {
           setIsSubmitting(false);
         });
     },
-    [title, taskId, listId, detail, done, limit, dispatch, history]
+    [title, taskId, detail, done, limit, dispatch, onClose]
   );
 
   const handleDelete = useCallback(() => {
@@ -80,7 +80,7 @@ const EditTask = ({ taskId, onClose }) => {
       .finally(() => {
         setIsSubmitting(false);
       });
-  }, [taskId, dispatch, history]);
+  }, [taskId, dispatch, onClose]);
 
   return (
     <main className="edit_list">
@@ -154,6 +154,11 @@ const EditTask = ({ taskId, onClose }) => {
       </form>
     </main>
   );
+};
+
+EditTask.propTypes = {
+  taskId: PropTypes.number.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default EditTask;

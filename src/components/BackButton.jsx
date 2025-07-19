@@ -1,5 +1,6 @@
 import { ChevronIcon } from '~/icons/ChevronIcon';
 import './BackButton.css';
+import PropTypes from 'prop-types';
 
 export const BackButton = ({ onClick }) => {
   const handleClick = () => {
@@ -15,4 +16,8 @@ export const BackButton = ({ onClick }) => {
       Back
     </button>
   );
+};
+
+BackButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };

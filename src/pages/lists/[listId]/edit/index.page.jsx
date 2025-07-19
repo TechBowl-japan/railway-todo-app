@@ -6,6 +6,7 @@ import './index.css';
 import { fetchLists, updateList, deleteList } from '~/store/list';
 import { useId } from '~/hooks/useId';
 import { Button } from '~/components/Button';
+import PropTypes from 'prop-types';
 const EditList = ({ onClose }) => {
   const id = useId();
 
@@ -104,6 +105,10 @@ const EditList = ({ onClose }) => {
       </form>
     </main>
   );
+};
+
+EditList.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };
 
 export default EditList;

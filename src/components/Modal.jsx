@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import './Modal.css';
+import PropTypes from 'prop-types';
 
 export const Modal = ({ onClose, children }) => {
   const modalRef = useRef(null);
@@ -42,4 +43,9 @@ export const Modal = ({ onClose, children }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 };
