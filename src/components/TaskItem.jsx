@@ -26,7 +26,7 @@ export const TaskItem = ({ task }) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setNow(new Date());
-    }, 1000 * 60); // 1分ごとに更新
+    }, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -35,9 +35,10 @@ export const TaskItem = ({ task }) => {
     if (!limit) return '';
 
     const target = new Date(limit);
-    const diff = target - now - 1000 * 60 * 60 * 9;
+    const diff = target - now;
 
     const absDiff = Math.abs(diff);
+    const sec = Math.floor(absDiff / 1000) % 60;
     const minutes = Math.floor(absDiff / (1000 * 60)) % 60;
     const hours = Math.floor(absDiff / (1000 * 60 * 60)) % 24;
     const days = Math.floor(absDiff / (1000 * 60 * 60 * 24));
@@ -46,11 +47,12 @@ export const TaskItem = ({ task }) => {
     if (days > 0) result += `${days}日`;
     if (hours > 0) result += `${hours}時間`;
     if (minutes > 0) result += `${minutes}分`;
+    if (sec > 0) result += `${sec}秒`;
 
     if (diff < 0) {
-      return `期限切れ: ${result || '数秒'} 遅れています`;
+      return `期限切れ: ${result} 遅れています`;
     } else {
-      return `あと ${result || '数秒'}`;
+      return `あと ${result}`;
     }
   };
 
