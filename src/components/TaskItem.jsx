@@ -1,25 +1,61 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { PencilIcon } from '~/icons/PencilIcon';
 import { CheckIcon } from '~/icons/CheckIcon';
 import { updateTask } from '~/store/task';
 import './TaskItem.css';
+import PropTypes from 'prop-types';
 
 export const TaskItem = ({ task }) => {
   const dispatch = useDispatch();
 
   const { listId } = useParams();
-  const { id, title, detail, done } = task;
+  const { id, title, detail, done, limit } = task;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [now, setNow] = useState(new Date());
 
   const handleToggle = useCallback(() => {
+    console.log(task);
     setIsSubmitting(true);
     void dispatch(updateTask({ id, done: !done })).finally(() => {
       setIsSubmitting(false);
     });
-  }, [id, done]);
+  }, [id, done, dispatch, task]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setNow(new Date());
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const getRemainingTime = limit => {
+    if (!limit) return '';
+
+    const target = new Date(limit);
+    const diff = target - now;
+
+    const absDiff = Math.abs(diff);
+    const sec = Math.floor(absDiff / 1000) % 60;
+    const minutes = Math.floor(absDiff / (1000 * 60)) % 60;
+    const hours = Math.floor(absDiff / (1000 * 60 * 60)) % 24;
+    const days = Math.floor(absDiff / (1000 * 60 * 60 * 24));
+
+    let result = '';
+    if (days > 0) result += `${days}日`;
+    if (hours > 0) result += `${hours}時間`;
+    if (minutes > 0) result += `${minutes}分`;
+    if (sec > 0) result += `${sec}秒`;
+
+    if (diff < 0) {
+      return `期限切れ: ${result} 遅れています`;
+    } else {
+      return `あと ${result}`;
+    }
+  };
 
   return (
     <div className="task_item">
@@ -47,6 +83,21 @@ export const TaskItem = ({ task }) => {
         </Link>
       </div>
       <div className="task_item__detail">{detail}</div>
+      {limit && (
+        <div className="task_item__limit">
+          期限: {limit ? limit.slice(0, 16) : ''}（{getRemainingTime(limit)}）
+        </div>
+      )}
     </div>
   );
+};
+
+TaskItem.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    detail: PropTypes.string,
+    done: PropTypes.bool.isRequired,
+    limit: PropTypes.string,
+  }).isRequired,
 };

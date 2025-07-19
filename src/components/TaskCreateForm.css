@@ -94,3 +94,7 @@
 .task_create_form__spacer {
   flex: 1;
 }
+
+.task_create_form__limit {
+  opacity: 0.8;
+}

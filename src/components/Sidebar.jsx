@@ -23,7 +23,7 @@ export const Sidebar = () => {
 
   useEffect(() => {
     void dispatch(fetchLists());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="sidebar">

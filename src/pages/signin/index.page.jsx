@@ -31,7 +31,7 @@ const SignIn = () => {
           setIsSubmitting(false);
         });
     },
-    [email, password]
+    [email, password, login]
   );
 
   if (auth) {

@@ -18,7 +18,7 @@ export const useLogin = () => {
 
       history.push('/');
     },
-    [useDispatch]
+    [dispatch, history]
   );
 
   return {

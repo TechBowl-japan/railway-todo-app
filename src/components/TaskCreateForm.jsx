@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import './TaskCreateForm.css';
 import { CheckIcon } from '~/icons/CheckIcon';
 import { createTask } from '~/store/task';
+import { toISOStringWithTimezone } from '~/hooks/TaskLimit';
 
 export const TaskCreateForm = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export const TaskCreateForm = () => {
 
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
+  const [limit, setLimit] = useState('');
   const [done, setDone] = useState(false);
 
   const handleToggle = useCallback(() => {
@@ -44,6 +46,7 @@ export const TaskCreateForm = () => {
   const handleDiscard = useCallback(() => {
     setTitle('');
     setDetail('');
+    setLimit('');
     setFormState('initial');
     setDone(false);
   }, []);
@@ -53,8 +56,10 @@ export const TaskCreateForm = () => {
       event.preventDefault();
 
       setFormState('submitting');
+      const now = new Date(limit);
+      const date = toISOStringWithTimezone(now);
 
-      void dispatch(createTask({ title, detail, done }))
+      void dispatch(createTask({ title, detail, done, limit: date }))
         .unwrap()
         .then(() => {
           handleDiscard();
@@ -64,7 +69,7 @@ export const TaskCreateForm = () => {
           setFormState('focused');
         });
     },
-    [title, detail, done]
+    [title, detail, done, limit, dispatch, handleDiscard]
   );
 
   useEffect(() => {
@@ -123,6 +128,14 @@ export const TaskCreateForm = () => {
             placeholder="Add a description here..."
             value={detail}
             onChange={e => setDetail(e.target.value)}
+            onBlur={handleBlur}
+            disabled={formState === 'submitting'}
+          />
+          <input
+            type="datetime-local"
+            className="task_create_form__limit"
+            value={limit}
+            onChange={e => setLimit(e.target.value)}
             onBlur={handleBlur}
             disabled={formState === 'submitting'}
           />
