@@ -2,6 +2,7 @@ import { useCallback, useState } from "react"
 import { useSelector } from "react-redux"
 import { Link, Navigate } from "react-router-dom"
 import "./index.css"
+import { Button } from "~/components/Button"
 import { useId } from "~/hooks/useId"
 import { useSignup } from "~/hooks/useSignup"
 
@@ -93,9 +94,7 @@ const SignUp = () => {
             Login
           </Link>
           <div className="signup__form_actions_spacer"></div>
-          <button type="submit" className="app_button" disabled={isSubmitting}>
-            Register
-          </button>
+          <Button disabled={isSubmitting}>Register</Button>
         </div>
       </form>
     </main>

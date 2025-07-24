@@ -1,0 +1,39 @@
+.app_button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+}
+
+.app_button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
+}
+
+.app_button:not(:disabled):hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.app_button:not(:disabled):active {
+  opacity: 0.6;
+}
+
+.app_button:not([data-variant='secondary']) {
+  background-color: var(--app-button-accent-color, var(--indigo-600));
+  color: #ffffff;
+}
+
+.app_button:not([data-variant='secondary']):disabled {
+  background-color: var(--slate-300);
+}
+
+.app_button[data-variant='secondary'] {
+  border: 1px solid currentColor;
+  color: var(--app-button-accent-color, var(--indigo-600));
+}
+
+.app_button[data-variant='secondary']:disabled {
+  color: var(--slate-300);
+}

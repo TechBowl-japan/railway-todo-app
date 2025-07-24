@@ -4,6 +4,7 @@ import { Link, Navigate } from "react-router-dom"
 import { useId } from "~/hooks/useId"
 import { useLogin } from "~/hooks/useLogin"
 import "./index.css"
+import { Button } from "~/components/Button"
 
 const SignIn = () => {
   const auth = useSelector((state) => state.auth.token !== null)
@@ -73,9 +74,7 @@ const SignIn = () => {
             Register
           </Link>
           <div className="signin__form_actions_spacer"></div>
-          <button type="submit" className="app_button" disabled={isSubmitting}>
-            Login
-          </button>
+          <Button disabled={isSubmitting}>Login</Button>
         </div>
       </form>
     </main>

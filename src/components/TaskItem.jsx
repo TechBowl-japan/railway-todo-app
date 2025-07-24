@@ -5,6 +5,7 @@ import { CheckIcon } from "~/icons/CheckIcon"
 import { PencilIcon } from "~/icons/PencilIcon"
 import { updateTask } from "~/store/task"
 import "./TaskItem.css"
+import { Button } from "./Button"
 
 export const TaskItem = ({ task }) => {
   const dispatch = useDispatch()
@@ -24,7 +25,7 @@ export const TaskItem = ({ task }) => {
   return (
     <div className="task_item">
       <div className="task_item__title_container">
-        <button
+        <Button
           type="button"
           onClick={handleToggle}
           disabled={isSubmitting}
@@ -40,7 +41,7 @@ export const TaskItem = ({ task }) => {
               aria-label="Incomplete"
             ></div>
           )}
-        </button>
+        </Button>
         <div className="task_item__title" data-done={done}>
           {title}
         </div>

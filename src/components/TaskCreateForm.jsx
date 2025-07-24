@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import "./TaskCreateForm.css"
 import { CheckIcon } from "~/icons/CheckIcon"
 import { createTask } from "~/store/task"
+import { Button } from "./Button"
 
 export const TaskCreateForm = () => {
   const dispatch = useDispatch()
@@ -93,7 +94,7 @@ export const TaskCreateForm = () => {
       data-state={formState}
     >
       <div className="task_create_form__title_container">
-        <button
+        <Button
           type="button"
           onClick={handleToggle}
           className="task_create_form__mark_button"
@@ -113,7 +114,7 @@ export const TaskCreateForm = () => {
               aria-label="Incomplete"
             ></div>
           )}
-        </button>
+        </Button>
         <input
           type="text"
           className="task_create_form__title"
@@ -138,25 +139,22 @@ export const TaskCreateForm = () => {
             disabled={formState === "submitting"}
           />
           <div className="task_create_form__actions">
-            <button
+            <Button
               type="button"
-              className="app_button"
-              data-variant="secondary"
+              variant="secondary"
               onBlur={handleBlur}
               onClick={handleDiscard}
               disabled={(!title && !detail) || formState === "submitting"}
             >
               Discard
-            </button>
+            </Button>
             <div className="task_create_form__spacer"></div>
-            <button
-              type="submit"
-              className="app_button"
+            <Button
               onBlur={handleBlur}
               disabled={!title || !detail || formState === "submitting"}
             >
               Add
-            </button>
+            </Button>
           </div>
         </div>
       )}
