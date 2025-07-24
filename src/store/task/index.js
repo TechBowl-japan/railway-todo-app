@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { handleThunkError } from "~/utils/handleThunkError"
 import axios from "~/vendor/axios"
 

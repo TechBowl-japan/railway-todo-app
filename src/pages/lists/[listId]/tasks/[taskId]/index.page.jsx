@@ -1,11 +1,11 @@
-import { useCallback, useState, useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory, useParams } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
 import { BackButton } from "~/components/BackButton"
 import "./index.css"
-import { setCurrentList } from "~/store/list"
-import { fetchTasks, updateTask, deleteTask } from "~/store/task"
 import { useId } from "~/hooks/useId"
+import { setCurrentList } from "~/store/list"
+import { deleteTask, fetchTasks, updateTask } from "~/store/task"
 
 const EditTask = () => {
   const id = useId()

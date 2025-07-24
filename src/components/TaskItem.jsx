@@ -1,8 +1,8 @@
-import { useState, useCallback } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useCallback, useState } from "react"
 import { useDispatch } from "react-redux"
-import { PencilIcon } from "~/icons/PencilIcon"
+import { Link, useParams } from "react-router-dom"
 import { CheckIcon } from "~/icons/CheckIcon"
+import { PencilIcon } from "~/icons/PencilIcon"
 import { updateTask } from "~/store/task"
 import "./TaskItem.css"
 

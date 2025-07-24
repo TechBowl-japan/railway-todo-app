@@ -1,10 +1,10 @@
-import { useCallback, useState, useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory, useParams } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
 import { BackButton } from "~/components/BackButton"
 import "./index.css"
-import { fetchLists, updateList, deleteList } from "~/store/list"
 import { useId } from "~/hooks/useId"
+import { deleteList, fetchLists, updateList } from "~/store/list"
 
 const EditList = () => {
   const id = useId()
