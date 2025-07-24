@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { fetchLists } from "~/store/list/index"
@@ -11,13 +11,13 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchLists())
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if (currentListId) {
       history.push(`/lists/${currentListId}`)
     }
-  }, [currentListId])
+  }, [currentListId, history.push])
 
   return <div></div>
 }

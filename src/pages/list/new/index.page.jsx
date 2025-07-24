@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react"
+import { useCallback, useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
 import { BackButton } from "~/components/BackButton"
@@ -35,7 +35,7 @@ const NewList = () => {
           setIsSubmitting(false)
         })
     },
-    [title],
+    [title, dispatch, history.push],
   )
 
   return (

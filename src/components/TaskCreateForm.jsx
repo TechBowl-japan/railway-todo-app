@@ -32,7 +32,7 @@ export const TaskCreateForm = () => {
     setTimeout(() => {
       // フォーム内の要素がフォーカスされている場合は何もしない
       const formElement = refForm.current
-      if (formElement && formElement.contains(document.activeElement)) {
+      if (formElement?.contains(document.activeElement)) {
         return
       }
 
@@ -64,7 +64,7 @@ export const TaskCreateForm = () => {
           setFormState("focused")
         })
     },
-    [title, detail, done],
+    [title, detail, done, dispatch, handleDiscard],
   )
 
   useEffect(() => {

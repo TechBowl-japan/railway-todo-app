@@ -23,7 +23,7 @@ export const Sidebar = () => {
 
   useEffect(() => {
     void dispatch(fetchLists())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="sidebar">
@@ -70,11 +70,9 @@ export const Sidebar = () => {
           </div>
         </>
       ) : (
-        <>
-          <Link to="/signin" className="sidebar__login">
+        <Link to="/signin" className="sidebar__login">
             Login
           </Link>
-        </>
       )}
     </div>
   )

@@ -1,4 +1,4 @@
-import React from "react"
+
 import { useSelector } from "react-redux"
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
 import { Sidebar } from "~/components/Sidebar"

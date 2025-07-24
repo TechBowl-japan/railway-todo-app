@@ -30,7 +30,7 @@ const EditList = () => {
 
   useEffect(() => {
     void dispatch(fetchLists())
-  }, [listId])
+  }, [dispatch])
 
   const onSubmit = useCallback(
     (event) => {
@@ -50,7 +50,7 @@ const EditList = () => {
           setIsSubmitting(false)
         })
     },
-    [title, listId],
+    [title, listId, dispatch, history.push],
   )
 
   const handleDelete = useCallback(() => {
@@ -71,7 +71,7 @@ const EditList = () => {
       .finally(() => {
         setIsSubmitting(false)
       })
-  }, [])
+  }, [dispatch, history.push, listId])
 
   return (
     <main className="edit_list">

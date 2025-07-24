@@ -28,7 +28,7 @@ const ListIndex = () => {
   useEffect(() => {
     dispatch(setCurrentList(listId))
     dispatch(fetchTasks()).unwrap()
-  }, [listId])
+  }, [listId, dispatch])
 
   if (isLoading) {
     return <div></div>

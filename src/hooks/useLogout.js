@@ -10,7 +10,7 @@ export const useLogout = () => {
   const handleLogout = useCallback(async () => {
     await dispatch(logout()).unwrap()
     history.push("/signin")
-  }, [useDispatch])
+  }, [dispatch, history.push])
 
   return {
     logout: handleLogout,

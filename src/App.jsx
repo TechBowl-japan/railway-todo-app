@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     void dispatch(fetchUser())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="App">

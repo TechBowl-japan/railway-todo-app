@@ -19,7 +19,7 @@ export const TaskItem = ({ task }) => {
     void dispatch(updateTask({ id, done: !done })).finally(() => {
       setIsSubmitting(false)
     })
-  }, [id, done])
+  }, [id, done, dispatch])
 
   return (
     <div className="task_item">

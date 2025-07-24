@@ -11,7 +11,7 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (err) => {
     // 401を返す場合はトークンを飛ばしてログイン画面に遷移
-    if (err && err.response && err.response.status === 401) {
+    if (err?.response && err.response.status === 401) {
       localStorage.removeItem("railway-todo-app__token")
 
       // NOTE: React Router経由ではなく、直接遷移させている。
