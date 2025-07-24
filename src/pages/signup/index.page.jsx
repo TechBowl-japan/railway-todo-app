@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link, Redirect } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import "./index.css"
 import { useId } from "~/hooks/useId"
 import { useSignup } from "~/hooks/useSignup"
@@ -36,7 +36,7 @@ const SignUp = () => {
   )
 
   if (auth) {
-    return <Redirect to="/" />
+    return <Navigate replace to="/" />
   }
 
   return (

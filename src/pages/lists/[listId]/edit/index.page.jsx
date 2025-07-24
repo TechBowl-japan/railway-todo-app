@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useHistory, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { BackButton } from "~/components/BackButton"
 import "./index.css"
 import { useId } from "~/hooks/useId"
@@ -10,7 +10,7 @@ const EditList = () => {
   const id = useId()
 
   const { listId } = useParams()
-  const history = useHistory()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const [title, setTitle] = useState("")
@@ -41,7 +41,7 @@ const EditList = () => {
       void dispatch(updateList({ id: listId, title }))
         .unwrap()
         .then(() => {
-          history.push(`/lists/${listId}`)
+          navigate(`/lists/${listId}`)
         })
         .catch((err) => {
           setErrorMessage(err.message)
@@ -50,7 +50,7 @@ const EditList = () => {
           setIsSubmitting(false)
         })
     },
-    [title, listId, dispatch, history.push],
+    [title, listId, dispatch, navigate],
   )
 
   const handleDelete = useCallback(() => {
@@ -63,7 +63,7 @@ const EditList = () => {
     void dispatch(deleteList({ id: listId }))
       .unwrap()
       .then(() => {
-        history.push(`/`)
+        navigate(`/`)
       })
       .catch((err) => {
         setErrorMessage(err.message)
@@ -71,7 +71,7 @@ const EditList = () => {
       .finally(() => {
         setIsSubmitting(false)
       })
-  }, [dispatch, history.push, listId])
+  }, [dispatch, navigate, listId])
 
   return (
     <main className="edit_list">

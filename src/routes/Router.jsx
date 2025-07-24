@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { Sidebar } from "~/components/Sidebar"
 import NotFound from "~/pages/404"
 import Home from "~/pages/index.page"
@@ -17,40 +17,27 @@ export const Router = () => {
     <BrowserRouter>
       <Sidebar />
       <div className="main_content">
-        <Switch>
-          <Route exact path="/signin">
-            <SignIn />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
+        <Routes>
+          <Route path="/signin" element={<SignIn />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
           {auth ? (
             <>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route exact path="/lists/:listId">
-                <ListIndex />
-              </Route>
-              <Route exact path="/list/new">
-                <NewList />
-              </Route>
-              <Route exact path="/lists/:listId/tasks/:taskId">
-                <EditTask />
-              </Route>
-              <Route exact path="/lists/:listId/edit">
-                <EditList />
-              </Route>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/lists/:listId" element={<ListIndex />}></Route>
+              <Route path="/list/new" element={<NewList />}></Route>
+              <Route
+                path="/lists/:listId/tasks/:taskId"
+                element={<EditTask />}
+              ></Route>
+              <Route path="/lists/:listId/edit" element={<EditList />}></Route>
             </>
           ) : (
             <Route path="/">
-              <Redirect to="/signin" />
+              <Navigate replace to="/signin" />
             </Route>
           )}
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </div>
     </BrowserRouter>
   )

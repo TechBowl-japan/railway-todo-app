@@ -1,11 +1,11 @@
 import { useCallback } from "react"
 import { useDispatch } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { login } from "~/store/auth"
 
 export const useLogin = () => {
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const handleLogin = useCallback(
     async ({ email, password }) => {
@@ -16,9 +16,9 @@ export const useLogin = () => {
         }),
       ).unwrap()
 
-      history.push("/")
+      navigate("/")
     },
-    [dispatch, history.push],
+    [dispatch, navigate],
   )
 
   return {
