@@ -71,8 +71,8 @@ export const Sidebar = () => {
         </>
       ) : (
         <Link to="/signin" className="sidebar__login">
-            Login
-          </Link>
+          Login
+        </Link>
       )}
     </div>
   )

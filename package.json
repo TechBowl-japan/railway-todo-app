@@ -25,7 +25,9 @@
   "scripts": {
     "start": "vite",
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "format": "biome format",
+    "lint": "biome lint"
   },
   "browserslist": {
     "production": [
