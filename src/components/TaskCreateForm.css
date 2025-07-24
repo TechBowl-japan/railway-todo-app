@@ -8,7 +8,7 @@
   border: 1px solid var(--slate-200);
 }
 
-.task_create_form[data-state='focused'] {
+.task_create_form[data-state="focused"] {
   border-color: var(--indigo-600);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
 }

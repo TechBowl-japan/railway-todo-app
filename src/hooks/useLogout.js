@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux'
-import { useCallback } from 'react'
-import { useHistory } from 'react-router-dom'
-import { logout } from '~/store/auth'
+import { useDispatch } from "react-redux"
+import { useCallback } from "react"
+import { useHistory } from "react-router-dom"
+import { logout } from "~/store/auth"
 
 export const useLogout = () => {
   const dispatch = useDispatch()
@@ -9,7 +9,7 @@ export const useLogout = () => {
 
   const handleLogout = useCallback(async () => {
     await dispatch(logout()).unwrap()
-    history.push('/signin')
+    history.push("/signin")
   }, [useDispatch])
 
   return {

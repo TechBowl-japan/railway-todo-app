@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
-import { useDispatch } from 'react-redux'
-import './TaskCreateForm.css'
-import { CheckIcon } from '~/icons/CheckIcon'
-import { createTask } from '~/store/task'
+import { useCallback, useEffect, useState, useRef } from "react"
+import { useDispatch } from "react-redux"
+import "./TaskCreateForm.css"
+import { CheckIcon } from "~/icons/CheckIcon"
+import { createTask } from "~/store/task"
 
 export const TaskCreateForm = () => {
   const dispatch = useDispatch()
@@ -10,18 +10,18 @@ export const TaskCreateForm = () => {
   const refForm = useRef(null)
   const [elemTextarea, setElemTextarea] = useState(null)
 
-  const [formState, setFormState] = useState('initial')
+  const [formState, setFormState] = useState("initial")
 
-  const [title, setTitle] = useState('')
-  const [detail, setDetail] = useState('')
+  const [title, setTitle] = useState("")
+  const [detail, setDetail] = useState("")
   const [done, setDone] = useState(false)
 
   const handleToggle = useCallback(() => {
-    setDone(prev => !prev)
+    setDone((prev) => !prev)
   }, [])
 
   const handleFocus = useCallback(() => {
-    setFormState('focused')
+    setFormState("focused")
   }, [])
 
   const handleBlur = useCallback(() => {
@@ -36,32 +36,32 @@ export const TaskCreateForm = () => {
         return
       }
 
-      setFormState('initial')
+      setFormState("initial")
       setDone(false)
     }, 100)
   }, [title, detail])
 
   const handleDiscard = useCallback(() => {
-    setTitle('')
-    setDetail('')
-    setFormState('initial')
+    setTitle("")
+    setDetail("")
+    setFormState("initial")
     setDone(false)
   }, [])
 
   const onSubmit = useCallback(
-    event => {
+    (event) => {
       event.preventDefault()
 
-      setFormState('submitting')
+      setFormState("submitting")
 
       void dispatch(createTask({ title, detail, done }))
         .unwrap()
         .then(() => {
           handleDiscard()
         })
-        .catch(err => {
+        .catch((err) => {
           alert(err.message)
-          setFormState('focused')
+          setFormState("focused")
         })
     },
     [title, detail, done],
@@ -73,15 +73,15 @@ export const TaskCreateForm = () => {
     }
 
     const recalcHeight = () => {
-      elemTextarea.style.height = 'auto'
+      elemTextarea.style.height = "auto"
       elemTextarea.style.height = `${elemTextarea.scrollHeight}px`
     }
 
-    elemTextarea.addEventListener('input', recalcHeight)
+    elemTextarea.addEventListener("input", recalcHeight)
     recalcHeight()
 
     return () => {
-      elemTextarea.removeEventListener('input', recalcHeight)
+      elemTextarea.removeEventListener("input", recalcHeight)
     }
   }, [elemTextarea])
 
@@ -105,9 +105,7 @@ export const TaskCreateForm = () => {
               className="task_create_form__mark____complete"
               aria-label="Completed"
             >
-              <CheckIcon
-                className="task_create_form__mark____complete_check"
-              />
+              <CheckIcon className="task_create_form__mark____complete_check" />
             </div>
           ) : (
             <div
@@ -121,13 +119,13 @@ export const TaskCreateForm = () => {
           className="task_create_form__title"
           placeholder="Add a new task..."
           value={title}
-          onChange={e => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          disabled={formState === 'submitting'}
+          disabled={formState === "submitting"}
         />
       </div>
-      {formState !== 'initial' && (
+      {formState !== "initial" && (
         <div>
           <textarea
             ref={setElemTextarea}
@@ -135,9 +133,9 @@ export const TaskCreateForm = () => {
             className="task_create_form__detail"
             placeholder="Add a description here..."
             value={detail}
-            onChange={e => setDetail(e.target.value)}
+            onChange={(e) => setDetail(e.target.value)}
             onBlur={handleBlur}
-            disabled={formState === 'submitting'}
+            disabled={formState === "submitting"}
           />
           <div className="task_create_form__actions">
             <button
@@ -146,7 +144,7 @@ export const TaskCreateForm = () => {
               data-variant="secondary"
               onBlur={handleBlur}
               onClick={handleDiscard}
-              disabled={(!title && !detail) || formState === 'submitting'}
+              disabled={(!title && !detail) || formState === "submitting"}
             >
               Discard
             </button>
@@ -155,7 +153,7 @@ export const TaskCreateForm = () => {
               type="submit"
               className="app_button"
               onBlur={handleBlur}
-              disabled={!title || !detail || formState === 'submitting'}
+              disabled={!title || !detail || formState === "submitting"}
             >
               Add
             </button>

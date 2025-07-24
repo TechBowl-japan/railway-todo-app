@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux'
-import { Router } from './routes/Router'
-import { useEffect } from 'react'
-import { fetchUser } from '~/store/auth/index'
+import { useDispatch } from "react-redux"
+import { Router } from "./routes/Router"
+import { useEffect } from "react"
+import { fetchUser } from "~/store/auth/index"
 
 function App() {
   const dispatch = useDispatch()

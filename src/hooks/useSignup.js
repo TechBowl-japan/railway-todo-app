@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux'
-import { useCallback } from 'react'
-import { useHistory } from 'react-router-dom'
-import { signup } from '~/store/auth'
+import { useDispatch } from "react-redux"
+import { useCallback } from "react"
+import { useHistory } from "react-router-dom"
+import { signup } from "~/store/auth"
 
 export const useSignup = () => {
   const dispatch = useDispatch()
@@ -16,7 +16,7 @@ export const useSignup = () => {
           name,
         }),
       ).unwrap()
-      history.push('/')
+      history.push("/")
     },
     [useDispatch],
   )

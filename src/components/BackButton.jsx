@@ -1,5 +1,5 @@
-import { ChevronIcon } from '~/icons/ChevronIcon'
-import './BackButton.css'
+import { ChevronIcon } from "~/icons/ChevronIcon"
+import "./BackButton.css"
 
 const handleClick = () => {
   window.history.back()

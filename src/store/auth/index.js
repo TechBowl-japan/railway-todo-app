@@ -1,19 +1,19 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from '~/vendor/axios'
-import { handleThunkError } from '~/utils/handleThunkError'
-import { resetTask } from '~/store/task'
-import { resetList } from '~/store/list'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import axios from "~/vendor/axios"
+import { handleThunkError } from "~/utils/handleThunkError"
+import { resetTask } from "~/store/task"
+import { resetList } from "~/store/list"
 
 const initialState = {
   // NOTE: localStorageから直接取得している。SSR時にはこのままでは動かないので注意
-  token: localStorage.getItem('railway-todo-app__token') || null,
+  token: localStorage.getItem("railway-todo-app__token") || null,
   user: null,
   // NOTE: 2重ロードの回避用
   isLoading: false,
 }
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     setUserIsLoading: (state, action) => {
@@ -31,7 +31,7 @@ export const authSlice = createSlice({
 export const { setToken, setUserIsLoading, setUser } = authSlice.actions
 
 export const fetchUser = createAsyncThunk(
-  'auth/fetchUser',
+  "auth/fetchUser",
   async ({ force = false } = {}, thunkApi) => {
     const isLoading = thunkApi.getState().auth.isLoading
     const hasUser = thunkApi.getState().auth.user !== null
@@ -58,7 +58,7 @@ export const fetchUser = createAsyncThunk(
 )
 
 export const login = createAsyncThunk(
-  'auth/login',
+  "auth/login",
   async (payload, thunkApi) => {
     try {
       const { email, password } = payload
@@ -67,7 +67,7 @@ export const login = createAsyncThunk(
         password,
       })
 
-      localStorage.setItem('railway-todo-app__token', response.data.token)
+      localStorage.setItem("railway-todo-app__token", response.data.token)
       thunkApi.dispatch(setToken(response.data.token))
       void thunkApi.dispatch(fetchUser())
     } catch (e) {
@@ -77,7 +77,7 @@ export const login = createAsyncThunk(
 )
 
 export const signup = createAsyncThunk(
-  'auth/signup',
+  "auth/signup",
   async (payload, thunkApi) => {
     try {
       const { email, password, name } = payload
@@ -95,10 +95,10 @@ export const signup = createAsyncThunk(
 )
 
 export const logout = createAsyncThunk(
-  'auth/logout',
+  "auth/logout",
   async (_payload, thunkApi) => {
     // NOTE: ログアウト用のAPIは用意されてないので、トークンを削除するだけ
-    localStorage.removeItem('railway-todo-app__token')
+    localStorage.removeItem("railway-todo-app__token")
     thunkApi.dispatch(setToken(null))
     thunkApi.dispatch(setUser(null))
 

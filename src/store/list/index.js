@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { handleThunkError } from '~/utils/handleThunkError'
-import axios from '~/vendor/axios'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { handleThunkError } from "~/utils/handleThunkError"
+import axios from "~/vendor/axios"
 
 const initialState = {
   lists: null,
@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export const listSlice = createSlice({
-  name: 'list',
+  name: "list",
   initialState,
   reducers: {
     resetList: (state, _action) => {
@@ -41,7 +41,7 @@ export const listSlice = createSlice({
     removeList: (state, action) => {
       const id = action.payload.id
 
-      state.lists = state.lists.filter(list => list.id !== id)
+      state.lists = state.lists.filter((list) => list.id !== id)
 
       if (state.current === id) {
         state.current = state.lists[0]?.id || null
@@ -51,7 +51,7 @@ export const listSlice = createSlice({
       const id = action.payload.id
       const title = action.payload.title
 
-      state.lists = state.lists.map(list => {
+      state.lists = state.lists.map((list) => {
         if (list.id === id) {
           list.title = title
         }
@@ -73,7 +73,7 @@ export const {
 } = listSlice.actions
 
 export const fetchLists = createAsyncThunk(
-  'list/fetchLists',
+  "list/fetchLists",
   async ({ force = false } = {}, thunkApi) => {
     const isLoading = thunkApi.getState().list.isLoading
 
@@ -88,7 +88,7 @@ export const fetchLists = createAsyncThunk(
     thunkApi.dispatch(setListIsLoading(true))
 
     try {
-      const res = await axios.get('/lists')
+      const res = await axios.get("/lists")
       thunkApi.dispatch(setList(res.data))
     } catch (e) {
       return handleThunkError(e, thunkApi)
@@ -99,10 +99,10 @@ export const fetchLists = createAsyncThunk(
 )
 
 export const createList = createAsyncThunk(
-  'list/createList',
+  "list/createList",
   async ({ title }, thunkApi) => {
     try {
-      const res = await axios.post('/lists', { title })
+      const res = await axios.post("/lists", { title })
       thunkApi.dispatch(addList(res.data))
 
       return res.data.id
@@ -113,7 +113,7 @@ export const createList = createAsyncThunk(
 )
 
 export const deleteList = createAsyncThunk(
-  'list/deleteList',
+  "list/deleteList",
   async ({ id }, thunkApi) => {
     try {
       await axios.delete(`/lists/${id}`)
@@ -125,7 +125,7 @@ export const deleteList = createAsyncThunk(
 )
 
 export const updateList = createAsyncThunk(
-  'list/updateList',
+  "list/updateList",
   async ({ id, title }, thunkApi) => {
     try {
       await axios.put(`/lists/${id}`, { title })

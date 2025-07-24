@@ -51,14 +51,14 @@
   border-radius: 0.375rem;
 }
 
-.sidebar__lists_item[data-active='true'] {
+.sidebar__lists_item[data-active="true"] {
   font-weight: 700;
   background-color: var(--slate-200);
   color: var(--slate-600);
   cursor: default;
 }
 
-.sidebar__lists_item:not([data-active='true']):hover {
+.sidebar__lists_item:not([data-active="true"]):hover {
   background-color: var(--slate-200);
   color: var(--slate-600);
   opacity: 0.8;

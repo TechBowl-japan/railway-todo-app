@@ -1,10 +1,10 @@
-import { useCallback, useState, useEffect } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { BackButton } from '~/components/BackButton'
-import './index.css'
-import { fetchLists, updateList, deleteList } from '~/store/list'
-import { useId } from '~/hooks/useId'
+import { useCallback, useState, useEffect } from "react"
+import { Link, useHistory, useParams } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { BackButton } from "~/components/BackButton"
+import "./index.css"
+import { fetchLists, updateList, deleteList } from "~/store/list"
+import { useId } from "~/hooks/useId"
 
 const EditList = () => {
   const id = useId()
@@ -13,13 +13,13 @@ const EditList = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState("")
 
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const list = useSelector(state =>
-    state.list.lists?.find(list => list.id === listId),
+  const list = useSelector((state) =>
+    state.list.lists?.find((list) => list.id === listId),
   )
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const EditList = () => {
   }, [listId])
 
   const onSubmit = useCallback(
-    event => {
+    (event) => {
       event.preventDefault()
 
       setIsSubmitting(true)
@@ -43,7 +43,7 @@ const EditList = () => {
         .then(() => {
           history.push(`/lists/${listId}`)
         })
-        .catch(err => {
+        .catch((err) => {
           setErrorMessage(err.message)
         })
         .finally(() => {
@@ -54,7 +54,7 @@ const EditList = () => {
   )
 
   const handleDelete = useCallback(() => {
-    if (!window.confirm('Are you sure you want to delete this list?')) {
+    if (!window.confirm("Are you sure you want to delete this list?")) {
       return
     }
 
@@ -65,7 +65,7 @@ const EditList = () => {
       .then(() => {
         history.push(`/`)
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(err.message)
       })
       .finally(() => {
@@ -88,7 +88,7 @@ const EditList = () => {
             className="app_input"
             placeholder="Family"
             value={title}
-            onChange={event => setTitle(event.target.value)}
+            onChange={(event) => setTitle(event.target.value)}
           />
         </fieldset>
         <div className="edit_list__form_actions">

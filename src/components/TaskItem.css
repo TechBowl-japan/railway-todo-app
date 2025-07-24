@@ -19,7 +19,7 @@
   color: var(--slate-800);
 }
 
-.task_item__title[data-done='true'] {
+.task_item__title[data-done="true"] {
   text-decoration: line-through;
 }
 
