@@ -1,0 +1,19 @@
+.app_input {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--slate-200);
+  color: var(--slate-800);
+}
+
+.app_input:focus {
+  outline: none;
+  border-color: var(--indigo-600);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
+}
+
+.app_input::placeholder {
+  color: var(--slate-500);
+}

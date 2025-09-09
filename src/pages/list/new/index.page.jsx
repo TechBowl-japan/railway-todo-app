@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { BackButton } from "~/components/BackButton"
 import "./index.css"
 import { Button } from "~/components/Button"
+import { Input } from "~/components/Input"
 import { useId } from "~/hooks/useId"
 import { createList, setCurrentList } from "~/store/list/index"
 
@@ -49,9 +50,8 @@ const NewList = () => {
           <label htmlFor={`${id}-title`} className="new_list__form_label">
             Name
           </label>
-          <input
+          <Input
             id={`${id}-title`}
-            className="app_input"
             placeholder="Family"
             value={title}
             onChange={(event) => setTitle(event.target.value)}

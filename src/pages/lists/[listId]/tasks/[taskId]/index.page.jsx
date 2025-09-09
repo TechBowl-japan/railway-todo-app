@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { BackButton } from "~/components/BackButton"
 import "./index.css"
 import { Button } from "~/components/Button"
+import { Input } from "~/components/Input"
 import { useId } from "~/hooks/useId"
 import { setCurrentList } from "~/store/list"
 import { deleteTask, fetchTasks, updateTask } from "~/store/task"
@@ -90,9 +91,8 @@ const EditTask = () => {
           <label htmlFor={`${id}-title`} className="edit_list__form_label">
             Title
           </label>
-          <input
+          <Input
             id={`${id}-title`}
-            className="app_input"
             placeholder="Buy some milk"
             value={title}
             onChange={(event) => setTitle(event.target.value)}

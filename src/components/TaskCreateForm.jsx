@@ -4,6 +4,7 @@ import "./TaskCreateForm.css"
 import { CheckIcon } from "~/icons/CheckIcon"
 import { createTask } from "~/store/task"
 import { Button } from "./Button"
+import { Input } from "./Input"
 
 export const TaskCreateForm = () => {
   const dispatch = useDispatch()
@@ -115,7 +116,7 @@ export const TaskCreateForm = () => {
             ></div>
           )}
         </Button>
-        <input
+        <Input
           type="text"
           className="task_create_form__title"
           placeholder="Add a new task..."

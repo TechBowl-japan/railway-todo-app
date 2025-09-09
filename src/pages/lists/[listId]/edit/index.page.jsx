@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { BackButton } from "~/components/BackButton"
 import "./index.css"
 import { Button } from "~/components/Button"
+import { Input } from "~/components/Input"
 import { useId } from "~/hooks/useId"
 import { deleteList, fetchLists, updateList } from "~/store/list"
 
@@ -84,9 +85,8 @@ const EditList = () => {
           <label htmlFor={`${id}-title`} className="edit_list__form_label">
             Name
           </label>
-          <input
+          <Input
             id={`${id}-title`}
-            className="app_input"
             placeholder="Family"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
