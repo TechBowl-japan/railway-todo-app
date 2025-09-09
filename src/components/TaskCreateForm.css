@@ -94,3 +94,14 @@
 .task_create_form__spacer {
   flex: 1;
 }
+
+.task_create_form__due_date {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font: inherit;
+  background: transparent;
+  color: var(--slate-500);
+  border: 1px solid var(--slate-300);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
