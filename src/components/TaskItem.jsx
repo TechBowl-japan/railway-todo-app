@@ -22,6 +22,21 @@ export const TaskItem = ({ task }) => {
     })
   }, [id, done, dispatch])
 
+  const formatJST = (isoString) => {
+    if (!isoString) return ""
+    const date = new Date(isoString)
+    if (Number.isNaN(date.getTime())) return ""
+    return new Intl.DateTimeFormat("ja-JP", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+      timeZone: "Asia/Tokyo",
+    }).format(date)
+  }
+
   return (
     <div className="task_item">
       <div className="task_item__title_container">
@@ -54,6 +69,7 @@ export const TaskItem = ({ task }) => {
         </Link>
       </div>
       <div className="task_item__detail">{detail}</div>
+      <div className="task_item__limit">期限: {formatJST(task.limit)}</div>
     </div>
   )
 }
