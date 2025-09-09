@@ -19,6 +19,7 @@ const EditTask = () => {
   const [title, setTitle] = useState("")
   const [detail, setDetail] = useState("")
   const [done, setDone] = useState(false)
+  const [limit, setLimit] = useState("")
 
   const [errorMessage, setErrorMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -32,6 +33,12 @@ const EditTask = () => {
       setTitle(task.title)
       setDetail(task.detail)
       setDone(task.done)
+      const d = new Date(task.limit)
+      setLimit(
+        new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+          .toISOString()
+          .slice(0, 16),
+      )
     }
   }, [task])
 
@@ -40,13 +47,24 @@ const EditTask = () => {
     void dispatch(fetchTasks())
   }, [listId, dispatch])
 
+  const toUTCString = useCallback((localStr) => {
+    if (!localStr) return null
+    const utcTime = new Date(localStr)
+    return utcTime.toISOString()
+  }, [])
+
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault()
 
       setIsSubmitting(true)
+      const payload = { id: taskId, title, detail, done }
+      if (limit) {
+        const utc = toUTCString(limit)
+        if (utc) payload.limit = utc
+      }
 
-      void dispatch(updateTask({ id: taskId, title, detail, done }))
+      void dispatch(updateTask(payload))
         .unwrap()
         .then(() => {
           navigate(`/lists/${listId}`)
@@ -58,7 +76,17 @@ const EditTask = () => {
           setIsSubmitting(false)
         })
     },
-    [title, taskId, listId, detail, done, dispatch, navigate],
+    [
+      title,
+      taskId,
+      listId,
+      detail,
+      limit,
+      toUTCString,
+      done,
+      dispatch,
+      navigate,
+    ],
   )
 
   const handleDelete = useCallback(() => {
@@ -122,6 +150,18 @@ const EditTask = () => {
               onChange={(event) => setDone(event.target.checked)}
             />
           </div>
+        </fieldset>
+        <fieldset className="edit_list__form_field">
+          <label htmlFor={`${id}-limit`} className="edit_list__form_label">
+            Due Date
+          </label>
+          <input
+            id={`${id}-limit`}
+            className="app_input"
+            type="datetime-local"
+            value={limit}
+            onChange={(event) => setLimit(event.target.value)}
+          />
         </fieldset>
         <div className="edit_list__form_actions">
           <Link to="/" data-variant="secondary" className="app_button">
