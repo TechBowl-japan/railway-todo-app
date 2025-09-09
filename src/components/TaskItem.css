@@ -74,3 +74,9 @@
   font-size: 1rem;
   color: var(--slate-500);
 }
+
+.task_item__limit {
+  font-size: 0.875rem;
+  line-height: 1rem;
+  color: var(--slate-400);
+}

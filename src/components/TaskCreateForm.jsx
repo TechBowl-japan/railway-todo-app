@@ -17,6 +17,13 @@ export const TaskCreateForm = () => {
   const [title, setTitle] = useState("")
   const [detail, setDetail] = useState("")
   const [done, setDone] = useState(false)
+  const [limit, setLimit] = useState("")
+
+  const toUTCString = useCallback((localStr) => {
+    if (!localStr) return null
+    const utcTime = new Date(localStr)
+    return utcTime.toISOString()
+  }, [])
 
   const handleToggle = useCallback(() => {
     setDone((prev) => !prev)
@@ -27,7 +34,7 @@ export const TaskCreateForm = () => {
   }, [])
 
   const handleBlur = useCallback(() => {
-    if (title || detail) {
+    if (title || detail || limit) {
       return
     }
 
@@ -41,13 +48,14 @@ export const TaskCreateForm = () => {
       setFormState("initial")
       setDone(false)
     }, 100)
-  }, [title, detail])
+  }, [title, detail, limit])
 
   const handleDiscard = useCallback(() => {
     setTitle("")
     setDetail("")
     setFormState("initial")
     setDone(false)
+    setLimit("")
   }, [])
 
   const onSubmit = useCallback(
@@ -56,7 +64,13 @@ export const TaskCreateForm = () => {
 
       setFormState("submitting")
 
-      void dispatch(createTask({ title, detail, done }))
+      const payload = { title, detail, done }
+      if (limit) {
+        const utc = toUTCString(limit)
+        if (utc) payload.limit = utc
+      }
+
+      void dispatch(createTask(payload))
         .unwrap()
         .then(() => {
           handleDiscard()
@@ -66,7 +80,7 @@ export const TaskCreateForm = () => {
           setFormState("focused")
         })
     },
-    [title, detail, done, dispatch, handleDiscard],
+    [title, detail, done, limit, toUTCString, dispatch, handleDiscard],
   )
 
   useEffect(() => {
@@ -136,6 +150,14 @@ export const TaskCreateForm = () => {
             placeholder="Add a description here..."
             value={detail}
             onChange={(e) => setDetail(e.target.value)}
+            onBlur={handleBlur}
+            disabled={formState === "submitting"}
+          />
+          <input
+            type="datetime-local"
+            className="task_create_form__due_date"
+            value={limit}
+            onChange={(e) => setLimit(e.target.value)}
             onBlur={handleBlur}
             disabled={formState === "submitting"}
           />

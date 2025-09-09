@@ -31,8 +31,9 @@ export const taskSlice = createSlice({
       const id = action.payload.id
       const detail = action.payload.detail
       const done = action.payload.done
+      const limit = action.payload.limit
 
-      state.tasks.push({ title, id, detail, done })
+      state.tasks.push({ title, id, detail, done, limit })
     },
     mutateTask: (state, action) => {
       const id = action.payload.id
