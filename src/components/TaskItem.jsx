@@ -37,6 +37,32 @@ export const TaskItem = ({ task }) => {
     }).format(date)
   }
 
+  const formatRemaining = (isoString) => {
+    if (!isoString) return ""
+    const due = new Date(isoString)
+    const nowDate = new Date()
+    if (Number.isNaN(due.getTime())) return ""
+
+    let diff = due.getTime() - nowDate.getTime()
+    const isOver = diff < 0
+    diff = Math.abs(diff)
+
+    const minutes = Math.floor(diff / (60 * 1000))
+    const days = Math.floor(minutes / (60 * 24))
+    const hours = Math.floor((minutes % (60 * 24)) / 60)
+    const mins = minutes % 60
+
+    const parts = []
+    if (days > 0) parts.push(`${days}日`)
+    if (hours > 0) parts.push(`${hours}時間`)
+    if (days === 0 && hours === 0) {
+      parts.push(mins > 0 ? `${mins}分` : "1分未満")
+    }
+
+    const body = parts.join(" ")
+    return isOver ? `期限切れ ${body}` : `あと ${body}`
+  }
+
   return (
     <div className="task_item">
       <div className="task_item__title_container">
@@ -69,7 +95,10 @@ export const TaskItem = ({ task }) => {
         </Link>
       </div>
       <div className="task_item__detail">{detail}</div>
-      <div className="task_item__limit">期限: {formatJST(task.limit)}</div>
+      <div className="task_item__limit">
+        期限: {formatJST(task.limit)}
+        {task.limit && !done && `（${formatRemaining(task.limit)}）`}
+      </div>
     </div>
   )
 }
