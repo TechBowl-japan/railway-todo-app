@@ -1,0 +1,67 @@
+.edit_task_modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.5); /* slate-950 @ 0.5 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 50;
+}
+
+.edit_task_modal {
+  width: 100%;
+  max-width: var(--width-edit-form);
+  background: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.edit_task_modal__title {
+  color: var(--slate-700);
+  font-size: 1.75rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.edit_task_modal__error {
+  color: var(--red-500);
+}
+
+.edit_task_modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.edit_task_modal__form_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.edit_task_modal__form_label {
+  color: var(--slate-600);
+  font-weight: 500;
+}
+
+.edit_task_modal__form_actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.edit_task_modal__form_actions_spacer {
+  flex: 1;
+}
+
+.edit_task_modal__form_actions_delete {
+  --app-button-accent-color: var(--red-500);
+}
+

@@ -6,6 +6,7 @@ import { PencilIcon } from "~/icons/PencilIcon"
 import { updateTask } from "~/store/task"
 import "./TaskItem.css"
 import { Button } from "./Button"
+import { EditTaskModal } from "./EditTaskModal"
 
 export const TaskItem = ({ task }) => {
   const dispatch = useDispatch()
@@ -14,6 +15,7 @@ export const TaskItem = ({ task }) => {
   const { id, title, detail, done } = task
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isEditOpen, setIsEditOpen] = useState(false)
 
   const handleToggle = useCallback(() => {
     setIsSubmitting(true)
@@ -90,6 +92,10 @@ export const TaskItem = ({ task }) => {
         <Link
           to={`/lists/${listId}/tasks/${id}`}
           className="task_item__title_action"
+          onClick={(e) => {
+            e.preventDefault()
+            setIsEditOpen(true)
+          }}
         >
           <PencilIcon aria-label="Edit" />
         </Link>
@@ -99,6 +105,11 @@ export const TaskItem = ({ task }) => {
         期限: {formatJST(task.limit)}
         {task.limit && !done && `（${formatRemaining(task.limit)}）`}
       </div>
+      <EditTaskModal
+        isOpen={isEditOpen}
+        onRequestClose={() => setIsEditOpen(false)}
+        taskId={id}
+      />
     </div>
   )
 }
