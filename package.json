@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "vite": "^6.3.2"
+    "vite": "^6.4.2"
   },
   "scripts": {
     "start": "vite",
