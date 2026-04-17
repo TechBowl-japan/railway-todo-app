@@ -10,7 +10,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@unocss/reset": "^0.53.6",
-    "axios": "^1.8.3",
+    "axios": "^1.15.0",
     "react": "^18.3.1",
     "react-cookie": "^8.0.1",
     "react-dom": "^18.3.1",
